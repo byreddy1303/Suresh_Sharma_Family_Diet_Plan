@@ -156,11 +156,7 @@ details.drop.person-card.susheel summary { color: var(--sage); }
 details.drop.person-card.karthik summary { color: var(--sky); }
 
 /* Print behavior: force all dropdowns open on print */
-@media print {
-  details.drop > *:not(summary) { display: block !important; }
-  details.drop summary::before { display: none; }
-  details.drop summary { background: white !important; padding-left: 18px; }
-}
+/* (Print styles consolidated in @media print block below) */
 h1, h2, h3, h4 { font-family: 'Palatino Linotype', Georgia, serif; }
 .wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
 
@@ -442,34 +438,189 @@ footer {
 footer::before { content: "❈ ❈ ❈"; display: block; color: var(--turmeric); margin-bottom: 10px; font-size: 1.2rem; }
 
 /* ---- Print styles ---- */
+@page {
+  size: A4;
+  margin: 10mm 12mm;
+}
+
 @media print {
-  body { background: white; padding: 0; font-size: 10.5pt; }
-  .hero { padding: 20px; background: white !important; color: black !important; border-bottom: 3px solid #333; }
-  .hero h1 { color: #C1440E; font-size: 1.8rem; }
-  .hero .subtitle, .hero .badge { color: #444; border-color: #999; background: white; }
-  nav.toc, .print-btn, .family-strip { display: none !important; }
+  html { font-size: 13px; }
+  body {
+    background: white;
+    padding: 0;
+    font-size: 9pt;
+    line-height: 1.35;
+    color: #000;
+  }
+
+  /* Hide interactive/decorative chrome */
+  nav.toc, .print-btn, .family-strip, footer { display: none !important; }
+  .hero { display: none !important; }
+
+  /* Sections: LET THEM FLOW — no forced page breaks */
   .section {
     box-shadow: none;
-    border: 1px solid #999;
-    margin: 12px 0;
-    page-break-inside: avoid;
+    border: 1px solid #888;
+    margin: 0 0 6px 0;
+    page-break-inside: auto;
+    break-inside: auto;
+    border-radius: 0;
   }
   .section-header {
     background: #f0e4cc !important;
     color: #3E2817 !important;
-    padding: 12px 16px;
-    border-bottom: 2px solid #C1440E;
+    padding: 5px 10px;
+    border-bottom: 1.5px solid #C1440E;
+    page-break-after: avoid;
+    break-after: avoid;
   }
-  .day-tab { display: none !important; }
-  .day-tab.active { display: none !important; }
-  .day-panel { display: block !important; page-break-inside: avoid; }
-  .day-panel h4 { color: #C1440E; margin-top: 20px; border-bottom: 1px solid #999; }
-  table { font-size: 9pt; }
-  a { color: #3E2817; text-decoration: none; }
+  .section-header h2 { font-size: 1.15rem; margin: 0; letter-spacing: 0; }
+  .section-header h2 .num {
+    padding: 2px 8px;
+    font-size: 0.72rem;
+    background: rgba(193,68,14,0.15);
+    color: #C1440E;
+    margin-right: 6px;
+  }
+  .section-body { padding: 6px 10px; }
 
-  /* Single-section print mode */
+  /* Compact headings & body text */
+  h3 { font-size: 0.95rem; margin: 6px 0 3px; padding-bottom: 2px; border-bottom: 1px dotted #bbb; }
+  h4 { font-size: 0.88rem; margin: 4px 0 2px; color: #4A6A3F; }
+  p { margin: 2px 0 4px; orphans: 3; widows: 3; }
+  ul, ol { margin: 2px 0 4px 16px; padding: 0; }
+  li { margin-bottom: 1px; }
+
+  /* Telugu: tighter spacing for print */
+  .te {
+    font-size: 0.88em;
+    line-height: 1.35;
+    margin: 1px 0 3px;
+    letter-spacing: 0.015em;
+    word-spacing: 0.03em;
+    opacity: 1;
+  }
+  .te-inline {
+    font-size: 0.85em;
+    letter-spacing: 0.015em;
+    word-spacing: 0.02em;
+  }
+
+  /* Dropdowns: force open, strip decoration */
+  details.drop {
+    border: 1px solid #ccc;
+    background: white !important;
+    margin: 3px 0;
+    border-radius: 0;
+    box-shadow: none !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  details.drop summary {
+    background: #f5ecd8 !important;
+    color: #3E2817 !important;
+    padding: 3px 8px !important;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border-bottom: 1px solid #bbb;
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+  details.drop summary::before,
+  details.drop summary::-webkit-details-marker,
+  details.drop .hint { display: none !important; }
+  details.drop > *:not(summary) {
+    display: block !important;
+    padding: 4px 8px !important;
+  }
+  details.drop > .drop-body { padding: 4px 8px !important; }
+  details.drop.recipe-drop summary,
+  details.drop.person-card summary {
+    background: #f5ecd8 !important;
+    color: #3E2817 !important;
+  }
+  details.drop.person-card { border-left-width: 3px; }
+
+  /* Grid boxes compact — 3 across in print */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3px;
+    margin: 3px 0;
+  }
+  .macro-box {
+    padding: 4px 6px;
+    border-radius: 0;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  .macro-box .label { font-size: 0.62rem; }
+  .macro-box .val { font-size: 0.95rem; }
+  .macro-box .sub { font-size: 0.7rem; }
+
+  /* Person cards compact */
+  .person-card { padding: 5px 8px; margin: 4px 0; border-left-width: 3px; page-break-inside: avoid; break-inside: avoid; }
+  .person-card h3 { font-size: 0.98rem; margin-top: 0; }
+
+  /* Callouts compact */
+  .callout { padding: 4px 8px; margin: 3px 0; page-break-inside: avoid; break-inside: avoid; border-radius: 0; }
+  .callout.good, .callout.warn { border-radius: 0; }
+
+  /* Tables ultra-compact */
+  table { font-size: 7.5pt; margin: 3px 0; }
+  th { padding: 3px 5px; font-size: 7.5pt; background: #f0e4cc !important; }
+  td { padding: 2px 5px; font-size: 7.5pt; vertical-align: top; }
+  tr { page-break-inside: avoid; break-inside: avoid; }
+  .tbl-wrap { border-radius: 0; margin: 3px 0; }
+
+  /* Meal cards very tight */
+  .day-tab { display: none !important; }
+  .day-panel { display: block !important; page-break-inside: auto; }
+  .day-panel h4 {
+    color: #C1440E !important;
+    margin: 8px 0 3px;
+    border-bottom: 1px solid #999;
+    padding-bottom: 2px;
+    page-break-before: auto;
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+  .meal {
+    padding: 3px 6px;
+    margin: 2px 0;
+    page-break-inside: avoid;
+    break-inside: avoid;
+    border-radius: 0;
+  }
+  .meal-time { font-size: 0.7rem; }
+  .meal-dish { font-size: 0.88rem; margin: 1px 0 2px; }
+  .per-person {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3px;
+    font-size: 0.72rem;
+    margin-top: 2px;
+  }
+  .pp { padding: 2px 5px; border-radius: 0; }
+  .pp b { font-size: 0.68rem; margin-bottom: 1px; }
+  .meal-note { font-size: 0.7rem; margin-top: 3px; }
+  .meal-cal { font-size: 0.7rem; margin-top: 2px; }
+
+  /* Recipe */
+  .recipe { padding: 5px 8px; margin: 3px 0; border-radius: 0; page-break-inside: avoid; break-inside: avoid; }
+  .recipe-title { font-size: 0.95rem; padding-bottom: 2px; }
+  .section-lbl { font-size: 0.82rem; margin-top: 3px; }
+
+  /* Nav-link boxes in Welcome */
+  .nav-link { text-decoration: none; color: inherit; }
+
+  /* Links: no color */
+  a { color: inherit; text-decoration: none; }
+
+  /* Keep headings with their content */
+  h3, h4, h5, .recipe-title, .meal-time, .meal-dish { page-break-after: avoid; break-after: avoid; }
+
+  /* Single-section print mode: only target section renders */
   body.print-single .section:not(.print-target),
-  body.print-single .hero,
   body.print-single footer {
     display: none !important;
   }
@@ -477,6 +628,9 @@ footer::before { content: "❈ ❈ ❈"; display: block; color: var(--turmeric);
     box-shadow: none;
     border: none;
     margin: 0;
+  }
+  body.print-single .print-target .section-header {
+    border-top: 2px solid #C1440E;
   }
 }
 
