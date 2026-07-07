@@ -2,6 +2,7 @@
 .env
 .env.*
 !.env.example
+vercel-env-import.txt
 
 # Common local build/cache folders
 node_modules/
