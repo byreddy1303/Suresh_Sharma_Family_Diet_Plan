@@ -120,15 +120,18 @@
             ${examples.map(example => `<button class="da-chip" type="button" data-question="${escapeAttribute(example)}">${escapeHtml(example)}</button>`).join('')}
           </div>
 
-          <label class="da-field" for="da-question">
-            Your question
-            <textarea id="da-question" placeholder="Example: I do not have sorakaya today. What can I use instead and still keep it healthy?"></textarea>
-          </label>
-
-          <div class="da-row">
-            <button class="da-btn mic" id="da-mic" type="button">Start voice</button>
-            <button class="da-btn primary" id="da-ask" type="button">Ask</button>
-            <button class="da-btn" id="da-clear" type="button">Clear</button>
+          <div class="da-composer-block">
+            <label class="da-question-label" for="da-question">Your question</label>
+            <div class="da-composer">
+              <textarea id="da-question" rows="3" placeholder="Ask a doubt about today&apos;s meal, ingredients, or substitutions..."></textarea>
+              <div class="da-composer-actions">
+                <div class="da-composer-left">
+                  <button class="da-icon-btn mic" id="da-mic" type="button" title="Start voice question" aria-label="Start voice question">Voice</button>
+                  <button class="da-icon-btn" id="da-clear" type="button" title="Clear question" aria-label="Clear question">Clear</button>
+                </div>
+                <button class="da-send-btn" id="da-ask" type="button" aria-label="Ask the diet assistant">Ask</button>
+              </div>
+            </div>
           </div>
 
           <div class="da-transcript" id="da-transcript" hidden>
@@ -352,7 +355,7 @@
       });
       state.mediaRecorder.addEventListener('stop', () => finishVoice(root, mimeType));
       state.mediaRecorder.start();
-      root.querySelector('#da-mic').textContent = 'Stop voice';
+      root.querySelector('#da-mic').textContent = 'Stop';
       root.querySelector('#da-mic').classList.add('recording');
       setStatus(root, 'Recording... press Stop voice when finished.');
     } catch (error) {
@@ -423,7 +426,7 @@
     state.mediaRecorder = null;
     state.audioChunks = [];
     const mic = root.querySelector('#da-mic');
-    mic.textContent = 'Start voice';
+    mic.textContent = 'Voice';
     mic.classList.remove('recording');
   }
 

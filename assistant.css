@@ -285,6 +285,116 @@
   color: var(--terracotta);
 }
 
+.da-composer-block {
+  margin: 14px 0 10px;
+}
+
+.da-question-label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: bold;
+  margin-bottom: 6px;
+  color: var(--coffee);
+}
+
+.da-composer {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 10px;
+  box-shadow: 0 2px 8px rgba(62, 40, 23, 0.08);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.da-composer:focus-within {
+  border-color: var(--terracotta);
+  box-shadow: 0 0 0 3px rgba(193, 68, 14, 0.13), 0 4px 14px rgba(62, 40, 23, 0.1);
+}
+
+.da-composer textarea {
+  width: 100%;
+  min-height: 92px;
+  max-height: 210px;
+  resize: vertical;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--coffee);
+  font-family: inherit;
+  font-size: 0.96rem;
+  line-height: 1.5;
+  padding: 2px 4px 8px;
+}
+
+.da-composer-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  border-top: 1px solid #F0E4CC;
+  padding-top: 8px;
+}
+
+.da-composer-left {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-wrap: wrap;
+}
+
+.da-icon-btn,
+.da-send-btn {
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
+  transition: transform 0.12s ease, background 0.12s ease, color 0.12s ease, box-shadow 0.12s ease;
+}
+
+.da-icon-btn {
+  background: #F7EBD2;
+  color: var(--coffee);
+  border-radius: 999px;
+  min-height: 34px;
+  padding: 7px 12px;
+  font-size: 0.82rem;
+}
+
+.da-icon-btn:hover {
+  background: #F0DDAF;
+  transform: translateY(-1px);
+}
+
+.da-icon-btn.recording {
+  background: var(--maroon);
+  color: var(--cream);
+  box-shadow: 0 0 0 3px rgba(139, 38, 53, 0.14);
+}
+
+.da-send-btn {
+  background: var(--terracotta);
+  color: var(--cream);
+  border-radius: 999px;
+  min-height: 38px;
+  min-width: 74px;
+  padding: 8px 18px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  box-shadow: 0 3px 8px rgba(193, 68, 14, 0.24);
+}
+
+.da-send-btn:hover {
+  background: #A03810;
+  transform: translateY(-1px);
+}
+
+.da-icon-btn:disabled,
+.da-send-btn:disabled {
+  opacity: 0.58;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
 .da-check {
   display: flex;
   align-items: center;
@@ -393,6 +503,14 @@
   }
 
   .da-row .da-btn {
+    flex: 1 1 auto;
+  }
+
+  .da-composer-actions {
+    align-items: stretch;
+  }
+
+  .da-composer-left {
     flex: 1 1 auto;
   }
 
