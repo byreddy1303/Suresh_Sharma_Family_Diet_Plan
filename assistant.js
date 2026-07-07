@@ -170,6 +170,15 @@
     }
   }
 
+  function isAdminMode() {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('admin') === '1';
+    } catch (e) {
+      return false;
+    }
+  }
+
   function endpointConfig() {
     return Object.assign({}, DEFAULT_ENDPOINTS, window.DIET_ASSISTANT_ENDPOINTS || {});
   }
@@ -205,29 +214,30 @@
   function createWidget() {
     if (document.getElementById('diet-assistant-root')) return;
 
+    const adminMode = isAdminMode();
     const todayExamples = getTodayExamples();
     const root = document.createElement('div');
     root.id = 'diet-assistant-root';
-    root.className = 'diet-assistant no-print';
+    root.className = 'diet-assistant no-print' + (adminMode ? ' admin-mode' : '');
     root.innerHTML = `
       <button class="da-launcher" id="da-launcher" type="button" aria-controls="da-panel" aria-expanded="false">
-        <span class="da-launcher-main">Ask Diet Doubts</span>
-        <span class="da-launcher-sub">Text or voice question</span>
+        <span class="da-launcher-main">${adminMode ? 'Admin · Ask' : 'Ask Diet Doubts'}</span>
+        <span class="da-launcher-sub">${adminMode ? 'Update readings or ask questions' : 'Text or voice question'}</span>
       </button>
 
       <section class="da-panel" id="da-panel" role="dialog" aria-label="Diet plan assistant" hidden>
         <div class="da-head">
           <div>
-            <h2>Ask the Diet Plan</h2>
-            <p>Ask substitutions, taste fixes, meal swaps, and family doubts in text or voice.</p>
+            <h2>${adminMode ? 'Diet Plan Admin' : 'Ask the Diet Plan'}</h2>
+            <p>${adminMode ? 'Update health readings, build previews, or ask a question.' : 'Ask substitutions, taste fixes, meal swaps, and family doubts in text or voice.'}</p>
           </div>
           <button class="da-close" id="da-close" type="button" aria-label="Close assistant">×</button>
         </div>
 
-        <div class="da-tabs" role="tablist">
+        ${adminMode ? `<div class="da-tabs" role="tablist">
           <button class="da-tab active" id="da-tab-ask" type="button" role="tab" aria-selected="true" data-tab="ask">Ask</button>
-          <button class="da-tab" id="da-tab-health" type="button" role="tab" aria-selected="false" data-tab="health">Health Center</button>
-        </div>
+          <button class="da-tab" id="da-tab-health" type="button" role="tab" aria-selected="false" data-tab="health">Update readings</button>
+        </div>` : ''}
 
         <div class="da-body">
           <div class="da-tabpanel" id="da-panel-ask" role="tabpanel">
@@ -297,7 +307,7 @@
             </div>
           </div>
 
-          <div class="da-tabpanel" id="da-panel-health" role="tabpanel" hidden>
+          ${adminMode ? `<div class="da-tabpanel" id="da-panel-health" role="tabpanel" hidden>
             <div class="da-hc" id="da-hc">
               <div class="da-hc-lock" id="da-hc-lock">
                 <div class="da-hc-lock-title">Health Center is private</div>
@@ -337,7 +347,7 @@
                 <div class="da-hc-preview" id="da-hc-preview" hidden>
                   <div class="da-hc-preview-head">
                     <h3>Suggested changes</h3>
-                    <button class="da-btn primary" id="da-hc-apply" type="button">Send to assistant</button>
+                    <button class="da-btn primary" id="da-hc-apply" type="button">Apply to plan</button>
                   </div>
                   <div class="da-hc-doctor-banner" id="da-hc-doctor-banner" hidden>
                     One or more readings need doctor review. Diet suggestions are supportive only.
@@ -346,7 +356,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div>` : ''}
         </div>
       </section>
     `;
@@ -400,7 +410,7 @@
       if (event.key === 'Escape' && !panel.hidden) setPanelOpen(root, false);
     });
 
-    bindHealthCenter(root);
+    if (isAdminMode()) bindHealthCenter(root);
   }
 
   function switchTab(root, tabName) {
@@ -410,9 +420,11 @@
       tab.classList.toggle('active', active);
       tab.setAttribute('aria-selected', active ? 'true' : 'false');
     });
-    root.querySelector('#da-panel-ask').hidden = tabName !== 'ask';
-    root.querySelector('#da-panel-health').hidden = tabName !== 'health';
-    if (tabName === 'health') openHealthCenter(root);
+    const askPanel = root.querySelector('#da-panel-ask');
+    const healthPanel = root.querySelector('#da-panel-health');
+    if (askPanel) askPanel.hidden = tabName !== 'ask';
+    if (healthPanel) healthPanel.hidden = tabName !== 'health';
+    if (tabName === 'health' && healthPanel) openHealthCenter(root);
   }
 
   function bindHealthCenter(root) {
@@ -1128,5 +1140,152 @@
     return escapeHtml(value).replace(/`/g, '&#96;');
   }
 
-  ready(createWidget);
+  const PERSON_SELECTORS = {
+    suresh: '.pp:not(.v):not(.su):not(.k)',
+    veni: '.pp.v',
+    susheel: '.pp.su',
+    karthik: '.pp.k'
+  };
+
+  const PERSON_LABELS = {
+    suresh: 'Suresh',
+    veni: 'Veni',
+    susheel: 'Susheel',
+    karthik: 'Karthikeya'
+  };
+
+  async function applyMealPlanAdjustments() {
+    const base = getApiBase();
+    if (!base) return;
+    let data;
+    try {
+      const response = await fetch(base + '/api/plan-adjustments', { method: 'GET', cache: 'no-store' });
+      if (!response.ok) return;
+      data = await response.json();
+    } catch (error) {
+      return;
+    }
+    const recommendations = Array.isArray(data && data.recommendations) ? data.recommendations : [];
+    if (!recommendations.length) return;
+    injectDoctorReviewBanner(recommendations);
+    injectSectionSummary(recommendations);
+    applyPerCardAdjustments(recommendations);
+  }
+
+  function applyPerCardAdjustments(recommendations) {
+    const s3 = document.getElementById('s3');
+    if (!s3) return;
+    const byPerson = new Map();
+    recommendations
+      .filter(rec => (rec.targetSectionId || '').toLowerCase() === 's3')
+      .forEach(rec => {
+        const existing = byPerson.get(rec.personId);
+        if (!existing || priorityRank(rec.priority) > priorityRank(existing.priority)) {
+          byPerson.set(rec.personId, rec);
+        }
+      });
+    byPerson.forEach((rec, personId) => {
+      const selector = PERSON_SELECTORS[personId];
+      if (!selector) return;
+      s3.querySelectorAll(selector).forEach(card => rewriteCard(card, rec));
+    });
+  }
+
+  function priorityRank(priority) {
+    if (priority === 'high') return 3;
+    if (priority === 'medium') return 2;
+    if (priority === 'low') return 1;
+    return 0;
+  }
+
+  function rewriteCard(card, rec) {
+    if (!card || card.classList.contains('pp-adjusted')) return;
+    const label = card.querySelector('b');
+    const teNodes = Array.from(card.querySelectorAll('.te'));
+    const labelHtml = label ? label.outerHTML : '';
+    const teHtml = teNodes.map(node => node.outerHTML).join('');
+    const originalBody = extractOriginalBody(card);
+    card.classList.add('pp-adjusted', 'pp-priority-' + (rec.priority || 'medium'));
+    card.innerHTML = `
+      <div class="pp-badge">${escapeHtml(deriveBadgeText(rec))}</div>
+      ${labelHtml}
+      <div class="pp-original">${escapeHtml(originalBody)}</div>
+      <div class="pp-add"><b>Today:</b> ${escapeHtml(rec.suggestedText || '')}</div>
+      ${rec.reason ? `<div class="pp-why"><i>Why:</i> ${escapeHtml(rec.reason)}</div>` : ''}
+      ${teHtml}
+    `;
+  }
+
+  function extractOriginalBody(card) {
+    const clone = card.cloneNode(true);
+    clone.querySelectorAll('b').forEach(node => node.remove());
+    clone.querySelectorAll('.te').forEach(node => node.remove());
+    return clone.textContent.replace(/\s+/g, ' ').trim();
+  }
+
+  function deriveBadgeText(rec) {
+    const person = PERSON_LABELS[rec.personId] || 'Family';
+    if (rec.doctorReviewRequired) return 'Doctor review — ' + person;
+    if (rec.priority === 'high') return 'Important today — ' + person;
+    if (rec.priority === 'low') return 'Small tip — ' + person;
+    return 'Adjusted today — ' + person;
+  }
+
+  function injectDoctorReviewBanner(recommendations) {
+    const doctorRecs = recommendations.filter(rec => rec.doctorReviewRequired);
+    if (!doctorRecs.length) return;
+    if (document.getElementById('adaptive-doctor-banner')) return;
+    const affected = Array.from(new Set(doctorRecs.map(rec => PERSON_LABELS[rec.personId] || 'family')));
+    const banner = document.createElement('div');
+    banner.id = 'adaptive-doctor-banner';
+    banner.className = 'adaptive-doctor-banner no-print';
+    banner.innerHTML = `
+      <div class="adaptive-doctor-banner-inner">
+        <div class="adaptive-doctor-banner-title">Please review with the doctor today</div>
+        <div class="adaptive-doctor-banner-body">
+          Recent readings for <b>${escapeHtml(affected.join(', '))}</b> need medical review. The meal adjustments below are supportive only — do not stop or change medication.
+        </div>
+      </div>
+    `;
+    const hero = document.querySelector('header.hero');
+    if (hero && hero.parentNode) {
+      hero.parentNode.insertBefore(banner, hero.nextSibling);
+    } else {
+      document.body.insertBefore(banner, document.body.firstChild);
+    }
+  }
+
+  function injectSectionSummary(recommendations) {
+    const s3Recs = recommendations.filter(rec => (rec.targetSectionId || '').toLowerCase() === 's3');
+    if (!s3Recs.length) return;
+    const s3 = document.getElementById('s3');
+    if (!s3) return;
+    if (s3.querySelector('.adaptive-summary')) return;
+    const body = s3.querySelector('.section-body');
+    if (!body) return;
+    const byPerson = new Map();
+    s3Recs.forEach(rec => {
+      if (!byPerson.has(rec.personId)) byPerson.set(rec.personId, rec);
+      else if (priorityRank(rec.priority) > priorityRank(byPerson.get(rec.personId).priority)) {
+        byPerson.set(rec.personId, rec);
+      }
+    });
+    const items = Array.from(byPerson.entries()).map(([personId, rec]) => {
+      const person = PERSON_LABELS[personId] || personId;
+      return `<li><b>${escapeHtml(person)}:</b> ${escapeHtml(rec.suggestedText || '')}</li>`;
+    }).join('');
+    const summary = document.createElement('div');
+    summary.className = 'adaptive-summary no-print';
+    summary.innerHTML = `
+      <div class="adaptive-summary-title">Today's plan is adjusted for the latest readings</div>
+      <ul>${items}</ul>
+      <div class="adaptive-summary-note">Original plan text is preserved below each card.</div>
+    `;
+    body.insertBefore(summary, body.firstChild);
+  }
+
+  ready(() => {
+    createWidget();
+    applyMealPlanAdjustments().catch(() => {});
+  });
 })();
