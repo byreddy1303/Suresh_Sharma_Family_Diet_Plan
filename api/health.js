@@ -1,5 +1,7 @@
 const { getGroqConfig, handleOptions, requireMethod, sendJson } = require('./_lib/config');
+const { getConfiguredPasscode } = require('./_lib/auth');
 const { getDietDocument } = require('./_lib/document');
+const { isDatabaseConfigured } = require('./_lib/store');
 
 module.exports = async function handler(req, res) {
   if (handleOptions(req, res)) return;
@@ -11,6 +13,8 @@ module.exports = async function handler(req, res) {
     ok: true,
     service: 'diet-assistant',
     keyConfigured: Boolean(config.apiKey),
+    dbConfigured: isDatabaseConfigured(),
+    passcodeConfigured: Boolean(getConfiguredPasscode()),
     chatModel: config.chatModel,
     transcribeModel: config.transcribeModel,
     document: {

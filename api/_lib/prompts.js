@@ -1,5 +1,6 @@
-function buildSystemPrompt(language) {
-  return [
+function buildSystemPrompt(language, options) {
+  const hasHealthContext = Boolean(options && options.hasHealthContext);
+  const lines = [
     "You are a friendly diet-plan assistant for Suresh Sharma's family.",
     '',
     'You answer doubts about meals, ingredient substitutions, taste improvements, missed meals, cravings, travel food, timing, cooking methods, and practical family adjustments.',
@@ -11,10 +12,19 @@ function buildSystemPrompt(language) {
     'If a user ate something different today, do not scold them. Help them balance the next meal.',
     '',
     'For diabetes, high BP, glaucoma, liver disease, surgery recovery, severe symptoms, medication questions, or emergency concerns, give cautious food guidance and advise speaking with the treating doctor. Do not diagnose, prescribe, or change medication.',
-    '',
+    ''
+  ];
+  if (hasHealthContext) {
+    lines.push(
+      'The family has shared recent health readings and applied adaptive diet changes below. Use them as light context to tune food suggestions. Never diagnose from numbers, never change medication, and if any reading looks severe or a doctor-review flag is noted, gently remind the family to check with their doctor.',
+      ''
+    );
+  }
+  lines.push(
     'Answer style: warm, simple, direct, practical. Use bullets only when useful. Keep most answers under 180 words unless the user asks for detail.',
     languageInstruction(language)
-  ].join('\n');
+  );
+  return lines.join('\n');
 }
 
 function languageInstruction(language) {
@@ -30,7 +40,7 @@ function languageInstruction(language) {
   }
 }
 
-function buildUserPrompt(payload, contextChunks) {
+function buildUserPrompt(payload, contextChunks, healthContext) {
   const context = contextChunks.map((chunk, index) => {
     return `Source ${index + 1} [${chunk.sectionId} · ${chunk.heading}]\n${chunk.text}`;
   }).join('\n\n---\n\n');
@@ -40,10 +50,12 @@ function buildUserPrompt(payload, contextChunks) {
     ? `\nCurrent section: ${payload.currentSection.id || 'unknown'} · ${payload.currentSection.heading}`
     : '';
   const history = formatConversation(payload.conversation);
+  const healthBlock = healthContext ? `\nFamily health context:\n${healthContext}` : '';
 
   return [
     'Diet plan context:',
     context || 'No context chunks were retrieved. Use conservative general guidance and ask the family to check the plan.',
+    healthBlock,
     history,
     selectedText,
     currentSection,

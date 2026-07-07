@@ -2,6 +2,8 @@ const { assertGroqKey, getGroqConfig, handleOptions, readJsonBody, requireMethod
 const { retrieveContext } = require('./_lib/document');
 const { groqJson } = require('./_lib/groq');
 const { buildFollowUps, buildSystemPrompt, buildUserPrompt } = require('./_lib/prompts');
+const store = require('./_lib/store');
+const { summarizeHealthContext } = require('./_lib/health-rules');
 
 const MAX_QUESTION_CHARS = 1600;
 
@@ -24,11 +26,12 @@ module.exports = async function handler(req, res) {
     const apiKey = assertGroqKey();
     const { chatModel } = getGroqConfig();
     const contextChunks = retrieveContext(payload);
+    const healthContext = await loadHealthContext();
     const groqPayload = {
       model: chatModel,
       messages: [
-        { role: 'system', content: buildSystemPrompt(payload.language) },
-        { role: 'user', content: buildUserPrompt({ ...payload, question }, contextChunks) }
+        { role: 'system', content: buildSystemPrompt(payload.language, { hasHealthContext: Boolean(healthContext) }) },
+        { role: 'user', content: buildUserPrompt({ ...payload, question }, contextChunks, healthContext) }
       ],
       temperature: 0.35,
       max_completion_tokens: 900
@@ -48,6 +51,7 @@ module.exports = async function handler(req, res) {
         sectionId: chunk.sectionId,
         heading: chunk.heading
       })),
+      healthContextApplied: Boolean(healthContext),
       usage: data.usage || null,
       model: data.model || chatModel
     });
@@ -55,3 +59,14 @@ module.exports = async function handler(req, res) {
     sendError(req, res, error.statusCode || 500, error.message || 'Could not answer the question.');
   }
 };
+
+async function loadHealthContext() {
+  if (!store.isDatabaseConfigured()) return '';
+  try {
+    const preview = await store.getActivePreview();
+    if (!preview) return '';
+    return summarizeHealthContext(preview.profileSnapshot, preview);
+  } catch (error) {
+    return '';
+  }
+}

@@ -5,13 +5,58 @@
   const DEFAULT_API_BASE = 'https://suresh-sharma-family-diet-plan.vercel.app';
   const STORAGE_API_BASE = 'dietAssistantApiBase';
   const STORAGE_LANGUAGE = 'dietAssistantLanguage';
+  const SESSION_PASSCODE = 'dietFamilyPasscode';
   const CHAT_INACTIVITY_MS = 10 * 60 * 1000;
   const MAX_CHAT_TURNS = 8;
   const DEFAULT_ENDPOINTS = {
     ask: '/api/ask',
     transcribe: '/api/transcribe',
-    health: '/api/health'
+    health: '/api/health',
+    unlock: '/api/health-profile/unlock',
+    profile: '/api/health-profile',
+    preview: '/api/plan-preview',
+    apply: '/api/plan-preview/apply'
   };
+
+  const HEALTH_MEMBERS = [
+    {
+      id: 'suresh',
+      name: 'Suresh',
+      role: 'Nannagaru',
+      fields: [
+        { key: 'systolic', label: 'Systolic BP', unit: 'mmHg', type: 'number', step: '1' },
+        { key: 'diastolic', label: 'Diastolic BP', unit: 'mmHg', type: 'number', step: '1' },
+        { key: 'weightKg', label: 'Weight', unit: 'kg', type: 'number', step: '0.1' }
+      ]
+    },
+    {
+      id: 'veni',
+      name: 'Veni',
+      role: 'Ammagaru',
+      fields: [
+        { key: 'fastingGlucose', label: 'Fasting glucose', unit: 'mg/dL', type: 'number', step: '1' },
+        { key: 'weightKg', label: 'Weight', unit: 'kg', type: 'number', step: '0.1' }
+      ]
+    },
+    {
+      id: 'susheel',
+      name: 'Susheel',
+      role: 'Younger son',
+      fields: [
+        { key: 'weightKg', label: 'Weight', unit: 'kg', type: 'number', step: '0.1' },
+        { key: 'energyLevel', label: 'Energy level', unit: '1–10', type: 'number', step: '1', min: 1, max: 10 }
+      ]
+    },
+    {
+      id: 'karthik',
+      name: 'Karthikeya',
+      role: 'Elder son',
+      fields: [
+        { key: 'painLevel', label: 'Pain level', unit: '1–10', type: 'number', step: '1', min: 1, max: 10 },
+        { key: 'swellingLevel', label: 'Swelling level', unit: '1–10', type: 'number', step: '1', min: 1, max: 10 }
+      ]
+    }
+  ];
 
   const state = {
     mediaRecorder: null,
@@ -20,7 +65,10 @@
     activeRequest: null,
     chatMessages: [],
     lastActivityAt: 0,
-    inactivityTimer: null
+    inactivityTimer: null,
+    healthProfile: null,
+    healthPreview: null,
+    activeMemberId: 'suresh'
   };
 
   const DAILY_EXAMPLES = [
@@ -158,70 +206,128 @@
           <button class="da-close" id="da-close" type="button" aria-label="Close assistant">×</button>
         </div>
 
+        <div class="da-tabs" role="tablist">
+          <button class="da-tab active" id="da-tab-ask" type="button" role="tab" aria-selected="true" data-tab="ask">Ask</button>
+          <button class="da-tab" id="da-tab-health" type="button" role="tab" aria-selected="false" data-tab="health">Health Center</button>
+        </div>
+
         <div class="da-body">
-          <div class="da-setup" id="da-setup" hidden>
-            <div class="da-setup-title" id="da-setup-title">Backend not connected yet</div>
-            <div class="da-setup-text" id="da-setup-text">After Claude deploys the backend, paste its URL here. Example: https://your-project.vercel.app</div>
-            <label class="da-field" for="da-api-base">
-              Backend URL
-              <input id="da-api-base" type="url" autocomplete="off" placeholder="https://your-backend.vercel.app">
-            </label>
-            <div class="da-row tight">
-              <button class="da-btn primary" id="da-save-config" type="button">Save backend</button>
-              <button class="da-btn" id="da-test-config" type="button">Test</button>
-            </div>
-          </div>
-
-          <details class="da-settings">
-            <summary>Assistant settings</summary>
-            <div class="da-settings-body">
-              <div class="da-backend-line" id="da-backend-line">Backend connected</div>
-              <label class="da-field" for="da-language">
-                Voice and answer language
-                <select id="da-language">
-                  <option value="telugu">Telugu (best for voice)</option>
-                  <option value="english">English</option>
-                  <option value="hinglish">Simple Hindi + English</option>
-                  <option value="auto">Auto-detect typed question</option>
-                </select>
+          <div class="da-tabpanel" id="da-panel-ask" role="tabpanel">
+            <div class="da-setup" id="da-setup" hidden>
+              <div class="da-setup-title" id="da-setup-title">Backend not connected yet</div>
+              <div class="da-setup-text" id="da-setup-text">After Claude deploys the backend, paste its URL here. Example: https://your-project.vercel.app</div>
+              <label class="da-field" for="da-api-base">
+                Backend URL
+                <input id="da-api-base" type="url" autocomplete="off" placeholder="https://your-backend.vercel.app">
               </label>
-              <label class="da-check">
-                <input id="da-auto-ask" type="checkbox" checked>
-                Ask automatically after voice transcription
-              </label>
-            </div>
-          </details>
-
-          <div class="da-examples-wrap">
-            <div class="da-examples-title">${escapeHtml(todayExamples.label)}</div>
-            <div class="da-examples" aria-label="Suggested questions for ${escapeAttribute(todayExamples.label)}">
-              ${todayExamples.questions.map(example => `<button class="da-chip" type="button" data-question="${escapeAttribute(example)}">${escapeHtml(example)}</button>`).join('')}
-            </div>
-          </div>
-
-          <div class="da-chat" id="da-chat" aria-live="polite" aria-label="Diet assistant chat">
-            <div class="da-chat-empty">Ask a question to start a chat. Follow-up questions will remember the recent conversation.</div>
-          </div>
-
-          <div class="da-composer-block">
-            <label class="da-question-label" for="da-question">Your question</label>
-            <div class="da-composer">
-              <textarea id="da-question" rows="3" placeholder="Ask a doubt about today&apos;s meal, ingredients, or substitutions..."></textarea>
-              <div class="da-composer-actions">
-                <div class="da-composer-left">
-                  <button class="da-icon-btn mic" id="da-mic" type="button" title="Start voice question" aria-label="Start voice question">Voice</button>
-                  <button class="da-icon-btn" id="da-clear" type="button" title="Start a fresh chat" aria-label="Start a fresh chat">New chat</button>
-                </div>
-                <button class="da-send-btn" id="da-ask" type="button" aria-label="Ask the diet assistant">Ask</button>
+              <div class="da-row tight">
+                <button class="da-btn primary" id="da-save-config" type="button">Save backend</button>
+                <button class="da-btn" id="da-test-config" type="button">Test</button>
               </div>
             </div>
+
+            <details class="da-settings">
+              <summary>Assistant settings</summary>
+              <div class="da-settings-body">
+                <div class="da-backend-line" id="da-backend-line">Backend connected</div>
+                <label class="da-field" for="da-language">
+                  Voice and answer language
+                  <select id="da-language">
+                    <option value="telugu">Telugu (best for voice)</option>
+                    <option value="english">English</option>
+                    <option value="hinglish">Simple Hindi + English</option>
+                    <option value="auto">Auto-detect typed question</option>
+                  </select>
+                </label>
+                <label class="da-check">
+                  <input id="da-auto-ask" type="checkbox" checked>
+                  Ask automatically after voice transcription
+                </label>
+              </div>
+            </details>
+
+            <div class="da-examples-wrap">
+              <div class="da-examples-title">${escapeHtml(todayExamples.label)}</div>
+              <div class="da-examples" aria-label="Suggested questions for ${escapeAttribute(todayExamples.label)}">
+                ${todayExamples.questions.map(example => `<button class="da-chip" type="button" data-question="${escapeAttribute(example)}">${escapeHtml(example)}</button>`).join('')}
+              </div>
+            </div>
+
+            <div class="da-chat" id="da-chat" aria-live="polite" aria-label="Diet assistant chat">
+              <div class="da-chat-empty">Ask a question to start a chat. Follow-up questions will remember the recent conversation.</div>
+            </div>
+
+            <div class="da-composer-block">
+              <label class="da-question-label" for="da-question">Your question</label>
+              <div class="da-composer">
+                <textarea id="da-question" rows="3" placeholder="Ask a doubt about today&apos;s meal, ingredients, or substitutions..."></textarea>
+                <div class="da-composer-actions">
+                  <div class="da-composer-left">
+                    <button class="da-icon-btn mic" id="da-mic" type="button" title="Start voice question" aria-label="Start voice question">Voice</button>
+                    <button class="da-icon-btn" id="da-clear" type="button" title="Start a fresh chat" aria-label="Start a fresh chat">New chat</button>
+                  </div>
+                  <button class="da-send-btn" id="da-ask" type="button" aria-label="Ask the diet assistant">Ask</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="da-status" id="da-status" role="status" hidden></div>
+
+            <div class="da-followups" id="da-followups" hidden>
+              <p>Try asking next</p>
+              <div class="da-row tight" id="da-followup-list"></div>
+            </div>
           </div>
 
-          <div class="da-status" id="da-status" role="status" hidden></div>
+          <div class="da-tabpanel" id="da-panel-health" role="tabpanel" hidden>
+            <div class="da-hc" id="da-hc">
+              <div class="da-hc-lock" id="da-hc-lock">
+                <div class="da-hc-lock-title">Health Center is private</div>
+                <p class="da-hc-lock-text">Enter the family passcode to open the shared health readings. It stays only in this browser tab.</p>
+                <label class="da-field" for="da-hc-passcode">
+                  Family passcode
+                  <input id="da-hc-passcode" type="password" autocomplete="off" inputmode="numeric" placeholder="••••">
+                </label>
+                <div class="da-row tight">
+                  <button class="da-btn primary" id="da-hc-unlock" type="button">Unlock</button>
+                </div>
+                <div class="da-status" id="da-hc-lock-status" role="status" hidden></div>
+              </div>
 
-          <div class="da-followups" id="da-followups" hidden>
-            <p>Try asking next</p>
-            <div class="da-row tight" id="da-followup-list"></div>
+              <div class="da-hc-workspace" id="da-hc-workspace" hidden>
+                <div class="da-hc-toolbar">
+                  <div class="da-hc-toolbar-title">Health Center</div>
+                  <button class="da-icon-btn" id="da-hc-lock-btn" type="button" title="Lock Health Center" aria-label="Lock Health Center">Lock</button>
+                </div>
+
+                <div class="da-hc-members" role="tablist" id="da-hc-members"></div>
+                <form class="da-hc-form" id="da-hc-form" novalidate>
+                  <div class="da-hc-fields" id="da-hc-fields"></div>
+                  <label class="da-field" for="da-hc-notes">
+                    Notes for the doctor or family
+                    <textarea id="da-hc-notes" rows="2" placeholder="Anything unusual today?"></textarea>
+                  </label>
+                  <div class="da-row tight">
+                    <button class="da-btn primary" id="da-hc-save" type="submit">Save entry</button>
+                    <button class="da-btn" id="da-hc-preview" type="button">Build preview</button>
+                  </div>
+                  <div class="da-status" id="da-hc-status" role="status" hidden></div>
+                </form>
+
+                <div class="da-hc-latest" id="da-hc-latest"></div>
+
+                <div class="da-hc-preview" id="da-hc-preview" hidden>
+                  <div class="da-hc-preview-head">
+                    <h3>Suggested changes</h3>
+                    <button class="da-btn primary" id="da-hc-apply" type="button">Send to assistant</button>
+                  </div>
+                  <div class="da-hc-doctor-banner" id="da-hc-doctor-banner" hidden>
+                    One or more readings need doctor review. Diet suggestions are supportive only.
+                  </div>
+                  <div class="da-hc-reclist" id="da-hc-reclist"></div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -254,7 +360,11 @@
     clear.addEventListener('click', () => clearAssistant(root));
     language.addEventListener('change', () => localStorage.setItem(STORAGE_LANGUAGE, language.value));
 
-    root.querySelectorAll('.da-chip').forEach(chip => {
+    root.querySelectorAll('.da-tab').forEach(tab => {
+      tab.addEventListener('click', () => switchTab(root, tab.dataset.tab));
+    });
+
+    root.querySelectorAll('#da-panel-ask .da-chip').forEach(chip => {
       chip.addEventListener('click', () => {
         question.value = chip.dataset.question || '';
         question.focus();
@@ -271,6 +381,290 @@
     document.addEventListener('keydown', event => {
       if (event.key === 'Escape' && !panel.hidden) setPanelOpen(root, false);
     });
+
+    bindHealthCenter(root);
+  }
+
+  function switchTab(root, tabName) {
+    const tabs = root.querySelectorAll('.da-tab');
+    tabs.forEach(tab => {
+      const active = tab.dataset.tab === tabName;
+      tab.classList.toggle('active', active);
+      tab.setAttribute('aria-selected', active ? 'true' : 'false');
+    });
+    root.querySelector('#da-panel-ask').hidden = tabName !== 'ask';
+    root.querySelector('#da-panel-health').hidden = tabName !== 'health';
+    if (tabName === 'health') openHealthCenter(root);
+  }
+
+  function bindHealthCenter(root) {
+    const unlockBtn = root.querySelector('#da-hc-unlock');
+    const passcodeInput = root.querySelector('#da-hc-passcode');
+    const lockBtn = root.querySelector('#da-hc-lock-btn');
+    const form = root.querySelector('#da-hc-form');
+    const previewBtn = root.querySelector('#da-hc-preview');
+    const applyBtn = root.querySelector('#da-hc-apply');
+
+    unlockBtn.addEventListener('click', () => unlockHealthCenter(root));
+    passcodeInput.addEventListener('keydown', event => {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        unlockHealthCenter(root);
+      }
+    });
+    lockBtn.addEventListener('click', () => lockHealthCenter(root));
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+      saveHealthEntry(root);
+    });
+    previewBtn.addEventListener('click', () => buildHealthPreview(root));
+    applyBtn.addEventListener('click', () => applyHealthPreview(root));
+
+    renderMemberTabs(root);
+    renderMemberFields(root);
+  }
+
+  function renderMemberTabs(root) {
+    const list = root.querySelector('#da-hc-members');
+    list.innerHTML = HEALTH_MEMBERS.map(member => `
+      <button class="da-hc-member" type="button" role="tab" data-member="${escapeAttribute(member.id)}" aria-selected="${member.id === state.activeMemberId ? 'true' : 'false'}">
+        <span class="da-hc-member-name">${escapeHtml(member.name)}</span>
+        <span class="da-hc-member-role">${escapeHtml(member.role)}</span>
+      </button>
+    `).join('');
+    list.querySelectorAll('.da-hc-member').forEach(btn => {
+      btn.addEventListener('click', () => {
+        state.activeMemberId = btn.dataset.member;
+        list.querySelectorAll('.da-hc-member').forEach(other => {
+          other.setAttribute('aria-selected', other === btn ? 'true' : 'false');
+        });
+        renderMemberFields(root);
+        renderLatestEntry(root);
+      });
+    });
+  }
+
+  function activeMember() {
+    return HEALTH_MEMBERS.find(m => m.id === state.activeMemberId) || HEALTH_MEMBERS[0];
+  }
+
+  function renderMemberFields(root) {
+    const wrap = root.querySelector('#da-hc-fields');
+    const member = activeMember();
+    wrap.innerHTML = member.fields.map(field => `
+      <label class="da-field" for="da-hc-field-${escapeAttribute(field.key)}">
+        ${escapeHtml(field.label)} <span class="da-hc-unit">(${escapeHtml(field.unit)})</span>
+        <input id="da-hc-field-${escapeAttribute(field.key)}" name="${escapeAttribute(field.key)}" type="${escapeAttribute(field.type)}" step="${escapeAttribute(field.step || '1')}"${field.min != null ? ` min="${field.min}"` : ''}${field.max != null ? ` max="${field.max}"` : ''} autocomplete="off">
+      </label>
+    `).join('');
+    root.querySelector('#da-hc-notes').value = '';
+    root.querySelector('#da-hc-doctor-banner').hidden = true;
+    renderLatestEntry(root);
+  }
+
+  function renderLatestEntry(root) {
+    const wrap = root.querySelector('#da-hc-latest');
+    const profile = state.healthProfile;
+    if (!profile) { wrap.innerHTML = ''; return; }
+    const member = (profile.members || []).find(m => m.memberId === state.activeMemberId);
+    if (!member || !member.latest) {
+      wrap.innerHTML = '<div class="da-hc-latest-empty">No entries saved for this person yet.</div>';
+      return;
+    }
+    const latest = member.latest;
+    const when = latest.measuredAt ? new Date(latest.measuredAt).toLocaleString() : '';
+    const values = Object.entries(latest.values || {})
+      .map(([k, v]) => `<span class="da-hc-chip"><b>${escapeHtml(k)}:</b> ${escapeHtml(String(v))}</span>`)
+      .join('');
+    wrap.innerHTML = `
+      <div class="da-hc-latest-head">Last update ${escapeHtml(when)}</div>
+      <div class="da-hc-latest-values">${values || '<span class="da-hc-latest-empty">No values saved yet.</span>'}</div>
+      ${latest.notes ? `<div class="da-hc-latest-notes">${escapeHtml(latest.notes)}</div>` : ''}
+    `;
+  }
+
+  function openHealthCenter(root) {
+    if (!getApiBase()) {
+      setHealthLockStatus(root, 'Backend is not connected. Connect it in the Ask tab first.', 'error');
+      return;
+    }
+    if (getPasscode()) {
+      showHealthWorkspace(root, true);
+      loadHealthProfile(root).catch(() => {});
+    } else {
+      showHealthWorkspace(root, false);
+      setTimeout(() => root.querySelector('#da-hc-passcode').focus(), 40);
+    }
+  }
+
+  function getPasscode() {
+    try { return sessionStorage.getItem(SESSION_PASSCODE) || ''; } catch (e) { return ''; }
+  }
+
+  function setPasscode(value) {
+    try {
+      if (value) sessionStorage.setItem(SESSION_PASSCODE, value);
+      else sessionStorage.removeItem(SESSION_PASSCODE);
+    } catch (e) { /* ignore */ }
+  }
+
+  function showHealthWorkspace(root, unlocked) {
+    root.querySelector('#da-hc-lock').hidden = unlocked;
+    root.querySelector('#da-hc-workspace').hidden = !unlocked;
+  }
+
+  async function unlockHealthCenter(root) {
+    const value = String(root.querySelector('#da-hc-passcode').value || '').trim();
+    if (!value) {
+      setHealthLockStatus(root, 'Enter the family passcode to continue.', 'error');
+      return;
+    }
+    setHealthLockStatus(root, 'Checking passcode...');
+    try {
+      await postJson(buildUrl(endpointConfig().unlock), {}, { 'X-Family-Passcode': value });
+      setPasscode(value);
+      setHealthLockStatus(root, '');
+      showHealthWorkspace(root, true);
+      await loadHealthProfile(root);
+    } catch (error) {
+      setPasscode('');
+      setHealthLockStatus(root, error.message || 'Could not unlock.', 'error');
+    }
+  }
+
+  function lockHealthCenter(root) {
+    setPasscode('');
+    state.healthProfile = null;
+    state.healthPreview = null;
+    root.querySelector('#da-hc-passcode').value = '';
+    root.querySelector('#da-hc-preview').hidden = true;
+    showHealthWorkspace(root, false);
+    setHealthLockStatus(root, 'Locked. Enter the passcode again to reopen.', 'success');
+  }
+
+  async function loadHealthProfile(root) {
+    setHealthStatus(root, 'Loading profile...');
+    try {
+      const data = await getJson(buildUrl(endpointConfig().profile), { 'X-Family-Passcode': getPasscode() });
+      state.healthProfile = data.profile || null;
+      setHealthStatus(root, '');
+      renderLatestEntry(root);
+    } catch (error) {
+      setHealthStatus(root, error.message || 'Could not load profile.', 'error');
+    }
+  }
+
+  async function saveHealthEntry(root) {
+    const member = activeMember();
+    const values = collectMemberValues(root, member);
+    const notes = String(root.querySelector('#da-hc-notes').value || '').trim();
+    if (Object.keys(values).length === 0 && !notes) {
+      setHealthStatus(root, 'Enter at least one value before saving.', 'error');
+      return;
+    }
+    setHealthStatus(root, 'Saving entry...');
+    try {
+      const data = await postJson(buildUrl(endpointConfig().profile), {
+        memberId: member.id,
+        entry: { values, notes, measuredAt: new Date().toISOString() }
+      }, { 'X-Family-Passcode': getPasscode() });
+      state.healthProfile = data.profile || state.healthProfile;
+      setHealthStatus(root, 'Entry saved for ' + member.name + '.', 'success');
+      renderLatestEntry(root);
+    } catch (error) {
+      setHealthStatus(root, error.message || 'Could not save.', 'error');
+    }
+  }
+
+  function collectMemberValues(root, member) {
+    const values = {};
+    member.fields.forEach(field => {
+      const input = root.querySelector('#da-hc-field-' + cssEscape(field.key));
+      if (!input) return;
+      const raw = String(input.value || '').trim();
+      if (raw === '') return;
+      const number = Number(raw);
+      if (!Number.isFinite(number)) return;
+      values[field.key] = number;
+    });
+    return values;
+  }
+
+  async function buildHealthPreview(root) {
+    setHealthStatus(root, 'Building suggestions...');
+    try {
+      const data = await postJson(buildUrl(endpointConfig().preview), {}, { 'X-Family-Passcode': getPasscode() });
+      state.healthPreview = data;
+      renderPreview(root, data.recommendations || []);
+      setHealthStatus(root, '');
+    } catch (error) {
+      setHealthStatus(root, error.message || 'Could not build preview.', 'error');
+    }
+  }
+
+  async function applyHealthPreview(root) {
+    setHealthStatus(root, 'Sending to assistant...');
+    try {
+      const data = await postJson(buildUrl(endpointConfig().apply), {}, { 'X-Family-Passcode': getPasscode() });
+      state.healthPreview = data;
+      renderPreview(root, data.recommendations || []);
+      setHealthStatus(root, data.applied ? 'Assistant will use the latest health context.' : 'No active recommendations. Assistant will use the standard plan.', 'success');
+    } catch (error) {
+      setHealthStatus(root, error.message || 'Could not apply preview.', 'error');
+    }
+  }
+
+  function renderPreview(root, recommendations) {
+    const wrap = root.querySelector('#da-hc-preview');
+    const list = root.querySelector('#da-hc-reclist');
+    const banner = root.querySelector('#da-hc-doctor-banner');
+    if (!recommendations.length) {
+      wrap.hidden = false;
+      banner.hidden = true;
+      list.innerHTML = '<div class="da-hc-latest-empty">No adjustments needed for the latest readings.</div>';
+      return;
+    }
+    banner.hidden = !recommendations.some(rec => rec.doctorReviewRequired);
+    list.innerHTML = recommendations.map(rec => `
+      <div class="da-hc-rec priority-${escapeAttribute(rec.priority || 'medium')}">
+        <div class="da-hc-rec-head">
+          <span class="da-hc-rec-person">${escapeHtml(personLabel(rec.personId))}</span>
+          <span class="da-hc-rec-priority">${escapeHtml(rec.priority || 'medium')}</span>
+          ${rec.doctorReviewRequired ? '<span class="da-hc-rec-doctor">Doctor review</span>' : ''}
+        </div>
+        <div class="da-hc-rec-body">
+          <p class="da-hc-rec-suggested"><b>Try:</b> ${escapeHtml(rec.suggestedText || '')}</p>
+          <p class="da-hc-rec-reason"><b>Why:</b> ${escapeHtml(rec.reason || '')}</p>
+          <a class="da-hc-rec-jump" href="#${escapeAttribute(rec.targetSectionId || '')}">Jump to plan section</a>
+        </div>
+      </div>
+    `).join('');
+    wrap.hidden = false;
+  }
+
+  function personLabel(id) {
+    const member = HEALTH_MEMBERS.find(m => m.id === id);
+    return member ? (member.name + ' · ' + member.role) : (id || 'Family');
+  }
+
+  function setHealthStatus(root, message, type) {
+    const status = root.querySelector('#da-hc-status');
+    status.textContent = message;
+    status.hidden = !message;
+    status.classList.toggle('error', type === 'error');
+    status.classList.toggle('success', type === 'success');
+  }
+
+  function setHealthLockStatus(root, message, type) {
+    const status = root.querySelector('#da-hc-lock-status');
+    status.textContent = message;
+    status.hidden = !message;
+    status.classList.toggle('error', type === 'error');
+    status.classList.toggle('success', type === 'success');
+  }
+
+  function cssEscape(value) {
+    return String(value).replace(/[^a-zA-Z0-9_-]/g, '_');
   }
 
   function loadSettings(root) {
@@ -508,11 +902,20 @@
     mic.classList.remove('recording');
   }
 
-  async function postJson(url, payload) {
+  async function postJson(url, payload, extraHeaders) {
+    const headers = Object.assign({ 'Content-Type': 'application/json' }, extraHeaders || {});
     const response = await fetch(url, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
+      headers,
+      body: JSON.stringify(payload || {})
+    });
+    return parseResponse(response);
+  }
+
+  async function getJson(url, extraHeaders) {
+    const response = await fetch(url, {
+      method: 'GET',
+      headers: Object.assign({}, extraHeaders || {})
     });
     return parseResponse(response);
   }
