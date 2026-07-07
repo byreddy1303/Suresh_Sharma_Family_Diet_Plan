@@ -387,6 +387,9 @@
       }
       showTranscript(root, transcript);
       root.querySelector('#da-question').value = transcript;
+      if (data.languageHint === 'te' && root.querySelector('#da-language').value === 'auto') {
+        root.querySelector('#da-language').value = 'telugu';
+      }
       setStatus(root, 'Voice transcribed.', 'success');
       if (root.querySelector('#da-auto-ask').checked) {
         await askQuestion(root, transcript);
