@@ -1,7 +1,10 @@
 const fs = require('fs');
 const path = require('path');
 
-const MAX_CHUNK_CHARS = 2600;
+const MAX_CHUNK_CHARS = 1500;
+const MAX_CONTEXT_CHUNKS = 5;
+const MAX_CONTEXT_CHARS = 5200;
+const MAX_CONTEXT_CHARS_PER_CHUNK = 1100;
 const CHUNK_OVERLAP_PARAGRAPHS = 1;
 
 let cachedDocument = null;
@@ -93,7 +96,7 @@ function chunkSection(section) {
 }
 
 function makeChunk(section, index, paragraphs) {
-  const text = normalizeText(paragraphs.join('\n'));
+  const text = compactForContext(normalizeText(paragraphs.join('\n')));
   return {
     id: `${section.id}:${index + 1}`,
     sectionId: section.id,
@@ -101,6 +104,14 @@ function makeChunk(section, index, paragraphs) {
     text,
     tokens: tokenize(`${section.heading} ${text}`)
   };
+}
+
+function compactForContext(value) {
+  return normalizeText(String(value)
+    .replace(/[\u0C00-\u0C7F]+/g, ' ')
+    .replace(/\bclick to open\b/gi, ' ')
+    .replace(/\s+\/\s+$/gm, ' ')
+    .replace(/[ \t]{2,}/g, ' '));
 }
 
 function tokenize(value) {
@@ -135,23 +146,50 @@ function retrieveContext(payload) {
 
   const selected = scored
     .sort((a, b) => b.score - a.score)
-    .slice(0, 9)
+    .slice(0, 8)
     .filter(item => item.score > 0)
     .map(item => item.chunk);
 
-  addRequiredChunk(selected, doc, 's1');
   if (looksMedical(query)) addRequiredChunk(selected, doc, 's10');
 
   const unique = [];
   const seen = new Set();
+  const sectionCounts = new Map();
   selected.forEach(chunk => {
-    if (!seen.has(chunk.id)) {
+    const count = sectionCounts.get(chunk.sectionId) || 0;
+    if (!seen.has(chunk.id) && count < 2) {
       unique.push(chunk);
       seen.add(chunk.id);
+      sectionCounts.set(chunk.sectionId, count + 1);
     }
   });
 
-  return unique.slice(0, 10);
+  return trimContext(unique);
+}
+
+function trimContext(chunks) {
+  const result = [];
+  let total = 0;
+  for (const chunk of chunks) {
+    if (result.length >= MAX_CONTEXT_CHUNKS) break;
+    const remaining = MAX_CONTEXT_CHARS - total;
+    if (remaining <= 0) break;
+    const limit = Math.min(MAX_CONTEXT_CHARS_PER_CHUNK, remaining);
+    const text = truncateAtBoundary(chunk.text, limit);
+    if (!text) continue;
+    result.push({ ...chunk, text });
+    total += text.length;
+  }
+  return result;
+}
+
+function truncateAtBoundary(text, limit) {
+  const value = String(text || '').trim();
+  if (value.length <= limit) return value;
+  const cut = value.slice(0, limit);
+  const lastBreak = Math.max(cut.lastIndexOf('\n'), cut.lastIndexOf('. '), cut.lastIndexOf('; '));
+  if (lastBreak > limit * 0.55) return cut.slice(0, lastBreak + 1).trim();
+  return cut.trim() + '...';
 }
 
 function inferSectionBoosts(query) {
