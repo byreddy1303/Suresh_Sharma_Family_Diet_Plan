@@ -1,6 +1,7 @@
 const assert = require('assert');
 const { Readable } = require('stream');
 const askHandler = require('../api/ask');
+const transcribeHandler = require('../api/transcribe');
 const { getDietDocument, retrieveContext } = require('../api/_lib/document');
 const { buildSystemPrompt, buildUserPrompt } = require('../api/_lib/prompts');
 
@@ -21,6 +22,9 @@ const systemPrompt = buildSystemPrompt('english');
 const userPrompt = buildUserPrompt(payload, chunks);
 assert(systemPrompt.includes('No garlic'), 'Expected family cooking rule in prompt.');
 assert(userPrompt.includes(payload.question), 'Expected question in user prompt.');
+assert(transcribeHandler.getTranscriptionHint('telugu').code === 'te', 'Telugu voice should force ISO-639-1 code te.');
+assert(transcribeHandler.getTranscriptionHint('auto').code === 'te', 'Auto voice should default to Telugu to avoid Tamil misdetection.');
+assert(transcribeHandler.getTranscriptionHint('english').code === 'en', 'English voice should force ISO-639-1 code en.');
 
 function mockResponse() {
   return {

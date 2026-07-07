@@ -101,12 +101,12 @@
             <div class="da-settings-body">
               <div class="da-backend-line" id="da-backend-line">Backend connected</div>
               <label class="da-field" for="da-language">
-                Preferred answer language
+                Voice and answer language
                 <select id="da-language">
-                  <option value="auto">Auto-detect from question</option>
+                  <option value="telugu">Telugu (best for voice)</option>
                   <option value="english">English</option>
-                  <option value="telugu">Telugu</option>
                   <option value="hinglish">Simple Hindi + English</option>
+                  <option value="auto">Auto-detect typed question</option>
                 </select>
               </label>
               <label class="da-check">
@@ -198,7 +198,7 @@
 
   function loadSettings(root) {
     root.querySelector('#da-api-base').value = getApiBase();
-    root.querySelector('#da-language').value = localStorage.getItem(STORAGE_LANGUAGE) || 'auto';
+    root.querySelector('#da-language').value = localStorage.getItem(STORAGE_LANGUAGE) || 'telugu';
   }
 
   function setPanelOpen(root, open) {

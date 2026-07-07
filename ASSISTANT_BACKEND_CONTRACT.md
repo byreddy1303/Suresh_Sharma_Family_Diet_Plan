@@ -99,7 +99,7 @@ Fields:
 
 - `audio`: voice recording blob, usually `diet-question.webm`.
 - `documentId`: `suresh-sharma-family-diet-plan`.
-- `language`: `auto`, `english`, `telugu`, or `hinglish`.
+- `language`: `telugu`, `english`, `hinglish`, or `auto`. The backend treats `auto` voice input as Telugu by default to avoid Telugu speech being misdetected as Tamil.
 - `sourceUrl`: page URL.
 
 Response:
