@@ -23,12 +23,77 @@
     inactivityTimer: null
   };
 
-  const examples = [
-    'I do not have bottle gourd today. What can I cook instead?',
-    'I ate dosa instead of the planned breakfast. What should I adjust now?',
-    'How do I make bitter gourd tasty without deep frying?',
-    'Can Amma eat curd rice tonight if sugar is high?',
-    'What is a safe evening snack for Nannagaru?'
+  const DAILY_EXAMPLES = [
+    {
+      label: 'Sunday festival suggestions',
+      questions: [
+        'How much ven pongal is safe today for Amma and Nannagaru?',
+        'If we make festival sweet today, when should everyone eat it?',
+        'What can I cook if we do not have foxtail millet for Sunday pongal?',
+        'How do I keep Sunday dinner light after a heavy lunch?',
+        'What should Susheel and Karthik adjust if they ate extra sweet today?'
+      ]
+    },
+    {
+      label: 'Monday suggestions',
+      questions: [
+        'How do I make Monday idli and sambar breakfast quickly?',
+        'I do not have bottle gourd for tonight. What can I cook instead?',
+        'How do I make Monday bitter gourd tasty without deep frying?',
+        'If we skipped sundal snack today, what is a safe replacement?',
+        'Can Amma eat curd with Monday lunch if sugar is high?'
+      ]
+    },
+    {
+      label: 'Tuesday suggestions',
+      questions: [
+        'What is the fastest way to make Tuesday pesarattu breakfast?',
+        'If I ate dosa instead of pesarattu today, what should I adjust now?',
+        'I do not have ridge gourd for lunch. What can I use instead?',
+        'Can Amma eat jonna roti and ash gourd pulusu tonight?',
+        'What Tuesday snack is safe for Nannagaru if he is hungry?'
+      ]
+    },
+    {
+      label: 'Wednesday suggestions',
+      questions: [
+        'How do I make Wednesday ragi dosa quickly and tasty?',
+        'If ragi dosa batter is not ready, what breakfast can I make today?',
+        'Can Amma have coconut chutney with ragi dosa today?',
+        'What should we do if lunch gets delayed on Wednesday?',
+        'How much ragi is okay for Nannagaru at dinner?'
+      ]
+    },
+    {
+      label: 'Thursday suggestions',
+      questions: [
+        'What can I cook today if millet is not available?',
+        'How do I make Thursday lunch filling without too much rice?',
+        'If someone ate extra rice today, how should dinner change?',
+        'Can Amma eat attu with allam chutney tonight?',
+        'What is a safe Thursday evening snack for everyone?'
+      ]
+    },
+    {
+      label: 'Friday suggestions',
+      questions: [
+        'How do I make Friday ponganalu taste good with less oil?',
+        'What should Suresh and Amma eat instead of brinjal today?',
+        'If we only have regular vada, how do we make it safer?',
+        'Can Amma eat Friday night idli with curd?',
+        'What should the boys adjust if they ate extra chutney today?'
+      ]
+    },
+    {
+      label: 'Saturday suggestions',
+      questions: [
+        'How do I make Saturday uggani more protein-rich?',
+        'I do not have dosakaya for lunch. What can I use instead?',
+        'Can Amma eat methi pappu and rice today if sugar is high?',
+        'What should we batch-prep today for next week?',
+        'How do I keep Saturday dinner light but filling?'
+      ]
+    }
   ];
 
   function ready(fn) {
@@ -66,9 +131,15 @@
     return base + (path.startsWith('/') ? path : '/' + path);
   }
 
+  function getTodayExamples(now) {
+    const dayIndex = (now || new Date()).getDay();
+    return DAILY_EXAMPLES[dayIndex] || DAILY_EXAMPLES[1];
+  }
+
   function createWidget() {
     if (document.getElementById('diet-assistant-root')) return;
 
+    const todayExamples = getTodayExamples();
     const root = document.createElement('div');
     root.id = 'diet-assistant-root';
     root.className = 'diet-assistant no-print';
@@ -121,8 +192,11 @@
             </div>
           </details>
 
-          <div class="da-examples" aria-label="Example questions">
-            ${examples.map(example => `<button class="da-chip" type="button" data-question="${escapeAttribute(example)}">${escapeHtml(example)}</button>`).join('')}
+          <div class="da-examples-wrap">
+            <div class="da-examples-title">${escapeHtml(todayExamples.label)}</div>
+            <div class="da-examples" aria-label="Suggested questions for ${escapeAttribute(todayExamples.label)}">
+              ${todayExamples.questions.map(example => `<button class="da-chip" type="button" data-question="${escapeAttribute(example)}">${escapeHtml(example)}</button>`).join('')}
+            </div>
           </div>
 
           <div class="da-chat" id="da-chat" aria-live="polite" aria-label="Diet assistant chat">
