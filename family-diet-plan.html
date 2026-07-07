@@ -37,20 +37,40 @@ body {
   display: block;
   font-family: 'Nirmala UI', 'Gautami', 'Mallanna', 'Ramabhadra', 'Noto Sans Telugu', sans-serif;
   color: #6B4423;
-  font-size: 0.95em;
+  font-size: 0.98em;
   font-style: normal;
   font-weight: 500;
-  margin-top: 3px;
-  margin-bottom: 4px;
-  line-height: 1.55;
-  opacity: 0.92;
+  margin-top: 4px;
+  margin-bottom: 5px;
+  line-height: 1.85;
+  letter-spacing: 0.04em;
+  word-spacing: 0.08em;
+  opacity: 0.94;
 }
-li .te, td .te { margin-top: 2px; }
+li .te, td .te { margin-top: 3px; }
 .te-inline {
   font-family: 'Nirmala UI', 'Gautami', 'Mallanna', 'Ramabhadra', 'Noto Sans Telugu', sans-serif;
   color: #6B4423;
-  font-size: 0.9em;
+  font-size: 0.92em;
+  letter-spacing: 0.035em;
+  word-spacing: 0.06em;
 }
+.nav-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  border: 1px solid var(--border);
+}
+.nav-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(193, 68, 14, 0.18);
+  border-color: var(--terracotta);
+  background: #FFFDF7;
+}
+.nav-link .label { color: var(--terracotta); }
+.nav-link .val { color: var(--coffee); }
 h1, h2, h3, h4 { font-family: 'Palatino Linotype', Georgia, serif; }
 .wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
 
@@ -459,17 +479,17 @@ footer::before { content: "❈ ❈ ❈"; display: block; color: var(--turmeric);
     <span class="te">సెక్షన్‌లు అమ్మ-నాన్నలు సహజంగా ఉపయోగించే క్రమంలో ఉన్నాయి. మొదటిసారి ఈ క్రమంలో చదవండి:</span>
 
     <div class="grid-2">
-      <div class="macro-box"><div class="label">Section 02</div><div class="val" style="font-size:1rem;">Per-Person Plan</div><div class="sub">What each of you needs — the "why" for every choice below.</div><span class="te">ఒక్కొక్కరి కోసం ప్రత్యేక ప్లాన్ — ఎందుకు, ఏమి చేయాలో.</span></div>
-      <div class="macro-box"><div class="label">Section 03</div><div class="val" style="font-size:1rem;">7-Day Meal Plan</div><div class="sub">What to cook and eat each day of the week.</div><span class="te">వారంలో ప్రతి రోజు ఏమి వండాలి, ఏమి తినాలి.</span></div>
-      <div class="macro-box"><div class="label">Section 04</div><div class="val" style="font-size:1rem;">Morning Rituals</div><div class="sub">The 15 minutes before breakfast — different for each person.</div><span class="te">అల్పాహారానికి ముందు 15 నిమిషాలు — ఒక్కొక్కరికి వేరు వేరు.</span></div>
-      <div class="macro-box"><div class="label">Section 05</div><div class="val" style="font-size:1rem;">What to Avoid</div><div class="sub">Foods that harm — read this carefully together.</div><span class="te">తినకూడని ఆహారాలు — కలిసి జాగ్రత్తగా చదవండి.</span></div>
-      <div class="macro-box"><div class="label">Section 06</div><div class="val" style="font-size:1rem;">Recipes</div><div class="sub">12 therapeutic dishes with step-by-step instructions.</div><span class="te">12 ఆరోగ్యకర వంటకాలు, పూర్తి పద్ధతితో.</span></div>
-      <div class="macro-box"><div class="label">Section 07</div><div class="val" style="font-size:1rem;">Kitchen System</div><div class="sub">Weekly shopping list, Sunday batch-prep, budget guidance.</div><span class="te">వారానికి కావలసినవి, ఆదివారం ముందు వండేవి, ఖర్చు.</span></div>
-      <div class="macro-box"><div class="label">Section 08</div><div class="val" style="font-size:1rem;">Oil &amp; Ghee</div><div class="sub">How much oil, which oil, when to use ghee.</div><span class="te">ఎంత నూనె, ఏ నూనె, నెయ్యి ఎప్పుడు.</span></div>
-      <div class="macro-box"><div class="label">Section 09</div><div class="val" style="font-size:1rem;">Festivals &amp; Seasons</div><div class="sub">Ugadi, Sankranti, Diwali — how to enjoy without harm.</div><span class="te">ఉగాది, సంక్రాంతి, దీపావళి — ఆరోగ్యంగా ఆనందించడం.</span></div>
-      <div class="macro-box"><div class="label">Section 10</div><div class="val" style="font-size:1rem;">Progress &amp; Warnings</div><div class="sub">What improvement to expect, and when to call the doctor immediately.</div><span class="te">ఎంత మెరుగుదల ఆశించొచ్చు, ఎప్పుడు వెంటనే డాక్టర్‌ని కలవాలి.</span></div>
-      <div class="macro-box"><div class="label">Section 11</div><div class="val" style="font-size:1rem;">Energy Restoration</div><div class="sub">Why the whole family feels tired, and what to do about it.</div><span class="te">ఇంటికంతా అలసటగా ఎందుకు ఉంటుంది, ఏమి చేయాలి.</span></div>
-      <div class="macro-box"><div class="label">Section 12</div><div class="val" style="font-size:1rem;">Ingredient Reference</div><div class="sub">Big reference table — look up any Andhra ingredient here.</div><span class="te">సరుకుల పెద్ద పట్టిక — ఏ ఆంధ్ర సరుకు గురించైనా ఇక్కడ చూడండి.</span></div>
+      <a href="#s2" class="macro-box nav-link"><div class="label">Section 02 →</div><div class="val" style="font-size:1rem;">Per-Person Plan</div><div class="sub">What each of you needs — the "why" for every choice below.</div><span class="te">ఒక్కొక్కరి కోసం ప్రత్యేక ప్లాన్ — ఎందుకు, ఏమి చేయాలో.</span></a>
+      <a href="#s3" class="macro-box nav-link"><div class="label">Section 03 →</div><div class="val" style="font-size:1rem;">7-Day Meal Plan</div><div class="sub">What to cook and eat each day of the week.</div><span class="te">వారంలో ప్రతి రోజు ఏమి వండాలి, ఏమి తినాలి.</span></a>
+      <a href="#s4" class="macro-box nav-link"><div class="label">Section 04 →</div><div class="val" style="font-size:1rem;">Morning Rituals</div><div class="sub">The 15 minutes before breakfast — different for each person.</div><span class="te">అల్పాహారానికి ముందు 15 నిమిషాలు — ఒక్కొక్కరికి వేరు వేరు.</span></a>
+      <a href="#s5" class="macro-box nav-link"><div class="label">Section 05 →</div><div class="val" style="font-size:1rem;">What to Avoid</div><div class="sub">Foods that harm — read this carefully together.</div><span class="te">తినకూడని ఆహారాలు — కలిసి జాగ్రత్తగా చదవండి.</span></a>
+      <a href="#s6" class="macro-box nav-link"><div class="label">Section 06 →</div><div class="val" style="font-size:1rem;">Recipes</div><div class="sub">12 therapeutic dishes with step-by-step instructions.</div><span class="te">12 ఆరోగ్యకర వంటకాలు, పూర్తి పద్ధతితో.</span></a>
+      <a href="#s7" class="macro-box nav-link"><div class="label">Section 07 →</div><div class="val" style="font-size:1rem;">Kitchen System</div><div class="sub">Weekly shopping list, Sunday batch-prep, budget guidance.</div><span class="te">వారానికి కావలసినవి, ఆదివారం ముందు వండేవి, ఖర్చు.</span></a>
+      <a href="#s8" class="macro-box nav-link"><div class="label">Section 08 →</div><div class="val" style="font-size:1rem;">Oil &amp; Ghee</div><div class="sub">How much oil, which oil, when to use ghee.</div><span class="te">ఎంత నూనె, ఏ నూనె, నెయ్యి ఎప్పుడు.</span></a>
+      <a href="#s9" class="macro-box nav-link"><div class="label">Section 09 →</div><div class="val" style="font-size:1rem;">Festivals &amp; Seasons</div><div class="sub">Ugadi, Sankranti, Diwali — how to enjoy without harm.</div><span class="te">ఉగాది, సంక్రాంతి, దీపావళి — ఆరోగ్యంగా ఆనందించడం.</span></a>
+      <a href="#s10" class="macro-box nav-link"><div class="label">Section 10 →</div><div class="val" style="font-size:1rem;">Progress &amp; Warnings</div><div class="sub">What improvement to expect, and when to call the doctor immediately.</div><span class="te">ఎంత మెరుగుదల ఆశించొచ్చు, ఎప్పుడు వెంటనే డాక్టర్‌ని కలవాలి.</span></a>
+      <a href="#s11" class="macro-box nav-link"><div class="label">Section 11 →</div><div class="val" style="font-size:1rem;">Energy Restoration</div><div class="sub">Why the whole family feels tired, and what to do about it.</div><span class="te">ఇంటికంతా అలసటగా ఎందుకు ఉంటుంది, ఏమి చేయాలి.</span></a>
+      <a href="#s12" class="macro-box nav-link"><div class="label">Section 12 →</div><div class="val" style="font-size:1rem;">Ingredient Reference</div><div class="sub">Big reference table — look up any Andhra ingredient here.</div><span class="te">సరుకుల పెద్ద పట్టిక — ఏ ఆంధ్ర సరుకు గురించైనా ఇక్కడ చూడండి.</span></a>
     </div>
 
     <h3>The four rules that hold this whole system together <span class="te-inline">/ ఈ మొత్తం ప్లాన్‌ని కలిపే 4 నియమాలు</span></h3>
