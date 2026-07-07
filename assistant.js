@@ -26,7 +26,11 @@
       fields: [
         { key: 'systolic', label: 'Systolic BP', unit: 'mmHg', type: 'number', step: '1' },
         { key: 'diastolic', label: 'Diastolic BP', unit: 'mmHg', type: 'number', step: '1' },
-        { key: 'weightKg', label: 'Weight', unit: 'kg', type: 'number', step: '0.1' }
+        { key: 'weightKg', label: 'Weight', unit: 'kg', type: 'number', step: '0.1' },
+        { key: 'kneePain', label: 'Knee pain', unit: '0–10', type: 'number', step: '1', min: 0, max: 10 },
+        { key: 'sciaticaPain', label: 'Sciatica pain', unit: '0–10', type: 'number', step: '1', min: 0, max: 10 },
+        { key: 'activity', label: 'Activity today', type: 'text', wide: true, placeholder: 'Walked 15 min, physio done, etc.' },
+        { key: 'doctorWarnings', label: 'Doctor warnings / red flags', type: 'text', wide: true, placeholder: 'Chest tightness, dizziness, anything the doctor flagged' }
       ]
     },
     {
@@ -35,7 +39,12 @@
       role: 'Ammagaru',
       fields: [
         { key: 'fastingGlucose', label: 'Fasting glucose', unit: 'mg/dL', type: 'number', step: '1' },
-        { key: 'weightKg', label: 'Weight', unit: 'kg', type: 'number', step: '0.1' }
+        { key: 'postMealGlucose', label: 'Post-meal glucose', unit: 'mg/dL', type: 'number', step: '1' },
+        { key: 'hba1c', label: 'HbA1c', unit: '%', type: 'number', step: '0.1' },
+        { key: 'weightKg', label: 'Weight', unit: 'kg', type: 'number', step: '0.1' },
+        { key: 'spondylitisPain', label: 'Spondylitis pain', unit: '0–10', type: 'number', step: '1', min: 0, max: 10 },
+        { key: 'glaucomaWarnings', label: 'Eye / glaucoma notes', type: 'text', wide: true, placeholder: 'Vision blur, eye pressure, last check-up' },
+        { key: 'doctorWarnings', label: 'Doctor warnings / red flags', type: 'text', wide: true, placeholder: 'Anything the doctor flagged' }
       ]
     },
     {
@@ -44,7 +53,12 @@
       role: 'Younger son',
       fields: [
         { key: 'weightKg', label: 'Weight', unit: 'kg', type: 'number', step: '0.1' },
-        { key: 'energyLevel', label: 'Energy level', unit: '1–10', type: 'number', step: '1', min: 1, max: 10 }
+        { key: 'alt', label: 'ALT (SGPT)', unit: 'U/L', type: 'number', step: '1' },
+        { key: 'ast', label: 'AST (SGOT)', unit: 'U/L', type: 'number', step: '1' },
+        { key: 'energyLevel', label: 'Energy level', unit: '1–10', type: 'number', step: '1', min: 1, max: 10 },
+        { key: 'snackCravings', label: 'Snack cravings', unit: '0–10', type: 'number', step: '1', min: 0, max: 10 },
+        { key: 'fattyLiverGrade', label: 'Fatty liver grade', type: 'text', wide: true, placeholder: 'e.g. grade 2 on last scan' },
+        { key: 'doctorWarnings', label: 'Doctor warnings / red flags', type: 'text', wide: true, placeholder: 'Anything the doctor flagged' }
       ]
     },
     {
@@ -52,8 +66,12 @@
       name: 'Karthikeya',
       role: 'Elder son',
       fields: [
-        { key: 'painLevel', label: 'Pain level', unit: '1–10', type: 'number', step: '1', min: 1, max: 10 },
-        { key: 'swellingLevel', label: 'Swelling level', unit: '1–10', type: 'number', step: '1', min: 1, max: 10 }
+        { key: 'weightKg', label: 'Weight', unit: 'kg', type: 'number', step: '0.1' },
+        { key: 'painLevel', label: 'Pain level', unit: '0–10', type: 'number', step: '1', min: 0, max: 10 },
+        { key: 'swellingLevel', label: 'Swelling level', unit: '0–10', type: 'number', step: '1', min: 0, max: 10 },
+        { key: 'recoveryStage', label: 'Recovery stage', type: 'text', wide: true, placeholder: 'Weeks post-op, weight-bearing status' },
+        { key: 'physioStatus', label: 'Physio status', type: 'text', wide: true, placeholder: 'Sessions this week, exercises done or missed' },
+        { key: 'doctorWarnings', label: 'Doctor warnings / red flags', type: 'text', wide: true, placeholder: 'Anything the doctor flagged' }
       ]
     }
   ];
@@ -451,12 +469,22 @@
   function renderMemberFields(root) {
     const wrap = root.querySelector('#da-hc-fields');
     const member = activeMember();
-    wrap.innerHTML = member.fields.map(field => `
-      <label class="da-field" for="da-hc-field-${escapeAttribute(field.key)}">
-        ${escapeHtml(field.label)} <span class="da-hc-unit">(${escapeHtml(field.unit)})</span>
-        <input id="da-hc-field-${escapeAttribute(field.key)}" name="${escapeAttribute(field.key)}" type="${escapeAttribute(field.type)}" step="${escapeAttribute(field.step || '1')}"${field.min != null ? ` min="${field.min}"` : ''}${field.max != null ? ` max="${field.max}"` : ''} autocomplete="off">
-      </label>
-    `).join('');
+    wrap.innerHTML = member.fields.map(field => {
+      const isText = field.type === 'text';
+      const inputType = isText ? 'text' : 'number';
+      const stepAttr = isText ? '' : ` step="${escapeAttribute(field.step || '1')}"`;
+      const minAttr = field.min != null ? ` min="${field.min}"` : '';
+      const maxAttr = field.max != null ? ` max="${field.max}"` : '';
+      const wideClass = field.wide ? ' da-hc-field-wide' : '';
+      const placeholder = field.placeholder ? ` placeholder="${escapeAttribute(field.placeholder)}"` : '';
+      const unitLabel = field.unit ? ` <span class="da-hc-unit">(${escapeHtml(field.unit)})</span>` : '';
+      return `
+        <label class="da-field${wideClass}" for="da-hc-field-${escapeAttribute(field.key)}">
+          ${escapeHtml(field.label)}${unitLabel}
+          <input id="da-hc-field-${escapeAttribute(field.key)}" name="${escapeAttribute(field.key)}" type="${inputType}"${stepAttr}${minAttr}${maxAttr}${placeholder} autocomplete="off">
+        </label>
+      `;
+    }).join('');
     root.querySelector('#da-hc-notes').value = '';
     root.querySelector('#da-hc-doctor-banner').hidden = true;
     renderLatestEntry(root);
@@ -583,6 +611,10 @@
       if (!input) return;
       const raw = String(input.value || '').trim();
       if (raw === '') return;
+      if (field.type === 'text') {
+        values[field.key] = raw;
+        return;
+      }
       const number = Number(raw);
       if (!Number.isFinite(number)) return;
       values[field.key] = number;

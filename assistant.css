@@ -696,6 +696,10 @@
   margin: 6px 0;
 }
 
+.da-hc-fields .da-field.da-hc-field-wide {
+  grid-column: 1 / -1;
+}
+
 .da-hc-unit {
   font-weight: normal;
   color: var(--coffee-light);
