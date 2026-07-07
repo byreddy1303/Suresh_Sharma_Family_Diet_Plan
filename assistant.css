@@ -108,8 +108,7 @@
 
 .da-setup,
 .da-status,
-.da-answer,
-.da-transcript {
+.da-answer {
   border-radius: 8px;
   border: 1px solid var(--border);
   background: #FFFDF7;
@@ -257,7 +256,9 @@
 }
 
 .da-examples-wrap {
-  margin: 0 0 10px;
+  margin: 0 0 12px;
+  min-width: 0;
+  position: relative;
 }
 
 .da-examples-title {
@@ -271,14 +272,28 @@
 
 .da-examples {
   display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  overflow: visible;
-  padding: 0;
+  flex-wrap: nowrap;
+  gap: 8px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0 2px 7px;
   margin: 0;
+  scroll-padding-left: 2px;
+  scroll-snap-type: x proximity;
+  scrollbar-width: thin;
+}
+
+.da-examples::-webkit-scrollbar {
+  height: 5px;
+}
+
+.da-examples::-webkit-scrollbar-thumb {
+  background: #E5CAA0;
+  border-radius: 999px;
 }
 
 .da-chip {
+  flex: 0 0 auto;
   white-space: normal;
   border: 1px solid var(--border);
   background: white;
@@ -289,8 +304,9 @@
   font-size: 0.76rem;
   line-height: 1.2;
   cursor: pointer;
-  max-width: 100%;
+  max-width: min(300px, 78vw);
   text-align: left;
+  scroll-snap-align: start;
 }
 
 .da-chip:hover {
@@ -484,6 +500,10 @@
   overflow-wrap: anywhere;
 }
 
+.da-status[hidden] {
+  display: none;
+}
+
 .da-status.error {
   border-left-color: var(--maroon);
   background: #FCEDEE;
@@ -494,22 +514,6 @@
   border-left-color: var(--sage);
   background: #F3F8EF;
   color: var(--sage);
-}
-
-.da-transcript {
-  padding: 9px 10px;
-  margin-top: 10px;
-  font-size: 0.82rem;
-  background: #FEFAF0;
-}
-
-.da-transcript b {
-  color: var(--terracotta);
-}
-
-.da-transcript p {
-  margin: 4px 0 0;
-  line-height: 1.45;
 }
 
 .da-answer {
@@ -589,7 +593,10 @@
   }
 
   .da-examples {
-    display: grid;
-    grid-template-columns: 1fr;
+    padding-bottom: 8px;
+  }
+
+  .da-chip {
+    max-width: 82vw;
   }
 }

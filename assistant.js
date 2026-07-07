@@ -217,12 +217,7 @@
             </div>
           </div>
 
-          <div class="da-transcript" id="da-transcript" hidden>
-            <b>Voice transcript</b>
-            <p id="da-transcript-text"></p>
-          </div>
-
-          <div class="da-status success" id="da-status" role="status">Ready. Ask a question or use voice.</div>
+          <div class="da-status" id="da-status" role="status" hidden></div>
 
           <div class="da-followups" id="da-followups" hidden>
             <p>Try asking next</p>
@@ -289,9 +284,7 @@
     panel.hidden = !open;
     launcher.setAttribute('aria-expanded', open ? 'true' : 'false');
     if (open) {
-      if (getApiBase()) {
-        setStatus(root, 'Ready. Ask a question or use voice.', 'success');
-      }
+      if (getApiBase()) clearStatus(root);
       setTimeout(() => root.querySelector('#da-question').focus(), 40);
     }
   }
@@ -322,7 +315,7 @@
       title.textContent = 'Backend connected';
       text.textContent = base + ' will receive questions and voice audio. The Groq key must remain only in that backend.';
       if (backendLine) backendLine.textContent = 'Backend connected: ' + base.replace(/^https?:\/\//, '');
-      setStatus(root, 'Ready. Ask a question or use voice.', 'success');
+      clearStatus(root);
     } else {
       setup.hidden = false;
       title.textContent = 'Backend not connected yet';
@@ -379,7 +372,7 @@
       }
       appendChatMessage(root, 'assistant', answer.trim());
       renderFollowups(root, data.followUps || data.followups || data.suggestedQuestions || []);
-      setStatus(root, 'Answer ready.', 'success');
+      clearStatus(root);
     } catch (error) {
       removeLastUserMessage(root, question);
       setStatus(root, error.message, 'error');
@@ -474,12 +467,11 @@
       if (!transcript) {
         throw new Error('The backend returned no transcript.');
       }
-      showTranscript(root, transcript);
       root.querySelector('#da-question').value = transcript;
       if (data.languageHint === 'te' && root.querySelector('#da-language').value === 'auto') {
         root.querySelector('#da-language').value = 'telugu';
       }
-      setStatus(root, 'Voice transcribed.', 'success');
+      clearStatus(root);
       if (root.querySelector('#da-auto-ask').checked) {
         await askQuestion(root, transcript);
       }
@@ -569,19 +561,15 @@
     root.querySelector('#da-followup-list').innerHTML = '';
   }
 
-  function showTranscript(root, transcript) {
-    const box = root.querySelector('#da-transcript');
-    root.querySelector('#da-transcript-text').textContent = transcript;
-    box.hidden = false;
-  }
-
   function clearAssistant(root) {
     resetChat(root, 'New chat started. Ask a question or use voice.');
     root.querySelector('#da-question').value = '';
-    root.querySelector('#da-transcript').hidden = true;
-    root.querySelector('#da-transcript-text').textContent = '';
     hideFollowups(root);
-    setStatus(root, getApiBase() ? 'Ready. Ask a question or use voice.' : 'Ready when the backend URL is connected.', getApiBase() ? 'success' : undefined);
+    if (getApiBase()) {
+      clearStatus(root);
+    } else {
+      setStatus(root, 'Ready when the backend URL is connected.');
+    }
   }
 
   function appendChatMessage(root, role, text) {
@@ -626,7 +614,7 @@
     if (state.inactivityTimer) clearTimeout(state.inactivityTimer);
     state.inactivityTimer = setTimeout(() => {
       resetChat(root, 'Chat reset after inactivity. Ask a new question when ready.');
-      setStatus(root, 'Chat reset after inactivity. Ask a new question when ready.', 'success');
+      clearStatus(root);
     }, CHAT_INACTIVITY_MS);
   }
 
@@ -649,8 +637,13 @@
   function setStatus(root, message, type) {
     const status = root.querySelector('#da-status');
     status.textContent = message;
+    status.hidden = !message;
     status.classList.toggle('error', type === 'error');
     status.classList.toggle('success', type === 'success');
+  }
+
+  function clearStatus(root) {
+    setStatus(root, '');
   }
 
   function setBusy(root, busy, message) {
