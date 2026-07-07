@@ -1,0 +1,8 @@
+{
+  "functions": {
+    "api/**/*.js": {
+      "includeFiles": "family-diet-plan.html",
+      "maxDuration": 30
+    }
+  }
+}
