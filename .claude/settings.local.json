@@ -1,7 +1,31 @@
 {
   "permissions": {
     "allow": [
-      "Bash(open *)"
+      "Bash(open *)",
+      "Read(//private/tmp/dietplan/**)",
+      "Bash(sed -i '' 's|id=\"s1\"|id=\"s12\"|g; s|printSection\\('\"'\"'s1'\"'\"'\\)|printSection\\('\"'\"'s12'\"'\"'\\)|g; s|<span class=\"num\">01</span>|<span class=\"num\">12</span>|g' oldsec1.html)",
+      "Bash(sed -i '' 's|id=\"s4\"|id=\"s6\"|g; s|printSection\\('\"'\"'s4'\"'\"'\\)|printSection\\('\"'\"'s6'\"'\"'\\)|g; s|<span class=\"num\">04</span>|<span class=\"num\">06</span>|g' oldsec4.html)",
+      "Bash(sed -i '' 's|id=\"s5\"|id=\"s8\"|g; s|printSection\\('\"'\"'s5'\"'\"'\\)|printSection\\('\"'\"'s8'\"'\"'\\)|g; s|<span class=\"num\">05</span>|<span class=\"num\">08</span>|g' oldsec5.html)",
+      "Bash(sed -i '' 's|id=\"s6\"|id=\"s4\"|g; s|printSection\\('\"'\"'s6'\"'\"'\\)|printSection\\('\"'\"'s4'\"'\"'\\)|g; s|<span class=\"num\">06</span>|<span class=\"num\">04</span>|g' oldsec6.html)",
+      "Bash(sed -i '' 's|Section 6\\\\b|Section 4|g' oldsec3.html)",
+      "Bash(sed -i '' 's|Section 8\\\\b|Section 9|g' oldsec3.html)",
+      "Bash(sed -i '' 's|Recipe 4\\\\.6|Recipe 6.6|g; s|Recipe 4\\\\.9|Recipe 6.9|g; s|Recipe 4\\\\.10|Recipe 6.10|g; s|Recipe 4\\\\.11|Recipe 6.11|g; s|Recipe 4\\\\.12|Recipe 6.12|g' oldsec4.html)",
+      "Bash(sed -i '' 's|4\\\\.1 · |6.1 · |g; s|4\\\\.2 · |6.2 · |g; s|4\\\\.3 · |6.3 · |g; s|4\\\\.4 · |6.4 · |g; s|4\\\\.5 · |6.5 · |g; s|4\\\\.6 · |6.6 · |g; s|4\\\\.7 · |6.7 · |g; s|4\\\\.8 · |6.8 · |g; s|4\\\\.9 · |6.9 · |g; s|4\\\\.10 · |6.10 · |g; s|4\\\\.11 · |6.11 · |g; s|4\\\\.12 · |6.12 · |g' oldsec4.html)",
+      "Bash(sed -i '' 's|Recipe 4\\\\.9|Recipe 6.9|g; s|Recipe 4\\\\.10|Recipe 6.10|g; s|Recipe 4\\\\.11|Recipe 6.11|g; s|Recipe 4\\\\.12|Recipe 6.12|g; s|\\(Recipe 4\\\\.|\\(Recipe 6.|g' oldsec7.html oldsec8.html oldsec9.html oldsec11.html oldsec2.html)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git push *)",
+      "Bash(gh api *)",
+      "Bash(cp family-diet-plan.html index.html)",
+      "Bash(awk 'BEGIN{count=0} /<div class=\"recipe\">/{count++; print \"Recipe \" count \" opens at line \" NR} /^    <\\\\/div>$/{print \"  4-space </div> at line \" NR}' \"/Users/bkalyankrishnareddy/Desktop/diet plan/family-diet-plan.html\")",
+      "Bash(awk ' *)",
+      "Bash(mv /tmp/reorg.html '/Users/bkalyankrishnareddy/Desktop/diet plan/family-diet-plan.html')",
+      "Bash(awk 'NR>=1 && NR<=80')",
+      "Bash(awk 'NR>=624 && NR<=1015 && /<h4>/{print NR\": \"$0}' '/Users/bkalyankrishnareddy/Desktop/diet plan/family-diet-plan.html')",
+      "Bash(awk '/<section id=\"s10\"/{p=1} /<section id=\"s11\"/{p=0} p && /details/' '/Users/bkalyankrishnareddy/Desktop/diet plan/family-diet-plan.html')",
+      "Bash(awk 'NR>=1')",
+      "Bash(awk '/<section id=\"s10\"/,/<section id=\"s11\"/{if\\(/person-card\\\\|callout|10[ABC]/\\) print NR\": \"$0}' '/Users/bkalyankrishnareddy/Desktop/diet plan/family-diet-plan.html')",
+      "Bash(awk '/<section id=\"s3\"/{p=1} /<section id=\"s4\"/{p=0} p && /details\\\\.drop|<details/' '/Users/bkalyankrishnareddy/Desktop/diet plan/family-diet-plan.html')"
     ]
   }
 }
