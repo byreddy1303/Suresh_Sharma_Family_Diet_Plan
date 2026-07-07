@@ -4,6 +4,8 @@ This repository is a static GitHub Pages site. Do not put `GROQ_API_KEY` or any 
 
 ## Required Environment
 
+Do not paste real keys into frontend files, Git commits, issue comments, or public logs. If a key is exposed, revoke it in Groq and create a new one.
+
 - `GROQ_API_KEY`: secret server-side key only.
 - `GROQ_CHAT_MODEL`: suggested default `llama-3.3-70b-versatile`; lighter fallback `llama-3.1-8b-instant`.
 - `GROQ_TRANSCRIBE_MODEL`: suggested default `whisper-large-v3-turbo`.

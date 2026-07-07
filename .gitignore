@@ -1,0 +1,11 @@
+# Local secrets and deployment environment files
+.env
+.env.*
+!.env.example
+
+# Common local build/cache folders
+node_modules/
+.vercel/
+.netlify/
+dist/
+build/
