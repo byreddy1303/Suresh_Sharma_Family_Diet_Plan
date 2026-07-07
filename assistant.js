@@ -2,6 +2,7 @@
   'use strict';
 
   const DOCUMENT_ID = 'suresh-sharma-family-diet-plan';
+  const DEFAULT_API_BASE = 'https://suresh-sharma-family-diet-plan.vercel.app';
   const STORAGE_API_BASE = 'dietAssistantApiBase';
   const STORAGE_LANGUAGE = 'dietAssistantLanguage';
   const DEFAULT_ENDPOINTS = {
@@ -47,7 +48,7 @@
     return normalizeApiBase(
       window.DIET_ASSISTANT_API_BASE ||
       localStorage.getItem(STORAGE_API_BASE) ||
-      ''
+      DEFAULT_API_BASE
     );
   }
 
@@ -76,13 +77,13 @@
         <div class="da-head">
           <div>
             <h2>Ask the Diet Plan</h2>
-            <p>For substitutions, taste fixes, meal swaps, and family doubts. The API key stays only in the backend.</p>
+            <p>Ask substitutions, taste fixes, meal swaps, and family doubts in text or voice.</p>
           </div>
           <button class="da-close" id="da-close" type="button" aria-label="Close assistant">×</button>
         </div>
 
         <div class="da-body">
-          <div class="da-setup" id="da-setup">
+          <div class="da-setup" id="da-setup" hidden>
             <div class="da-setup-title" id="da-setup-title">Backend not connected yet</div>
             <div class="da-setup-text" id="da-setup-text">After Claude deploys the backend, paste its URL here. Example: https://your-project.vercel.app</div>
             <label class="da-field" for="da-api-base">
@@ -98,6 +99,7 @@
           <details class="da-settings">
             <summary>Assistant settings</summary>
             <div class="da-settings-body">
+              <div class="da-backend-line" id="da-backend-line">Backend connected</div>
               <label class="da-field" for="da-language">
                 Preferred answer language
                 <select id="da-language">
@@ -134,7 +136,7 @@
             <p id="da-transcript-text"></p>
           </div>
 
-          <div class="da-status" id="da-status" role="status">Ready when the backend URL is connected.</div>
+          <div class="da-status success" id="da-status" role="status">Ready. Ask a question or use voice.</div>
 
           <div class="da-answer" id="da-answer" hidden>
             <h3>Answer</h3>
@@ -205,6 +207,9 @@
     panel.hidden = !open;
     launcher.setAttribute('aria-expanded', open ? 'true' : 'false');
     if (open) {
+      if (getApiBase()) {
+        setStatus(root, 'Ready. Ask a question or use voice.', 'success');
+      }
       setTimeout(() => root.querySelector('#da-question').focus(), 40);
     }
   }
@@ -227,14 +232,21 @@
     const setup = root.querySelector('#da-setup');
     const title = root.querySelector('#da-setup-title');
     const text = root.querySelector('#da-setup-text');
+    const backendLine = root.querySelector('#da-backend-line');
     const base = getApiBase();
     setup.classList.toggle('connected', Boolean(base));
     if (base) {
+      setup.hidden = true;
       title.textContent = 'Backend connected';
       text.textContent = base + ' will receive questions and voice audio. The Groq key must remain only in that backend.';
+      if (backendLine) backendLine.textContent = 'Backend connected: ' + base.replace(/^https?:\/\//, '');
+      setStatus(root, 'Ready. Ask a question or use voice.', 'success');
     } else {
+      setup.hidden = false;
       title.textContent = 'Backend not connected yet';
       text.textContent = 'After Claude deploys the backend, paste its URL here. Example: https://your-project.vercel.app';
+      if (backendLine) backendLine.textContent = 'Backend not connected';
+      setStatus(root, 'Paste and save the backend URL before asking.', 'error');
     }
   }
 
@@ -265,7 +277,7 @@
       return;
     }
     if (!getApiBase()) {
-      setStatus(root, 'Paste and save the backend URL before asking. The static site cannot call Groq directly.', 'error');
+      setStatus(root, 'Backend is not connected. Open Assistant settings and check the backend URL.', 'error');
       root.querySelector('#da-api-base').focus();
       return;
     }
@@ -321,7 +333,7 @@
       return;
     }
     if (!getApiBase()) {
-      setStatus(root, 'Connect the backend URL before recording voice. The audio must go to the backend for transcription.', 'error');
+      setStatus(root, 'Backend is not connected. Open Assistant settings and check the backend URL.', 'error');
       root.querySelector('#da-api-base').focus();
       return;
     }
@@ -481,7 +493,7 @@
     root.querySelector('#da-transcript').hidden = true;
     root.querySelector('#da-transcript-text').textContent = '';
     hideFollowups(root);
-    setStatus(root, getApiBase() ? 'Ready.' : 'Ready when the backend URL is connected.');
+    setStatus(root, getApiBase() ? 'Ready. Ask a question or use voice.' : 'Ready when the backend URL is connected.', getApiBase() ? 'success' : undefined);
   }
 
   function setStatus(root, message, type) {

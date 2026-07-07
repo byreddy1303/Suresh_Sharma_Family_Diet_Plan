@@ -6,7 +6,7 @@
   position: fixed;
   right: 18px;
   bottom: 18px;
-  z-index: 900;
+  z-index: 2000;
   font-family: Georgia, 'Palatino Linotype', 'Book Antiqua', serif;
   color: var(--coffee);
 }
@@ -45,10 +45,10 @@
 
 .da-panel {
   position: fixed;
-  right: 18px;
-  bottom: 82px;
-  width: min(430px, calc(100vw - 28px));
-  max-height: min(720px, calc(100vh - 104px));
+  right: 20px;
+  bottom: 86px;
+  width: min(520px, calc(100vw - 40px));
+  max-height: min(760px, calc(100vh - 110px));
   background: var(--cream);
   border: 1px solid var(--border);
   border-radius: 10px;
@@ -65,7 +65,7 @@
 .da-head {
   background: linear-gradient(90deg, var(--terracotta) 0%, var(--terracotta-light) 100%);
   color: var(--cream);
-  padding: 14px 16px;
+  padding: 16px 18px;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -73,7 +73,7 @@
 }
 
 .da-head h2 {
-  font-size: 1.05rem;
+  font-size: 1.15rem;
   margin: 0 0 3px;
 }
 
@@ -102,7 +102,7 @@
 }
 
 .da-body {
-  padding: 14px;
+  padding: 16px;
   overflow-y: auto;
 }
 
@@ -119,6 +119,10 @@
   padding: 10px;
   margin-bottom: 12px;
   border-left: 4px solid var(--turmeric);
+}
+
+.da-setup[hidden] {
+  display: none;
 }
 
 .da-setup.connected {
@@ -143,7 +147,7 @@
   display: flex;
   flex-direction: column;
   gap: 5px;
-  margin: 10px 0;
+  margin: 12px 0;
   font-size: 0.82rem;
   font-weight: bold;
 }
@@ -162,7 +166,7 @@
 }
 
 .da-field textarea {
-  min-height: 112px;
+  min-height: 104px;
   resize: vertical;
   line-height: 1.5;
 }
@@ -227,7 +231,7 @@
 }
 
 .da-settings {
-  margin: 10px 0 12px;
+  margin: 0 0 12px;
   border: 1px dashed var(--border);
   border-radius: 8px;
   background: #FEFAF0;
@@ -244,16 +248,25 @@
   padding: 0 10px 10px;
 }
 
+.da-backend-line {
+  color: var(--sage);
+  font-size: 0.78rem;
+  line-height: 1.35;
+  margin: 0 0 8px;
+  overflow-wrap: anywhere;
+}
+
 .da-examples {
   display: flex;
+  flex-wrap: wrap;
   gap: 6px;
-  overflow-x: auto;
-  padding: 2px 0 8px;
-  margin-bottom: 4px;
+  overflow: visible;
+  padding: 0;
+  margin: 0 0 10px;
 }
 
 .da-chip {
-  white-space: nowrap;
+  white-space: normal;
   border: 1px solid var(--border);
   background: white;
   color: var(--coffee);
@@ -261,7 +274,10 @@
   padding: 6px 9px;
   font-family: inherit;
   font-size: 0.76rem;
+  line-height: 1.2;
   cursor: pointer;
+  max-width: 100%;
+  text-align: left;
 }
 
 .da-chip:hover {
@@ -285,6 +301,7 @@
   font-size: 0.8rem;
   color: var(--coffee-light);
   border-left: 4px solid var(--turmeric);
+  overflow-wrap: anywhere;
 }
 
 .da-status.error {
@@ -377,5 +394,14 @@
 
   .da-row .da-btn {
     flex: 1 1 auto;
+  }
+
+  .da-head h2 {
+    font-size: 1.05rem;
+  }
+
+  .da-examples {
+    display: grid;
+    grid-template-columns: 1fr;
   }
 }
