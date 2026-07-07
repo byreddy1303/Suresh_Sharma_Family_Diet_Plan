@@ -1,0 +1,2472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suresh Sharma Family Nutrition System — Kurnool Andhra Brahmin Household</title>
+<style>
+:root {
+  --cream: #FDF6E9;
+  --card: #FFFFFF;
+  --parchment: #FBF3E4;
+  --terracotta: #C1440E;
+  --terracotta-light: #E56B2E;
+  --turmeric: #E8A02C;
+  --turmeric-light: #F5C56A;
+  --sage: #4A6A3F;
+  --sage-light: #7A9B6E;
+  --coffee: #3E2817;
+  --coffee-light: #6D5642;
+  --border: #E8D4A8;
+  --maroon: #8B2635;
+  --tulsi: #2D5F3F;
+  --sky: #6B8CAE;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+html { font-size: 18px; }
+body {
+  font-family: Georgia, 'Palatino Linotype', 'Book Antiqua', serif;
+  background: var(--cream);
+  color: var(--coffee);
+  line-height: 1.75;
+  padding-bottom: 60px;
+  font-size: 1rem;
+}
+.te {
+  display: block;
+  font-family: 'Nirmala UI', 'Gautami', 'Mallanna', 'Ramabhadra', 'Noto Sans Telugu', sans-serif;
+  color: #6B4423;
+  font-size: 0.95em;
+  font-style: normal;
+  font-weight: 500;
+  margin-top: 3px;
+  margin-bottom: 4px;
+  line-height: 1.55;
+  opacity: 0.92;
+}
+li .te, td .te { margin-top: 2px; }
+.te-inline {
+  font-family: 'Nirmala UI', 'Gautami', 'Mallanna', 'Ramabhadra', 'Noto Sans Telugu', sans-serif;
+  color: #6B4423;
+  font-size: 0.9em;
+}
+h1, h2, h3, h4 { font-family: 'Palatino Linotype', Georgia, serif; }
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+
+/* ---- Hero ---- */
+.hero {
+  background: linear-gradient(135deg, #C1440E 0%, #8B2635 100%);
+  color: #FDF6E9;
+  padding: 48px 24px 40px;
+  text-align: center;
+  border-bottom: 6px double var(--turmeric);
+}
+.hero h1 { font-size: 2.4rem; margin-bottom: 10px; letter-spacing: 0.5px; }
+.hero .subtitle { font-size: 1.05rem; opacity: 0.92; font-style: italic; }
+.hero .badge {
+  display: inline-block;
+  background: rgba(253, 246, 233, 0.15);
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  margin-top: 14px;
+  border: 1px solid rgba(253, 246, 233, 0.35);
+}
+
+/* ---- Family strip ---- */
+.family-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  padding: 28px 0;
+}
+.person-chip {
+  background: var(--card);
+  border-left: 5px solid var(--terracotta);
+  padding: 16px 18px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(62, 40, 23, 0.08);
+}
+.person-chip.veni { border-left-color: var(--turmeric); }
+.person-chip.susheel { border-left-color: var(--sage); }
+.person-chip.karthik { border-left-color: var(--sky); }
+.person-chip h4 { color: var(--coffee); font-size: 1.05rem; margin-bottom: 4px; }
+.person-chip .meta { font-size: 0.85rem; color: var(--coffee-light); }
+.person-chip .conds { font-size: 0.82rem; margin-top: 6px; color: var(--maroon); font-style: italic; }
+
+/* ---- Nav ---- */
+nav.toc {
+  position: sticky;
+  top: 0;
+  background: var(--parchment);
+  border-top: 2px solid var(--turmeric);
+  border-bottom: 2px solid var(--turmeric);
+  padding: 10px 0;
+  z-index: 100;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+}
+nav.toc ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 4px;
+  justify-content: center;
+}
+nav.toc a {
+  color: var(--coffee);
+  text-decoration: none;
+  padding: 6px 12px;
+  font-size: 0.82rem;
+  border-radius: 16px;
+  transition: all 0.2s;
+  border: 1px solid transparent;
+}
+nav.toc a:hover { background: var(--turmeric-light); border-color: var(--turmeric); }
+
+/* ---- Sections ---- */
+.section {
+  background: var(--card);
+  margin: 28px 0;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(62, 40, 23, 0.08);
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.section-header {
+  background: linear-gradient(90deg, var(--terracotta) 0%, var(--terracotta-light) 100%);
+  color: var(--cream);
+  padding: 20px 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+.section-header h2 { font-size: 1.5rem; letter-spacing: 0.3px; }
+.section-header h2 .num {
+  background: rgba(253, 246, 233, 0.2);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  margin-right: 10px;
+  font-weight: normal;
+}
+.print-btn {
+  background: var(--cream);
+  color: var(--terracotta);
+  border: none;
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-family: inherit;
+  font-size: 0.88rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+}
+.print-btn:hover { background: var(--turmeric-light); color: var(--coffee); transform: translateY(-1px); }
+.print-btn::before { content: "⎙  "; }
+.section-body { padding: 28px; }
+
+/* Section header color variants */
+.section:nth-of-type(even) .section-header { background: linear-gradient(90deg, var(--sage) 0%, var(--sage-light) 100%); }
+.section.s-turmeric .section-header { background: linear-gradient(90deg, #B8801A 0%, var(--turmeric) 100%); }
+.section.s-sky .section-header { background: linear-gradient(90deg, #4A6D8C 0%, var(--sky) 100%); }
+.section.s-maroon .section-header { background: linear-gradient(90deg, #6B1B27 0%, var(--maroon) 100%); }
+
+/* ---- Typography inside sections ---- */
+.section h3 {
+  color: var(--terracotta);
+  border-bottom: 2px dotted var(--border);
+  padding-bottom: 6px;
+  margin: 24px 0 14px;
+  font-size: 1.2rem;
+}
+.section h3:first-child { margin-top: 0; }
+.section h4 { color: var(--sage); margin: 16px 0 8px; font-size: 1.05rem; }
+.section p { margin-bottom: 12px; }
+.section ul, .section ol { margin: 8px 0 14px 22px; }
+.section li { margin-bottom: 6px; }
+.telugu { color: var(--maroon); font-style: italic; font-weight: bold; }
+
+/* ---- Tables ---- */
+.tbl-wrap { overflow-x: auto; margin: 12px 0; border-radius: 8px; border: 1px solid var(--border); }
+table { width: 100%; border-collapse: collapse; background: white; }
+th {
+  background: var(--parchment);
+  color: var(--coffee);
+  text-align: left;
+  padding: 11px 13px;
+  font-size: 0.95rem;
+  border-bottom: 2px solid var(--turmeric);
+}
+td { padding: 11px 13px; border-bottom: 1px solid #F0E4CC; font-size: 0.98rem; vertical-align: top; }
+tr:nth-child(even) td { background: #FEFAF0; }
+tr:hover td { background: #FBF3E4; }
+
+/* ---- Cards ---- */
+.person-card {
+  background: var(--parchment);
+  border-left: 6px solid var(--terracotta);
+  padding: 20px 22px;
+  border-radius: 8px;
+  margin: 18px 0;
+}
+.person-card.veni { border-left-color: var(--turmeric); }
+.person-card.susheel { border-left-color: var(--sage); }
+.person-card.karthik { border-left-color: var(--sky); }
+.person-card h3 { color: var(--terracotta); border: none; padding: 0; margin-top: 0; }
+.person-card.veni h3 { color: #B8801A; }
+.person-card.susheel h3 { color: var(--sage); }
+.person-card.karthik h3 { color: var(--sky); }
+
+.callout {
+  background: #FFF9E6;
+  border-left: 4px solid var(--turmeric);
+  padding: 12px 16px;
+  margin: 14px 0;
+  border-radius: 4px;
+  font-size: 0.92rem;
+}
+.callout.warn { background: #FCEDEE; border-left-color: var(--maroon); }
+.callout.good { background: #EEF5EA; border-left-color: var(--sage); }
+.callout strong { color: var(--coffee); }
+
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin: 14px 0; }
+
+.macro-box {
+  background: white;
+  border: 1px solid var(--border);
+  padding: 12px 14px;
+  border-radius: 6px;
+}
+.macro-box .label { font-size: 0.75rem; color: var(--coffee-light); text-transform: uppercase; letter-spacing: 0.5px; }
+.macro-box .val { font-size: 1.3rem; font-weight: bold; color: var(--terracotta); }
+.macro-box .sub { font-size: 0.8rem; color: var(--coffee-light); }
+
+/* ---- Recipe cards ---- */
+.recipe {
+  background: var(--parchment);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px 22px;
+  margin: 16px 0;
+}
+.recipe-title {
+  color: var(--terracotta);
+  font-size: 1.15rem;
+  border-bottom: 2px dotted var(--border);
+  padding-bottom: 6px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+.recipe .section-lbl { font-weight: bold; color: var(--sage); margin-top: 8px; display: block; }
+
+/* ---- Day plan ---- */
+.day-tabs { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 18px; border-bottom: 2px solid var(--border); }
+.day-tab {
+  background: var(--parchment);
+  border: 1px solid var(--border);
+  border-bottom: none;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-family: inherit;
+  color: var(--coffee);
+  border-radius: 8px 8px 0 0;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+.day-tab.active {
+  background: var(--terracotta);
+  color: var(--cream);
+  font-weight: bold;
+}
+.day-panel { display: none; }
+.day-panel.active { display: block; animation: fadeIn 0.3s; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+.meal {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin: 10px 0;
+}
+.meal-time {
+  color: var(--terracotta);
+  font-weight: bold;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.meal-dish { font-size: 1.05rem; color: var(--coffee); margin: 4px 0 10px; font-weight: bold; }
+.per-person {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 8px;
+  font-size: 0.85rem;
+  margin-top: 8px;
+}
+.pp {
+  background: var(--parchment);
+  padding: 8px 10px;
+  border-radius: 6px;
+  border-left: 3px solid var(--terracotta);
+}
+.pp.v { border-left-color: var(--turmeric); }
+.pp.su { border-left-color: var(--sage); }
+.pp.k { border-left-color: var(--sky); }
+.pp b { color: var(--coffee); display: block; margin-bottom: 2px; font-size: 0.8rem; }
+.meal-note { font-size: 0.82rem; color: var(--coffee-light); font-style: italic; margin-top: 8px; }
+.meal-cal { font-size: 0.78rem; color: var(--sage); margin-top: 4px; font-weight: bold; }
+
+/* ---- Footer ---- */
+footer {
+  text-align: center;
+  padding: 30px 20px;
+  color: var(--coffee-light);
+  font-size: 0.85rem;
+  font-style: italic;
+}
+footer::before { content: "❈ ❈ ❈"; display: block; color: var(--turmeric); margin-bottom: 10px; font-size: 1.2rem; }
+
+/* ---- Print styles ---- */
+@media print {
+  body { background: white; padding: 0; font-size: 10.5pt; }
+  .hero { padding: 20px; background: white !important; color: black !important; border-bottom: 3px solid #333; }
+  .hero h1 { color: #C1440E; font-size: 1.8rem; }
+  .hero .subtitle, .hero .badge { color: #444; border-color: #999; background: white; }
+  nav.toc, .print-btn, .family-strip { display: none !important; }
+  .section {
+    box-shadow: none;
+    border: 1px solid #999;
+    margin: 12px 0;
+    page-break-inside: avoid;
+  }
+  .section-header {
+    background: #f0e4cc !important;
+    color: #3E2817 !important;
+    padding: 12px 16px;
+    border-bottom: 2px solid #C1440E;
+  }
+  .day-tab { display: none !important; }
+  .day-tab.active { display: none !important; }
+  .day-panel { display: block !important; page-break-inside: avoid; }
+  .day-panel h4 { color: #C1440E; margin-top: 20px; border-bottom: 1px solid #999; }
+  table { font-size: 9pt; }
+  a { color: #3E2817; text-decoration: none; }
+
+  /* Single-section print mode */
+  body.print-single .section:not(.print-target),
+  body.print-single .hero,
+  body.print-single footer {
+    display: none !important;
+  }
+  body.print-single .print-target {
+    box-shadow: none;
+    border: none;
+    margin: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero h1 { font-size: 1.6rem; }
+  .section-header { padding: 14px 18px; }
+  .section-header h2 { font-size: 1.15rem; }
+  .section-body { padding: 18px; }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>The Suresh Sharma Family Nutrition System</h1>
+    <span class="te" style="color:#FFE9C4; font-size:1.1rem; opacity:1;">సురేష్ శర్మ కుటుంబం ఆరోగ్య ఆహార ప్రణాళిక</span>
+    <p class="subtitle">A clinical &amp; Ayurvedic diet framework rooted in Kurnool Andhra Brahmin food tradition</p>
+    <span class="te" style="color:#FFE9C4; opacity:0.95;">కర్నూలు ఆంధ్ర బ్రాహ్మణ వంటకాల ఆధారంగా వైద్య, ఆయుర్వేద పద్ధతిలో తయారుచేసిన ఆహార ప్రణాళిక</span>
+    <span class="badge">Prepared for a household of four · Vegetarian · No garlic · Onion permitted</span>
+    <div class="te" style="color:#FFE9C4; opacity:0.95; margin-top:8px;">నలుగురు కుటుంబం కోసం · శాకాహారం · వెల్లుల్లి లేదు · ఉల్లిపాయ ఉపయోగించవచ్చు</div>
+  </div>
+</header>
+
+<div class="wrap">
+  <section class="family-strip no-print">
+    <div class="person-chip">
+      <h4>Suresh · <span style="font-weight:normal">Father, 54</span></h4>
+      <span class="te">సురేష్ · నాన్నగారు, 54 ఏళ్ళు</span>
+      <div class="meta">105 kg · 5'6" · BMI 36.9</div>
+      <div class="conds">Hypertension · Sciatica · Knee replacement · Post-surgery recovery</div>
+      <span class="te">బీపీ · నడుము నుండి కాలిదాకా నొప్పి · మోకాలి ఆపరేషన్ · శస్త్రచికిత్స తర్వాత కోలుకుంటున్నారు</span>
+    </div>
+    <div class="person-chip veni">
+      <h4>Veni · <span style="font-weight:normal">Mother, 48</span></h4>
+      <span class="te">వేణి · అమ్మగారు, 48 ఏళ్ళు</span>
+      <div class="meta">72 kg · 5'4" · BMI 27.5</div>
+      <div class="conds">T2 Diabetes (220 mg/dL) · Spondylitis · Glaucoma</div>
+      <span class="te">షుగర్ (220) · మెడ, నడుము నొప్పి · కంటిలో ఒత్తిడి (గ్లకోమా)</span>
+    </div>
+    <div class="person-chip susheel">
+      <h4>Susheel · <span style="font-weight:normal">Younger son, 14</span></h4>
+      <span class="te">సుశీల్ · చిన్న కొడుకు, 14 ఏళ్ళు</span>
+      <div class="meta">115 kg · 5'10" · BMI 36.5</div>
+      <div class="conds">Grade 2 NAFLD · Premature graying</div>
+      <span class="te">కాలేయంలో కొవ్వు (గ్రేడ్ 2) · చిన్న వయసులోనే జుట్టు నెరుస్తుంది</span>
+    </div>
+    <div class="person-chip karthik">
+      <h4>Karthikeya · <span style="font-weight:normal">Elder son, 24</span></h4>
+      <span class="te">కార్తికేయ · పెద్ద కొడుకు, 24 ఏళ్ళు</span>
+      <div class="meta">70 kg · 5'10" · BMI 22.5</div>
+      <div class="conds">ACL+PCL+MCL post-op · Active recovery phase</div>
+      <span class="te">మోకాలి లిగమెంట్ ఆపరేషన్ తర్వాత · కోలుకుంటున్న దశ</span>
+    </div>
+  </section>
+</div>
+
+<nav class="toc no-print">
+  <div class="wrap">
+    <ul>
+      <li><a href="#s1">1 · Ingredients / సరుకులు</a></li>
+      <li><a href="#s2">2 · Per-Person / ఒక్కొక్కరికి</a></li>
+      <li><a href="#s3">3 · 7-Day Plan / వారం ప్లాన్</a></li>
+      <li><a href="#s4">4 · Recipes / వంటలు</a></li>
+      <li><a href="#s5">5 · Oil / నూనె</a></li>
+      <li><a href="#s6">6 · Morning / ఉదయం అలవాట్లు</a></li>
+      <li><a href="#s7">7 · Avoid / మానేయాలి</a></li>
+      <li><a href="#s8">8 · Festivals / పండగలు</a></li>
+      <li><a href="#s9">9 · Kitchen / వంటిల్లు</a></li>
+      <li><a href="#s10">10 · Progress / మెరుగుదల</a></li>
+      <li><a href="#s11">11 · Energy / శక్తి</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="wrap">
+<!-- ==================== SECTION 1 ==================== -->
+<section id="s1" class="section">
+  <div class="section-header">
+    <h2><span class="num">01</span>Master Ingredient Matrix <span class="te-inline">/ ప్రధాన సరుకుల పట్టిక</span></h2>
+    <button class="print-btn" onclick="printSection('s1')">Print this section</button>
+  </div>
+  <div class="section-body">
+    <p>Every ingredient a Kurnool Andhra Brahmin kitchen touches — mapped to who in this house it heals and who it hurts. Reference this before you cook. The "Portion" column assumes cooked/served weight unless stated.</p>
+    <span class="te">మన కర్నూలు వంటింట్లో వాడే ప్రతి సరుకు — ఇంట్లో ఎవరికి మంచిదో, ఎవరికి పరవాలేదో ఈ పట్టికలో ఉంది. వంట మొదలు పెట్టే ముందు ఒకసారి చూడండి. "పరిమాణం" అనేది వండిన తర్వాత ఒక్కొక్కరికి ఎంత అని అర్థం.</span>
+
+    <h3>Dals &amp; Legumes (Pappu) <span class="te-inline">/ పప్పులు</span></h3>
+    <div class="tbl-wrap"><table>
+      <tr><th>Ingredient</th><th>Key Nutrients</th><th>Best For</th><th>Limit / Caution</th><th>Preparation Notes</th><th>Portion</th></tr>
+      <tr><td><span class="telugu">Kandi pappu</span> (toor dal)</td><td>Protein 22g/100g, folate, magnesium, potassium</td><td>Suresh (protein+K for BP), Karthik (recovery protein), Susheel (liver-friendly plant protein)</td><td>Veni: keep to 1 katori — carb load matters; combine with methi</td><td>Soak 30 min, pressure cook 3 whistles. Do <b>tadka in ghee + jeera + curry leaves + hing</b> — no garlic needed; hing supplies the sulfur note.</td><td>1 katori cooked ≈ 150 g</td></tr>
+      <tr><td><span class="telugu">Pesara pappu</span> (moong dal)</td><td>Easy-digest protein, low FODMAP, B-complex</td><td>Everyone — especially Susheel (low fructose, liver-safe) &amp; Suresh (light on sciatic-linked inflammation)</td><td>None significant. Split moong is gentler than whole.</td><td>Sprout whole moong 12 h → doubles folate and vitamin C. Use in <span class="telugu">pesarattu</span> batter or plain <span class="telugu">pappu charu</span>.</td><td>1 katori</td></tr>
+      <tr><td><span class="telugu">Senaga pappu</span> (chana dal)</td><td>Fiber 17g/100g, low GI (28), manganese</td><td>Veni (lowest GI dal) &amp; Karthik (manganese for cartilage)</td><td>Susheel: only if soaked well — can be heavy on liver in bulk</td><td>Soak 4 h minimum. Use in <span class="telugu">pappu podi</span> or dal preparations, not in fried snacks.</td><td>3/4 katori</td></tr>
+      <tr><td><span class="telugu">Minappa pappu</span> (urad dal)</td><td>Iron 8mg/100g, protein, calcium</td><td>Susheel (iron for growing), Karthik (iron+zinc)</td><td>Suresh: cools joints in some Ayurveda schools but heavy on kapha — moderate</td><td>Use in dosa/idli batter fermentation — B12 rises 4× post-ferment.</td><td>Batter portion ok daily</td></tr>
+      <tr><td><span class="telugu">Masoor pappu</span> (red lentil)</td><td>Iron 7mg/100g, folate</td><td>Veni (iron for perimenopause), Susheel (fastest-cooking protein)</td><td>Not culturally central — use 1–2×/wk</td><td>Cooks in 15 min without soaking.</td><td>1 katori</td></tr>
+      <tr><td><span class="telugu">Bobbarlu</span> (black-eyed peas)</td><td>Fiber, folate, potassium</td><td>Suresh (potassium for BP), Karthik</td><td>Susheel: OK sparingly</td><td>Excellent as <span class="telugu">bobbarla vada</span> baked (not fried) or in <span class="telugu">sundal</span>.</td><td>3/4 katori</td></tr>
+      <tr><td><span class="telugu">Nalla senagalu</span> (kala chana)</td><td>Copper 0.7mg/100g, iron, protein, low GI</td><td><b>Susheel</b> — copper directly supports melanin pathway for graying; Veni for GI control</td><td>None</td><td>Sprout overnight → maximum copper bioavailability. Season with lemon and coriander.</td><td>1/2 katori sprouted, daily for Susheel</td></tr>
+      <tr><td><span class="telugu">Rajma</span> (kidney beans)</td><td>Fiber, iron, folate</td><td>Occasional variety for Karthik</td><td>Suresh &amp; Veni: heavy — bloats, mildly raises BP if brine used</td><td>Soak 8 h, discard water, cook fresh.</td><td>1/2 katori occasional</td></tr>
+    </table></div>
+
+    <h3>Andhra Vegetables (Kaayagoora) <span class="te-inline">/ కాయగూరలు</span></h3>
+    <span class="te">ఇంట్లో వండే ప్రతి కూరగాయలు — ఎవరికి ఎక్కువ మంచిదో, ఎవరికి పరిమితంగా వాడాలో.</span>
+    <div class="tbl-wrap"><table>
+      <tr><th>Ingredient</th><th>Key Nutrients</th><th>Best For</th><th>Limit / Caution</th><th>Preparation Notes</th><th>Portion</th></tr>
+      <tr><td><span class="telugu">Munakkaya</span> (drumstick)</td><td>Iron, calcium, vitamin C, isothiocyanates</td><td><b>All four</b> — anti-inflammatory (Suresh's joints), hypoglycemic (Veni), liver-supportive (Susheel), collagen-support (Karthik)</td><td>None</td><td>Add to <span class="telugu">sambar</span>, <span class="telugu">pappu</span>, or standalone <span class="telugu">munakkaya charu</span>. Do not overcook — steam &lt; 8 min.</td><td>2–3 pieces daily/person</td></tr>
+      <tr><td><span class="telugu">Munakku aaku</span> (moringa leaves)</td><td>Vit A 7500 IU/100g, iron 4mg, calcium 185mg, lutein, zeaxanthin</td><td><b>Non-negotiable superfood for this family.</b> Veni's glaucoma (lutein+zeaxanthin), Susheel's liver &amp; hair (iron+copper co-factors), Suresh's joints (calcium), Karthik's antioxidant load.</td><td>None. Fresh leaves preferred.</td><td>Sauté briefly with hing+jeera or add to dal in the last 3 minutes of cooking — do not boil to death.</td><td>1 handful (~25g) 4×/wk</td></tr>
+      <tr><td><span class="telugu">Kakarakaya</span> (bitter gourd)</td><td>Charantin, polypeptide-p, momordicin — natural insulin-like compounds</td><td><b>Veni (essential)</b> &amp; Susheel (liver fat reduction — documented)</td><td>Karthik: fine but not essential. Suresh: OK</td><td>Do not deep-fry — destroys momordicin. Best as thin dry curry or stuffed <span class="telugu">gutti kakarakaya</span> with methi-jeera-hing masala.</td><td>Veni: 3–4×/wk, 75g; Susheel: 2×/wk</td></tr>
+      <tr><td><span class="telugu">Boodida gummadikaya</span> (ash gourd)</td><td>92% water, potassium, low cal (13 kcal/100g)</td><td>All — cooling for Suresh (Pitta-BP), diuretic-mild for Veni (kidney load), liver-cooling for Susheel</td><td>None</td><td>Best as <span class="telugu">gummadikaya pulusu</span> or juice (Susheel: 100ml morning — proven liver-cooling in Ayurveda).</td><td>200g/serving</td></tr>
+      <tr><td><span class="telugu">Beerakaya</span> (ridge gourd)</td><td>Dietary fiber, insulin-like peptides, potassium</td><td>Veni (glycemic), Suresh (potassium)</td><td>None</td><td><span class="telugu">Beerakaya pachadi</span> uses peel too — retains 40% more fiber.</td><td>150g</td></tr>
+      <tr><td><span class="telugu">Sorakaya / Anapakaya</span> (bottle gourd)</td><td>96% water, potassium, magnesium</td><td>Suresh (BP flagship), Veni (glaucoma — magnesium lowers IOP)</td><td>Always taste raw before cooking — a bitter gourd is toxic (cucurbitacin); discard.</td><td>Steam or light pulusu. Never fry.</td><td>200g up to 4×/wk</td></tr>
+      <tr><td><span class="telugu">Chikkudukaya</span> (broad beans)</td><td>Fiber, folate, magnesium</td><td>All</td><td>Susheel: peel strings, don't over-oil</td><td>Sauté with mustard-jeera-curry leaves.</td><td>1 katori</td></tr>
+      <tr><td><span class="telugu">Bendakaya</span> (okra)</td><td>Soluble fiber (mucilage lowers glucose), vit K, folate</td><td><b>Veni (glucose)</b>, Susheel (soluble fiber for liver)</td><td>Suresh: OK</td><td>Overnight soak of sliced okra in water — drink water AM = mild hypoglycemic (traditional, Veni protocol).</td><td>150g/serving; okra water 100ml AM</td></tr>
+      <tr><td><span class="telugu">Gongura</span> (sorrel leaves)</td><td>Iron 2.3mg, vit C 100mg, calcium, oxalates</td><td><b>Veni</b> (iron), Susheel (iron for anti-graying + liver-friendly acidity), Suresh (BP-safe sour source)</td><td>Karthik: fine. Anyone with kidney stones — reduce (oxalate). </td><td><span class="telugu">Gongura pappu</span> — pair with sesame chutney to bind oxalates. Do not add tamarind (already sour).</td><td>1 katori 3×/wk</td></tr>
+      <tr><td><span class="telugu">Aratikaya</span> (raw banana)</td><td>Resistant starch, potassium, prebiotic</td><td>Veni (low GI), Suresh (potassium), Susheel (liver-friendly starch)</td><td>None</td><td><span class="telugu">Aratikaya vepudu</span> (curry) or steamed. Resistant starch = feeds gut microbiota that improves insulin sensitivity.</td><td>100g</td></tr>
+      <tr><td><span class="telugu">Boppaikaya</span> (raw papaya)</td><td>Papain enzyme, vit C, low GI</td><td>Veni (digestive+low GI), Susheel (liver enzyme support), Karthik (protein digestion)</td><td>None</td><td>Grated in <span class="telugu">pachadi</span> or dry curry. Papain deactivates &gt; 70°C — quick cook.</td><td>150g</td></tr>
+      <tr><td><span class="telugu">Chamadumpa</span> (colocasia / arbi)</td><td>Potassium, resistant starch</td><td>Suresh (K for BP)</td><td>Veni: moderate — higher GI when overcooked; Susheel: same</td><td>Steam whole, peel, then temper. Never boil to mush.</td><td>75g</td></tr>
+      <tr><td><span class="telugu">Dosakaya</span> (yellow cucumber)</td><td>Hydration, silica, potassium</td><td>Karthik (silica for connective tissue), All in summer</td><td>None</td><td><span class="telugu">Dosakaya pappu</span> or raw <span class="telugu">pachadi</span>.</td><td>150g</td></tr>
+      <tr><td><span class="telugu">Vankaya</span> (brinjal)</td><td>Anthocyanins, fiber</td><td>Karthik (antioxidants for post-op recovery)</td><td><b>Suresh (nightshade — sciatic inflammation), Veni (spondylitis)</b> — limit to 1×/wk</td><td>Roasted <span class="telugu">gutti vankaya</span> or <span class="telugu">bagara vankaya</span>. Do not deep fry.</td><td>Suresh/Veni: 75g weekly cap; Karthik: 2×/wk</td></tr>
+      <tr><td><span class="telugu">Tomato</span></td><td>Lycopene (cooked = 3× more bioavailable), vit C</td><td>Karthik (lycopene protects tissue &amp; supports respiratory wellness)</td><td>Suresh &amp; Veni: nightshade — cap at 1 tomato/day; use in cooked form, not raw pachadi.</td><td>Cook with a fat (oil/ghee) — lycopene is fat-soluble.</td><td>See caps above</td></tr>
+      <tr><td><span class="telugu">Chintakaya</span> (raw tamarind fruit)</td><td>Vit C, fiber</td><td>Occasional flavor</td><td><b>Susheel: high fructose</b> — cap to a light souring in rasam, no chutneys of it. Veni: OK in moderation.</td><td>Use pulp minimally — jeera+tomato can substitute for sour.</td><td>Cap tamarind to 15g pulp/day family total for Susheel-conscious cooking</td></tr>
+      <tr><td><span class="telugu">Karivepaku</span> (curry leaves)</td><td>Copper, iron, calcium, β-carotene, alkaloids</td><td><b>Every meal, every person.</b> Susheel (copper for hair), Veni (glaucoma β-carotene + glucose control via mahanine alkaloid), Suresh (BP mild reduction).</td><td>None. <b>Do not discard from the plate.</b></td><td>Fresh &gt; dried. Toss into every tadka + chew whole in curd rice.</td><td>10–15 leaves/person/meal — culturally normal, medically essential.</td></tr>
+      <tr><td><span class="telugu">Usirikaya</span> (amla)</td><td>Vit C 600mg/100g (20× orange), tannins, chromium</td><td><b>Karthik (post-op collagen surge — high Vit C requirement, 1 amla = 400mg)</b>. Veni (chromium regulates glucose). Susheel (liver protective — hepatoprotective in trials). Suresh (BP mild).</td><td>None</td><td>Raw + salt, or grated into <span class="telugu">usirikaya pachadi</span>, or amla-lemon rasam. Heat &gt; 15 min destroys Vit C — add at end.</td><td>1 fresh amla/person/day minimum</td></tr>
+    </table></div>
+
+    <h3>Grains &amp; Rice <span class="te-inline">/ బియ్యం, ధాన్యాలు</span></h3>
+    <span class="te">వేణి కోసం చేతితో దంచిన బియ్యం లేదా ఉప్పుడు బియ్యం మేలు. వారానికి 3 సార్లు కొర్రలు, రాగులు వాడండి.</span>
+    <div class="tbl-wrap"><table>
+      <tr><th>Grain</th><th>GI</th><th>Best For</th><th>Limit / Caution</th><th>Preparation</th></tr>
+      <tr><td><span class="telugu">Hand-pounded raw rice</span> (dobbelu biyyam)</td><td>~55</td><td>Family default. Retains bran = fiber, B1, magnesium.</td><td>None</td><td>Wash but do not rub. Cook 1:2 water. This should be the household rice.</td></tr>
+      <tr><td>Polished Sona Masoori</td><td>~72</td><td>Karthik only — active/lean</td><td>Veni &amp; Susheel: cap to 1/2 katori, only after fiber first</td><td>Cook, drain excess starch (kanji method) → GI drops ~10 points.</td></tr>
+      <tr><td><span class="telugu">Uppudu biyyam</span> (par-boiled rice)</td><td>~50</td><td>Veni's diabetic rice of choice</td><td>None</td><td>Retains B1 &amp; niacin. Cook slightly more water.</td></tr>
+      <tr><td><span class="telugu">Ragulu</span> (ragi / finger millet)</td><td>~55</td><td><b>Everyone</b> — calcium 344mg/100g (bones for Suresh's knees; growth for Susheel; spondylitis for Veni)</td><td>Karthik: fine</td><td><span class="telugu">Ragi sangati</span>, ragi dosa, ragi ambali (fermented → B12 rises).</td></tr>
+      <tr><td><span class="telugu">Jonna</span> (jowar / sorghum)</td><td>~62</td><td>Veni (magnesium 165mg), Suresh (BP)</td><td>None</td><td><span class="telugu">Jonna roti</span> 2×/wk.</td></tr>
+      <tr><td><span class="telugu">Sajja</span> (bajra / pearl millet)</td><td>~54</td><td>Karthik (iron 8mg/100g), Susheel (winter warming)</td><td>Veni: OK winter only — heaty</td><td>Sajja roti with sesame chutney.</td></tr>
+      <tr><td><span class="telugu">Korralu</span> (foxtail millet)</td><td>~50</td><td><b>Veni's diabetic staple.</b> Susheel (liver-friendly slow carb).</td><td>None</td><td>Korralu upma, korralu pongal, or replace rice 3×/wk for Veni.</td></tr>
+      <tr><td><span class="telugu">Saamalu</span> (little millet)</td><td>~52</td><td>Veni, Suresh (magnesium)</td><td>None</td><td>Cook like rice, use in bisi bele or plain with pappu.</td></tr>
+      <tr><td><span class="telugu">Udalu</span> (barnyard millet)</td><td>~50</td><td>Veni — highest fiber millet</td><td>None</td><td>Udalu upma with drumstick.</td></tr>
+      <tr><td><span class="telugu">Godhuma</span> (whole wheat)</td><td>~65</td><td>Karthik</td><td>Suresh, Susheel: cap chapati count. Veni: 1 medium.</td><td>Whole wheat only. <b>No maida.</b></td></tr>
+    </table></div>
+
+    <h3>Dairy (Paalu) <span class="te-inline">/ పాలు, పెరుగు, నెయ్యి</span></h3>
+    <span class="te">ఇంట్లో పాలు, పెరుగు, మజ్జిగ, నెయ్యి — ఎవరికి ఎంత అవసరమో, ఎవరు తగ్గించాలో.</span>
+    <div class="tbl-wrap"><table>
+      <tr><th>Item</th><th>Best For</th><th>Limit / Caution</th><th>Preparation</th></tr>
+      <tr><td>Cow milk (full fat)</td><td>Susheel (growth calcium+B12), Karthik (recovery)</td><td>Suresh: skimmed or toned; Veni: 100ml plain, no sugar</td><td>Warm with a pinch of turmeric + pepper at night = golden milk. Susheel: 200ml AM + 200ml PM.</td></tr>
+      <tr><td><span class="telugu">Perugu</span> (curd)</td><td>Everyone — probiotic, B12</td><td>Suresh: fresh curd only (not sour → sodium rises with age); Veni: don't chill excessively — cold curd worsens spondylitis pain</td><td>Set at home from starter. Room temperature at meal.</td></tr>
+      <tr><td><span class="telugu">Majjiga</span> (spiced buttermilk)</td><td><b>All four</b> — see Recipe 4.11</td><td>None</td><td>Curd:water 1:3 + jeera + curry leaves + hing + fresh ginger. Post-lunch daily.</td></tr>
+      <tr><td><span class="telugu">Neyyi</span> (ghee)</td><td>Veni (1 tsp on rice slows glucose 20%), Karthik (recovery kcal), Susheel (1 tsp OK — liver metabolizes SCFAs well)</td><td>Suresh: strict 1 tsp/day max</td><td>Never fry in ghee for this family. Drizzle only.</td></tr>
+      <tr><td><span class="telugu">Paneer</span></td><td>Karthik (protein for recovery), Susheel (choline)</td><td>Suresh, Veni: 40g max, not fried</td><td>Grill or crumble raw into dal.</td></tr>
+    </table></div>
+
+    <h3>Oils, Spices &amp; Therapeutic Agents <span class="te-inline">/ నూనెలు, మసాలాలు, ఔషధగుణమున్న వస్తువులు</span></h3>
+    <span class="te">వేపుడులో పసుపు + మిరియాలు తప్పకుండా వాడండి — అన్నింటికీ మంచిది. వెల్లుల్లికి బదులు ఇంగువ (హింగ్) వాడాలి.</span>
+    <div class="tbl-wrap"><table>
+      <tr><th>Item</th><th>Therapeutic Property</th><th>Family Application</th><th>Dosing / Notes</th></tr>
+      <tr><td><span class="telugu">Verusenaga nune</span> (groundnut oil)</td><td>MUFA-rich, smoke pt 232°C</td><td>Household default oil</td><td>3 tsp/person/day cap</td></tr>
+      <tr><td><span class="telugu">Nuvvula nune</span> (cold-pressed sesame oil)</td><td>Sesamol antioxidant, calcium, mild anti-inflammatory</td><td>2×/wk in cooking, ideal for Suresh's joint tadkas</td><td>2 tsp per preparation</td></tr>
+      <tr><td><span class="telugu">Kobbari nune</span> (coconut oil)</td><td>MCTs; contested for LDL</td><td>1×/wk, not for Suresh</td><td>For a specific chutney or occasional tadka only</td></tr>
+      <tr><td><span class="telugu">Pasupu</span> (turmeric)</td><td>Curcumin — anti-inflammatory, hepatoprotective, anti-glycation</td><td><b>Every dal, every curry.</b> Suresh (joints), Susheel (liver), Karthik (recovery), Veni (spondylitis)</td><td>1/2 tsp/preparation + <b>black pepper always</b> (piperine × 2000% bioavailability)</td></tr>
+      <tr><td><span class="telugu">Miriyalu</span> (black pepper)</td><td>Piperine, warming, mild antihypertensive</td><td>Suresh's rasam base; universal curcumin activator</td><td>Fresh-cracked at end of cooking</td></tr>
+      <tr><td><span class="telugu">Menthulu</span> (fenugreek seeds)</td><td>Galactomannan slows glucose absorption 30–40%; trigonelline lowers HbA1c</td><td><b>Veni: critical.</b> Susheel (liver enzyme normalization). Karthik (anti-inflammatory).</td><td>Veni: 1 tsp soaked overnight → drink water, chew seeds AM. Sprinkle roasted powder in dal.</td></tr>
+      <tr><td><span class="telugu">Inguva</span> (asafoetida / hing)</td><td>Sulfur compounds, digestive, mild antimicrobial — <b>the garlic replacement</b></td><td>Every tadka</td><td>Rice-grain-sized piece per preparation. Compounded hing has starch — buy pure resin.</td></tr>
+      <tr><td><span class="telugu">Jeelakarra</span> (cumin)</td><td>Digestive, mild hypoglycemic, iron</td><td>Every tadka, jeera water</td><td>Dry-roast &amp; grind for max flavor</td></tr>
+      <tr><td><span class="telugu">Aavalu</span> (mustard seeds)</td><td>Selenium, warming</td><td>Universal tadka</td><td>Splutter fully before adding other spices</td></tr>
+      <tr><td><span class="telugu">Dhaniyalu</span> (coriander)</td><td>Cooling, mild diuretic, IOP-lowering (Veni)</td><td>Seed water for Veni's glaucoma</td><td>1 tsp coriander seeds in 1 cup water overnight → drink AM</td></tr>
+      <tr><td><span class="telugu">Sonti</span> (dry ginger)</td><td>Gingerols — anti-inflammatory, digestive</td><td>Karthik's tulsi tea; Suresh's joint rasam</td><td>1/4 tsp powder per preparation</td></tr>
+      <tr><td><span class="telugu">Tulasi</span> (holy basil)</td><td>Adaptogen; eugenol respiratory-protective; supports immunity and stress recovery</td><td><b>Karthik daily</b>; Suresh cardioprotective</td><td>5 leaves in warm water AM; steep 4 min in tea</td></tr>
+      <tr><td><span class="telugu">Nuvvulu</span> (sesame seeds — white/black)</td><td>Calcium 975mg/100g, copper 4mg, sesamin</td><td>Suresh (knees), Susheel (hair copper), Veni (spondylitis calcium)</td><td>2 tsp/day per person as chutney or podi</td></tr>
+      <tr><td><span class="telugu">Palli</span> (peanuts)</td><td>Choline, monounsaturated fat, resveratrol (skin), niacin</td><td>Susheel (liver choline — critical), Karthik</td><td>15–20 nuts/day, dry-roasted with skin</td></tr>
+      <tr><td><span class="telugu">Vaamu</span> (ajwain / carom)</td><td>Thymol — digestive, mild bronchodilator</td><td>Karthik (lung); post-meal for all</td><td>1/4 tsp with warm water post-meal if bloating</td></tr>
+      <tr><td>Coconut, fresh</td><td>MCT, potassium</td><td>Karthik, Susheel: small</td><td>Suresh, Veni: 1 tbsp grated in chutneys, not more.</td></tr>
+      <tr><td>Jaggery (<span class="telugu">bellam</span>)</td><td>Iron, minerals — but sucrose &amp; fructose</td><td>Occasional</td><td><b>Susheel: cap at 5g/day.</b> Suresh, Veni: 5g. Karthik: 15g OK.</td></tr>
+    </table></div>
+
+    <div class="callout"><strong>Reading key:</strong> "Best For" means the ingredient is actively therapeutic for that person's condition. "Limit / Caution" is not "avoid" unless stated — it flags portion or frequency care. When in doubt, cook the version safe for Veni (diabetes) and Suresh (BP + joints); the boys can eat extra.
+    <span class="te"><b>సూచన:</b> "Best For" అంటే ఆ వ్యక్తి ఆరోగ్యానికి బాగా పనిచేస్తుంది అని అర్థం. "Limit / Caution" అంటే పూర్తిగా వద్దు కాదు — పరిమాణం జాగ్రత్తగా వాడాలి. సందేహం వచ్చినప్పుడు, వేణి (షుగర్) మరియు సురేష్ (బీపీ, కీళ్ళ నొప్పి) కోసం సురక్షితమైన పద్ధతిలో వండండి; పిల్లలు ఎక్కువ తినొచ్చు.</span></div>
+  </div>
+</section>
+<!-- ==================== SECTION 2 ==================== -->
+<section id="s2" class="section">
+  <div class="section-header">
+    <h2><span class="num">02</span>Per-Person Clinical Nutrition Prescription <span class="te-inline">/ ఒక్కొక్కరికి ఆహార ప్రణాళిక</span></h2>
+    <button class="print-btn" onclick="printSection('s2')">Print this section</button>
+  </div>
+  <div class="section-body">
+
+    <!-- SURESH -->
+    <div class="person-card">
+      <h3>2A · Suresh (Father, 54) — BP · Sciatica · Post-Knee Surgery · Weight Loss</h3>
+      <span class="te">సురేష్ (నాన్నగారు, 54) — బీపీ · నడుము నొప్పి · మోకాలి ఆపరేషన్ · బరువు తగ్గించడం</span>
+      <div class="grid-2">
+        <div class="macro-box"><div class="label">Daily Calories</div><div class="val">1,800 kcal</div><div class="sub">500 kcal deficit from ~2,300 maintenance — targets 0.5 kg/wk loss, joint-safe</div><span class="te">రోజుకి క్యాలరీలు — వారానికి 1/2 కిలో తగ్గేలా, మోకాలికి ఇబ్బంది లేకుండా.</span></div>
+        <div class="macro-box"><div class="label">Protein</div><div class="val">95 g</div><div class="sub">~0.9 g/kg lean mass — preserves muscle around operated knees</div><span class="te">ప్రోటీన్ — మోకాలు చుట్టూ కండరాలు బలంగా ఉండేందుకు.</span></div>
+        <div class="macro-box"><div class="label">Carbs</div><div class="val">200 g</div><div class="sub">Complex only. 1.5 katori rice/day cap.</div><span class="te">పిండి పదార్థాలు — రోజుకి 1.5 గిన్నెల అన్నం మాత్రమే.</span></div>
+        <div class="macro-box"><div class="label">Fat</div><div class="val">55 g</div><div class="sub">MUFA-dominant (groundnut oil, sesame). 1 tsp ghee/day.</div><span class="te">కొవ్వు — వేరుశనగ నూనె, నువ్వుల నూనె. రోజుకి 1 చెంచా నెయ్యి.</span></div>
+        <div class="macro-box"><div class="label">Sodium</div><div class="val">&lt; 1500 mg</div><div class="sub">DASH-level. Non-negotiable.</div><span class="te">ఉప్పు — తక్కువగా, కచ్చితంగా పాటించాలి.</span></div>
+        <div class="macro-box"><div class="label">Potassium</div><div class="val">4,700 mg</div><div class="sub">Banana, ash gourd, bottle gourd, coconut water, curd</div><span class="te">పొటాషియం — అరటిపండు, గుమ్మడికాయ, సొరకాయ, కొబ్బరి నీళ్ళు, పెరుగు.</span></div>
+      </div>
+
+      <h4>Nutrient priorities &amp; specific Andhra sources <span class="te-inline">/ ముఖ్యమైన పోషకాలు &amp; ఎక్కడ దొరుకుతాయి</span></h4>
+      <ul>
+        <li><b>Potassium (BP):</b> <span class="telugu">boodida gummadikaya</span>, <span class="telugu">aratikaya</span>, <span class="telugu">sorakaya</span>, banana (1/day), fresh <span class="telugu">majjiga</span>. Aim: hit 4700 mg daily — cook a bottle-gourd or ash-gourd dish 5 days/week.
+        <span class="te">పొటాషియం (బీపీ కోసం): బూడిద గుమ్మడికాయ, అరటికాయ, సొరకాయ, రోజుకి 1 అరటిపండు, మజ్జిగ. వారానికి 5 సార్లు సొరకాయ లేదా గుమ్మడికాయ కూర వండండి.</span></li>
+        <li><b>Magnesium (BP + sciatica nerve):</b> Sesame chutney (975 mg Ca + 350 mg Mg per 100g), moong dal, drumstick leaves. 1 tbsp <span class="telugu">nuvvula podi</span> on rice at lunch = ~140 mg Mg.
+        <span class="te">మెగ్నీషియం (బీపీ + నడుము నొప్పికి): నువ్వుల పొడి, పెసర పప్పు, మునగాకు. మధ్యాహ్నం అన్నంలో 1 చెంచా నువ్వుల పొడి కలిపి తినండి.</span></li>
+        <li><b>Calcium (post-knee, bone density):</b> Ragi sangati 3×/wk, sesame chutney daily, curd, drumstick leaves. Target 1,200 mg.
+        <span class="te">క్యాల్షియం (మోకాలికి, ఎముకలకు): వారానికి 3 సార్లు రాగి సంగటి, రోజూ నువ్వుల పచ్చడి, పెరుగు, మునగాకు.</span></li>
+        <li><b>Vitamin D:</b> 15 min unshaded morning sunlight on arms/legs 4×/wk. Ask GP about testing 25(OH)D — most 54-y-old Indian males are deficient. Diet cannot cover this fully.
+        <span class="te">విటమిన్ D: వారానికి 4 సార్లు పొద్దున్నే 15 నిమిషాలు ఎండలో నిలబడండి. డాక్టర్‌ని అడిగి రక్త పరీక్ష చేయించండి.</span></li>
+        <li><b>B12 (sciatic nerve regeneration):</b> Fermented idli/dosa batter, paneer, curd. Two dosa breakfasts/week + daily curd. Ask GP about oral methylcobalamin 1500 mcg/day — likely needed at 54.
+        <span class="te">B12 (నరాలకు): పులిసిన ఇడ్లీ/దోశ పిండి, పనీర్, పెరుగు. వారానికి 2 సార్లు దోశ, రోజూ పెరుగు. డాక్టర్‌ని అడిగి మాత్రలు తీసుకోండి.</span></li>
+        <li><b>Omega-3 (anti-inflammatory) within vegetarian frame:</b> Flaxseed powder (<span class="telugu">avise ginjalu</span>) 1 tbsp/day mixed into curd. Walnuts (2/day). Mustard oil (only occasionally in a pickle context — not for tadka daily).
+        <span class="te">ఒమేగా-3 (వాపు తగ్గించడానికి): రోజూ 1 చెంచా అవిసె గింజల పొడి పెరుగులో కలిపి తినండి. రోజుకి 2 అఖ్రోట్‌లు (walnuts).</span></li>
+        <li><b>Collagen support (operated knees):</b> Vit C from amla + copper from sesame + proline &amp; glycine from milk protein (paneer, curd). Amla pachadi 4×/wk.
+        <span class="te">కీళ్ళకు: ఉసిరికాయ (విటమిన్ C), నువ్వులు (కాపర్), పాల ఉత్పత్తులు — ఇవన్నీ కలిసి మోకాలికి బలం ఇస్తాయి. వారానికి 4 సార్లు ఉసిరికాయ పచ్చడి.</span></li>
+        <li><b>Anti-inflammatory phytonutrients:</b> Turmeric+pepper in every dal &amp; curry. Ginger rasam 2×/wk. Tulsi in morning water.
+        <span class="te">వాపు తగ్గించడానికి: ప్రతి పప్పులో, కూరలో పసుపు + మిరియాలు. వారానికి 2 సార్లు అల్లం చారు. ఉదయం నీళ్ళలో తులసి ఆకులు వేసి తాగండి.</span></li>
+      </ul>
+
+      <h4>Strict foods to avoid — with reasons <span class="te-inline">/ తప్పకుండా మానేయాల్సినవి</span></h4>
+      <div class="callout warn">
+        <ul style="margin-left:20px">
+          <li><b>Vadumaanga pickle, avakaya (mango pickle), gongura pachadi with brine, tokku pachadi</b> — sodium 2000+ mg per spoon. <b>ZERO for Suresh.</b> Tolerate 1/2 tsp gongura pachadi on rare occasions.
+          <span class="te">అవకాయ, మాగాయ, గోంగూర పచ్చడి, తొక్కు పచ్చడి — వీటిలో ఉప్పు చాలా ఎక్కువ. సురేష్‌కి <b>అస్సలు వద్దు.</b> అరుదుగా 1/2 చెంచా గోంగూర పచ్చడి తినొచ్చు.</span></li>
+          <li><b>Papad (appadam) — sodium bomb.</b> Max 1/week, roasted (never fried).
+          <span class="te">అప్పడాలు — ఉప్పు చాలా ఎక్కువ. వారానికి 1 మాత్రమే, కాల్చినది, వేయించినది వద్దు.</span></li>
+          <li><b>Vada, mysore bonda, mirchi bajji, punugulu deep-fried</b> — deep-fried = joint-inflammation trigger + BP. Baked or air-fried versions only.
+          <span class="te">వడ, మైసూర్ బోండా, మిర్చీ బజ్జీ, పునుగులు — నూనెలో వేయించినవి కీళ్ళ నొప్పికి, బీపీకి చెడు. కాల్చిన (baked) రూపంలో మాత్రమే తినండి.</span></li>
+          <li><b>Tomato-heavy pulusu with excess tamarind and salt</b> — the tomato-nightshade + salt-load worsens sciatica &amp; BP together. Use pepper-based rasams instead.
+          <span class="te">టమాటా ఎక్కువ, చింతపండు ఎక్కువ, ఉప్పు ఎక్కువ ఉన్న పులుసు — నడుము నొప్పికి, బీపీకి రెండింటికీ చెడు. బదులుగా మిరియాల చారు వండండి.</span></li>
+          <li><b>Buffalo milk full fat, khova sweets, mysore pak in bulk</b> — saturated fat + sugar; joint inflammation and weight regain.
+          <span class="te">గేదెపాలు, ఖోవా స్వీట్లు, మైసూర్ పాక్ ఎక్కువ — కీళ్ళ నొప్పి, బరువు పెరుగుదల.</span></li>
+          <li><b>Uric-acid spikers post-surgery:</b> heavy dals in a single sitting (dal quantity is fine but split across meals), spinach in excess, mushroom (not typical in this family — flag if introduced).
+          <span class="te">ఆపరేషన్ తర్వాత జాగ్రత్త: ఒకేసారి ఎక్కువ పప్పు వద్దు (రోజంతా విడగొట్టండి), పాలకూర ఎక్కువ వద్దు.</span></li>
+        </ul>
+      </div>
+
+      <h4>Salt management technique <span class="te-inline">/ ఉప్పు తగ్గించడం ఎలా</span></h4>
+      <p>Cook the dish salt-lite in the pot; add a <b>salted-buttermilk splash</b> at the plate for Suresh's serving — buttermilk gives salty perception for half the sodium. Use <b>lime + amla + curry leaves + fresh coriander</b> as flavor-builders. <b>Rock salt (sendha namak) for Suresh's plate</b> — lower sodium per gram than sea/refined salt. Keep his plate salt cellar separate.</p>
+      <span class="te">కూర వండేటప్పుడు తక్కువ ఉప్పు వేయండి; సురేష్ కంచంలో వడ్డించేటప్పుడు కొద్దిగా ఉప్పు మజ్జిగ కలిపితే ఉప్పు రుచి వస్తుంది కానీ సోడియం సగం అవుతుంది. రుచికోసం నిమ్మరసం, ఉసిరికాయ, కరివేపాకు, కొత్తిమీర వాడండి. సురేష్ కంచంలో సైంధవలవణం (రాక్ సాల్ట్) వాడండి — వేరే డబ్బాలో ఉంచండి.</span>
+
+      <h4>Ghee guidance <span class="te-inline">/ నెయ్యి ఎంత తినాలి</span></h4>
+      <p>1 tsp/day, drizzled on hot rice with dal at lunch. Not for tadka, not for stir-fry. The fat is medicinal, the frying is not.</p>
+      <span class="te">రోజుకి 1 చెంచా — మధ్యాహ్నం అన్నం-పప్పు మీద వేసుకోవాలి. తాళింపు లేదా వేపుడుకు వాడకూడదు.</span>
+
+      <h4>Hydration protocol <span class="te-inline">/ నీళ్ళు తాగే పద్ధతి</span></h4>
+      <ul>
+        <li>3–3.5 L/day, sipped (not gulped — gulping raises BP acutely).
+        <span class="te">రోజుకి 3–3.5 లీటర్లు నీళ్ళు, గుక్క గుక్కగా తాగండి — ఒకేసారి ఎక్కువ తాగితే బీపీ పెరుగుతుంది.</span></li>
+        <li>Warm water on waking (200 ml).
+        <span class="te">నిద్ర లేవగానే వెచ్చని నీళ్ళు (1 గ్లాస్).</span></li>
+        <li>Jeera water mid-morning (250 ml, 1 tsp seeds steeped 10 min).
+        <span class="te">మధ్యాహ్నం 10 గంటలకు జీలకర్ర నీళ్ళు (1 చెంచా జీలకర్ర 10 నిమిషాలు నానబెట్టి).</span></li>
+        <li>Coriander seed water in evenings (mild diuretic — reduces fluid retention pushing BP up).
+        <span class="te">సాయంత్రం ధనియాల నీళ్ళు — నీరు ఒంట్లో పోగవడం తగ్గి, బీపీ తగ్గుతుంది.</span></li>
+        <li><b>Avoid ice-cold water</b> — vasoconstriction spikes BP.
+        <span class="te"><b>ఐస్ నీళ్ళు వద్దు</b> — బీపీ పెంచుతాయి.</span></li>
+      </ul>
+
+      <h4>Meal timing <span class="te-inline">/ ఎప్పుడు తినాలి</span></h4>
+      <p>5 meals: 6:30 (ritual), 8:00 (breakfast), 11:00 (fruit or majjiga), 1:30 (lunch), 5:00 (light tiffin), 7:30 (dinner — earliest reasonable). Last liquid 8:30. No food after 8:30 PM — BP dips overnight benefit from empty stomach.</p>
+      <span class="te">రోజుకి 5 సార్లు: 6:30 (ఉదయ దినచర్య), 8:00 (అల్పాహారం), 11:00 (పండు లేదా మజ్జిగ), 1:30 (భోజనం), 5:00 (సాయంత్రం ఫలహారం), 7:30 (రాత్రి భోజనం — త్వరగా). రాత్రి 8:30 తర్వాత ఏమీ తినొద్దు — ఖాళీ కడుపుతో పడుకుంటే బీపీ మంచిగా ఉంటుంది.</span>
+    </div>
+
+    <!-- VENI -->
+    <div class="person-card veni">
+      <h3>2B · Veni (Mother, 48) — T2 Diabetes 220 · Spondylitis · Glaucoma</h3>
+      <span class="te">వేణి (అమ్మగారు, 48) — షుగర్ 220 · మెడ/నడుము నొప్పి · కంటిలో ఒత్తిడి</span>
+      <div class="callout warn"><b>Clinical priority:</b> Pre-meal glucose of 220 mg/dL is unsafe. This diet reduces glycemic load significantly, but the family GP/endocrinologist must review medication concurrently. Do not change insulin/OHA without doctor.
+      <span class="te"><b>ముఖ్యమైన హెచ్చరిక:</b> భోజనానికి ముందు 220 షుగర్ ప్రమాదకరం. ఈ ఆహారంతో షుగర్ చాలా వరకు తగ్గుతుంది, కానీ డాక్టర్‌ని కలిసి మాత్రలు/ఇంజెక్షన్ మార్చాలా అని చూడాలి. డాక్టర్‌ని అడగకుండా మందులు మార్చవద్దు.</span></div>
+
+      <div class="grid-2">
+        <div class="macro-box"><div class="label">Daily Calories</div><div class="val">1,500 kcal</div><div class="sub">Moderate deficit; weight loss will improve insulin sensitivity</div><span class="te">రోజుకి క్యాలరీలు — తగ్గించి బరువు తగ్గితే షుగర్ కంట్రోల్ అవుతుంది.</span></div>
+        <div class="macro-box"><div class="label">Protein</div><div class="val">75 g</div><div class="sub">~1 g/kg — preserves muscle, feeds slower glucose response</div><span class="te">ప్రోటీన్ — కండరాలు ఉంచుకోవడానికి, షుగర్ నెమ్మదిగా పెరిగేందుకు.</span></div>
+        <div class="macro-box"><div class="label">Carbs</div><div class="val">150 g (net)</div><div class="sub">Low-GI only. 1 katori rice/day cap, or millet.</div><span class="te">పిండి పదార్థాలు — రోజుకి 1 గిన్నె అన్నం మాత్రమే లేదా చిరుధాన్యాలు.</span></div>
+        <div class="macro-box"><div class="label">Fat</div><div class="val">45 g</div><div class="sub">Ghee 1 tsp, sesame chutney fats OK, no fried snacks.</div><span class="te">కొవ్వు — రోజుకి 1 చెంచా నెయ్యి, నువ్వుల పచ్చడి పరవాలేదు, వేయించిన స్నాక్స్ వద్దు.</span></div>
+        <div class="macro-box"><div class="label">Fiber</div><div class="val">35 g</div><div class="sub">Methi, ridge gourd, bitter gourd, moong sprouts</div><span class="te">పీచు — మెంతులు, బీరకాయ, కాకరకాయ, పెసర మొలకలు.</span></div>
+        <div class="macro-box"><div class="label">Magnesium</div><div class="val">400 mg</div><div class="sub">Sesame, drumstick leaves, ragi — lowers IOP + spondylitis pain</div><span class="te">మెగ్నీషియం — నువ్వులు, మునగాకు, రాగులు. కంటి ఒత్తిడి, నడుము నొప్పి తగ్గిస్తాయి.</span></div>
+      </div>
+
+      <h4>Glycemic load management — the Andhra thali sequence <span class="te-inline">/ షుగర్ కంట్రోల్ కోసం భోజన క్రమం</span></h4>
+      <ol>
+        <li><b>First (5 min before rice):</b> Small bowl of methi salad OR steamed drumstick pieces OR bitter gourd curry. This is fiber-first eating — the mucilage in methi and okra water forms a gel that slows glucose absorption 30%.
+        <span class="te"><b>మొదటగా (అన్నానికి 5 నిమిషాల ముందు):</b> చిన్న గిన్నెడు మెంతికూర లేదా ఉడకబెట్టిన మునగకాడలు లేదా కాకరకాయ కూర. ఇది పీచు ముందు తినడం — షుగర్ 30% నెమ్మదిగా పెరుగుతుంది.</span></li>
+        <li><b>Second:</b> Dal + vegetable curry. Protein-fat second course. Buys 20 more minutes.
+        <span class="te"><b>రెండవది:</b> పప్పు + కూర. ప్రోటీన్ + కొవ్వు. మరో 20 నిమిషాలు షుగర్ నెమ్మదిస్తుంది.</span></li>
+        <li><b>Third:</b> Rice/millet + drizzle ghee + curd. Ghee's short-chain fats and curd's lactic acid both flatten the glucose curve.
+        <span class="te"><b>మూడవది:</b> అన్నం/చిరుధాన్యం + కొద్దిగా నెయ్యి + పెరుగు. నెయ్యి, పెరుగు రెండూ షుగర్ పెరుగుదలను తగ్గిస్తాయి.</span></li>
+        <li><b>Fourth (only if hungry):</b> Fresh majjiga.
+        <span class="te"><b>నాలుగవది (ఇంకా ఆకలిగా ఉంటే):</b> తాజా మజ్జిగ.</span></li>
+      </ol>
+
+      <h4>Rice strategy <span class="te-inline">/ అన్నం విషయంలో ప్లాన్</span></h4>
+      <ul>
+        <li><b>Best rice for Veni in Andhra context:</b> <span class="telugu">uppudu biyyam</span> (par-boiled) or <span class="telugu">dobbelu biyyam</span> (hand-pounded raw). Par-boiled has 20% less rapid starch.
+        <span class="te"><b>వేణికి మంచి బియ్యం:</b> ఉప్పుడు బియ్యం లేదా దబ్బెల (చేతితో దంచిన) బియ్యం. ఉప్పుడు బియ్యంలో పిండి తక్కువ.</span></li>
+        <li><b>Cook &amp; drain (kanji) method:</b> cook rice with excess water, drain — GI drops ~10 points.
+        <span class="te"><b>ఎక్కువ నీళ్ళలో వండి గంజి తీసేయండి</b> — షుగర్ ఇంకా తగ్గుతుంది.</span></li>
+        <li><b>3 days/week: replace rice with <span class="telugu">korralu / saamalu / udalu</span>.</b> Foxtail-millet pongal at breakfast, foxtail-millet + dal at lunch, ragi sangati at dinner.
+        <span class="te"><b>వారానికి 3 రోజులు అన్నానికి బదులు కొర్రలు / సామలు / ఊదలు</b> వాడండి. ఉదయం కొర్రల పొంగలి, మధ్యాహ్నం కొర్రలు + పప్పు, రాత్రి రాగి సంగటి.</span></li>
+        <li>Dal-to-rice ratio for Veni: <b>1:1 by volume</b> (not 1:3 like typical Andhra plate).
+        <span class="te">వేణి కంచంలో పప్పు:అన్నం నిష్పత్తి <b>1:1</b> ఉండాలి (సాధారణ ఆంధ్ర భోజనంలా 1:3 కాదు).</span></li>
+      </ul>
+
+      <h4>Specific hypoglycemic Andhra vegetables — how to use <span class="te-inline">/ షుగర్ తగ్గించే కూరగాయలు</span></h4>
+      <ul>
+        <li><b><span class="telugu">Kakarakaya</span> (bitter gourd):</b> Trim &amp; salt 10 min, rinse (removes 40% bitterness — retains momordicin). Sauté in 1 tsp oil with hing, jeera, methi seeds, onion, turmeric. Do not deep-fry. <b>3×/wk minimum</b>.
+        <span class="te"><b>కాకరకాయ:</b> ముక్కలు కోసి 10 నిమిషాలు ఉప్పు చల్లి కడగండి — చేదు 40% తగ్గుతుంది కానీ ఔషధగుణం ఉంటుంది. 1 చెంచా నూనెలో ఇంగువ, జీలకర్ర, మెంతులు, ఉల్లిపాయ, పసుపుతో వేయించండి. వేయించొద్దు (deep fry). <b>వారానికి కనీసం 3 సార్లు</b>.</span></li>
+        <li><b>Methi (<span class="telugu">menthulu / menthi kura</span>):</b> Two forms — seeds soaked overnight, drink water AM. Fresh leaves in dal or paratha 2×/wk.
+        <span class="te"><b>మెంతులు:</b> రెండు రూపాలు — రాత్రి 1 చెంచా మెంతులు నానబెట్టి, ఉదయం ఆ నీళ్ళు తాగండి. తాజా మెంతికూర వారానికి 2 సార్లు పప్పులో లేదా పరాటాలో.</span></li>
+        <li><b>Ash gourd (<span class="telugu">boodida gummadikaya</span>):</b> Diuretic + cooling. Pulusu 2×/wk.
+        <span class="te"><b>బూడిద గుమ్మడికాయ:</b> చల్లదనం ఇస్తుంది, మూత్రవర్ధకం. వారానికి 2 సార్లు పులుసు.</span></li>
+        <li><b>Okra (<span class="telugu">bendakaya</span>):</b> Overnight water soak — slit 3 okras in a glass of water; drink water AM only for 3 months. Traditional and clinically supported for pre-meal glucose reduction.
+        <span class="te"><b>బెండకాయ:</b> రాత్రి 3 బెండకాయలు కోసి గ్లాస్ నీళ్ళలో వేయండి; ఉదయం ఆ నీళ్ళు మాత్రమే తాగండి. 3 నెలలు రోజూ చేస్తే భోజనానికి ముందు షుగర్ తగ్గుతుంది.</span></li>
+      </ul>
+
+      <h4>Glaucoma nutrition — critical for optic nerve preservation <span class="te-inline">/ కళ్ళ నరాలకు రక్షణ</span></h4>
+      <ul>
+        <li><b>Lutein &amp; zeaxanthin:</b> Drumstick leaves (32 mg lutein per 100g — highest in South Indian veg), curry leaves eaten (not tossed), spinach 2×/wk, gongura. Aim 10 mg/day → ~30g drumstick leaves cooked.
+        <span class="te"><b>కళ్ళకు మంచి పదార్థాలు:</b> మునగాకు (దక్షిణాదిలో అత్యధికం), కరివేపాకు (కంచంలో వదిలివేయవద్దు — తినండి), పాలకూర వారానికి 2 సార్లు, గోంగూర.</span></li>
+        <li><b>Vitamin C for optic nerve capillaries:</b> Amla daily, lemon in majjiga, raw guava if in season.
+        <span class="te"><b>విటమిన్ C:</b> రోజూ ఉసిరికాయ, మజ్జిగలో నిమ్మరసం, జామపండు సీజన్‌లో.</span></li>
+        <li><b>Zinc for retinal function:</b> Sesame seeds, moong sprouts, peanuts, ragi. Target 12 mg/day.
+        <span class="te"><b>జింక్:</b> నువ్వులు, పెసర మొలకలు, వేరుశనగలు, రాగులు.</span></li>
+        <li><b>Magnesium lowers intraocular pressure (evidence-based):</b> Sesame podi + drumstick leaves + ragi = together deliver 400 mg. Do not skip.
+        <span class="te"><b>మెగ్నీషియం:</b> కంటి ఒత్తిడి తగ్గిస్తుంది. నువ్వుల పొడి + మునగాకు + రాగులు కలిపి రోజూ. మిస్ అవ్వొద్దు.</span></li>
+        <li><b>Coriander seed water AM:</b> traditional IOP support, mild diuretic.
+        <span class="te"><b>ఉదయం ధనియాల నీళ్ళు:</b> కంటి ఒత్తిడికి పాత చిట్కా.</span></li>
+        <li><b>Avoid:</b> excessive caffeine (max 1 filter coffee/day, half-and-half milk), large salt loads (increases aqueous production), heavy binge-eating episodes (transient IOP spike).
+        <span class="te"><b>మానేయాలి:</b> ఎక్కువ కాఫీ (రోజుకి 1 ఫిల్టర్ కాఫీ మాత్రమే, సగం పాలతో), ఉప్పు ఎక్కువ, ఒకేసారి ఎక్కువ తినడం.</span></li>
+      </ul>
+
+      <h4>Spondylitis anti-inflammatory protocol within Andhra cooking <span class="te-inline">/ మెడ/నడుము నొప్పికి వాపు తగ్గించే ఆహారం</span></h4>
+      <ul>
+        <li><b>Turmeric 1 tsp/day + black pepper</b> — 20 mg curcumin from cooking gives modest but real anti-inflammatory effect. Consider curcumin capsule via doctor for pain-flare days.
+        <span class="te"><b>పసుపు రోజుకి 1 చెంచా + మిరియాలు</b> — ఇద్దరూ కలిస్తే వాపు తగ్గుతుంది. నొప్పి ఎక్కువగా ఉన్నప్పుడు డాక్టర్‌ని అడిగి మాత్రలు తీసుకోండి.</span></li>
+        <li><b>Ginger fresh</b> — 1 inch/day grated into dal or rasam.
+        <span class="te"><b>అల్లం</b> — రోజూ 1 అంగుళం తురిమి పప్పులో లేదా చారులో.</span></li>
+        <li><b>Calcium 1000 mg + D3:</b> Sesame podi, ragi sangati 3×/wk, curd. Ask GP for D3 sachet — likely low.
+        <span class="te"><b>క్యాల్షియం + D3:</b> నువ్వుల పొడి, వారానికి 3 సార్లు రాగి సంగటి, పెరుగు. D3 తక్కువ ఉంటే డాక్టర్‌ని అడిగి తీసుకోండి.</span></li>
+        <li><b>Nightshade moderation:</b> Tomato-based rasam 3×/wk max; tomato in curry 1/day maximum; <b>brinjal 1×/wk cap</b>. Substitute with drumstick, ridge gourd, bottle gourd.
+        <span class="te"><b>వంకాయలు, టమాటాలు తగ్గించండి:</b> టమాటా చారు వారానికి 3 సార్లు మాత్రమే; రోజుకి 1 టమాటా; వంకాయ వారానికి 1 సారి. బదులుగా మునగకాయ, బీరకాయ, సొరకాయ వాడండి.</span></li>
+      </ul>
+
+      <h4>Foods Veni must strictly avoid <span class="te-inline">/ వేణి తప్పకుండా మానేయాల్సినవి</span></h4>
+      <div class="callout warn">
+        <ul style="margin-left:20px">
+          <li><b>White sugar in all forms.</b> Includes filter coffee sugar — switch to unsweetened, or 1/4 tsp jaggery max.
+          <span class="te"><b>తెల్ల చక్కెర పూర్తిగా వద్దు.</b> ఫిల్టర్ కాఫీలో కూడా — పంచదార లేకుండా, లేదా చిటికెడు బెల్లం మాత్రమే.</span></li>
+          <li><b>Maida — biscuits, rusks, packaged bakery, samosa/kachori pastry, maida dosa.</b>
+          <span class="te"><b>మైదా వస్తువులు వద్దు</b> — బిస్కెట్లు, రస్క్, బేకరీ, సమోసా, కచోరి, మైదా దోశ.</span></li>
+          <li><b>Fruit juices even fresh</b> — whole fruit only, one small serving/day.
+          <span class="te"><b>పండ్ల రసాలు వద్దు</b> — తాజావి కూడా. పండు మొత్తం, రోజుకి ఒక్కసారి చిన్న ముక్క.</span></li>
+          <li><b>Pulihora leftover overnight (starch retrogradation is good — but the salt/tamarind load is the problem for BP-adjacent risk).</b> Small portion fresh OK.
+          <span class="te">నిన్నటి పులిహోర వద్దు — ఉప్పు, చింతపండు ఎక్కువ. తాజాది కొద్దిగా పరవాలేదు.</span></li>
+          <li><b>Chikkis, laddoos, mysore pak, khova sweets.</b>
+          <span class="te">చిక్కీలు, లడ్లు, మైసూర్ పాక్, ఖోవా స్వీట్లు వద్దు.</span></li>
+          <li><b>Watermelon, mango, chikoo, banana at breakfast on empty stomach.</b> These spike glucose fastest. Fruit only after meal, small piece.
+          <span class="te">పుచ్చకాయ, మామిడి, సపోటా, అరటిపండు — ఖాళీ కడుపుతో వద్దు. షుగర్ ఠక్కున పెరుగుతుంది. భోజనం తర్వాత మాత్రమే, చిన్న ముక్క.</span></li>
+        </ul>
+      </div>
+
+      <h4>Practical cook-once instruction <span class="te-inline">/ ఒక్కసారే వండేందుకు ప్లాన్</span></h4>
+      <p>Veni is the cook. Her diabetic version = drain her rice, put her portion in a separate katori before adding jaggery/sugar to any prasadam-style dish, keep methi-bitter gourd side prepared always. Do <b>not</b> cook 2 meals — cook the family meal at Veni-safe seasoning, add sugar/salt at individual plates.</p>
+      <span class="te">వేణి వంటచేసేది. ఆమె కోసం అన్నంలో గంజి తీసేయండి, స్వీట్ ప్రసాదాలలో బెల్లం/పంచదార వేసే ముందు ఆమె వాటాను వేరు తీసేయండి, మెంతికూర-కాకరకాయ కూర ఎప్పుడూ సిద్ధంగా ఉంచుకోండి. <b>రెండు రకాల వంటలు వండొద్దు</b> — ఇంటికంతా వేణికి తగినట్టే వండి, పంచదార/ఉప్పు కంచంలో వేసుకోవాలి.</span>
+    </div>
+
+    <!-- SUSHEEL -->
+    <div class="person-card susheel">
+      <h3>2C · Susheel (Younger Son, 14) — Grade 2 NAFLD · Premature Graying · Adolescent Obesity</h3>
+      <span class="te">సుశీల్ (చిన్న కొడుకు, 14) — కాలేయంలో కొవ్వు (గ్రేడ్ 2) · చిన్న వయసులో జుట్టు నెరుస్తుంది · పిల్లల ఊబకాయం</span>
+      <div class="callout warn"><b>Adolescent safety:</b> At 14, active growth demands caloric adequacy. Aggressive restriction can (a) worsen NAFLD (paradoxically — via ketone flux to liver), (b) stunt height, (c) trigger disordered eating. The strategy is <b>food quality change, mild caloric deficit, and behavioral compliance</b>. Weight-loss target: 1.5–2 kg/month max.
+      <span class="te"><b>పిల్లల జాగ్రత్త:</b> 14 ఏళ్ళలో పెరుగుదల ఉంటుంది కాబట్టి తినడం తగినంతగా ఉండాలి. ఎక్కువగా తగ్గించడం వల్ల (a) కాలేయం మరింత పాడవుతుంది, (b) ఎత్తు పెరగదు, (c) ఆహారం మీద తప్పుడు అభిప్రాయాలు వస్తాయి. ప్లాన్: <b>మంచి ఆహారం, కొంచెం మాత్రమే క్యాలరీలు తగ్గించడం, క్రమశిక్షణ</b>. నెలకి 1.5–2 కిలోలు మాత్రమే తగ్గాలి.</span></div>
+
+      <div class="grid-2">
+        <div class="macro-box"><div class="label">Daily Calories</div><div class="val">2,000 kcal</div><div class="sub">300–400 kcal deficit from an obese-teen maintenance ~2400</div><span class="te">రోజుకి క్యాలరీలు — పెరుగుతున్న పిల్లవాడు, కాబట్టి ఎక్కువ తగ్గించలేదు.</span></div>
+        <div class="macro-box"><div class="label">Protein</div><div class="val">95 g</div><div class="sub">Growth + muscle preservation during weight loss</div><span class="te">ప్రోటీన్ — పెరుగుదలకు, కండరాలకు.</span></div>
+        <div class="macro-box"><div class="label">Carbs</div><div class="val">220 g</div><div class="sub">Complex only. <b>Zero refined sugar. Zero fructose from juices.</b></div><span class="te">పిండి పదార్థాలు — చక్కెర పూర్తిగా వద్దు, పండ్ల రసాలు వద్దు.</span></div>
+        <div class="macro-box"><div class="label">Fat</div><div class="val">55 g</div><div class="sub">Mostly MUFA + PUFA. 1 tsp ghee.</div><span class="te">కొవ్వు — ఎక్కువగా మంచి నూనె, 1 చెంచా నెయ్యి.</span></div>
+        <div class="macro-box"><div class="label">Fiber</div><div class="val">30 g</div><div class="sub">Soluble fiber directly reduces liver fat</div><span class="te">పీచు — కాలేయంలో కొవ్వు తగ్గిస్తుంది.</span></div>
+        <div class="macro-box"><div class="label">Choline</div><div class="val">400 mg</div><div class="sub">Critical for liver fat export</div><span class="te">కోలిన్ — కాలేయం నుండి కొవ్వు బయటకు పంపడానికి అవసరం.</span></div>
+      </div>
+
+      <h4>NAFLD protocol — Andhra frame <span class="te-inline">/ కాలేయంలో కొవ్వు తగ్గించే ప్లాన్</span></h4>
+      <p><b>Fructose is the enemy — explain this to Susheel plainly:</b> Fructose bypasses insulin regulation and is converted to fat directly in the liver. 1 glass of orange juice = 25 g fructose = a liver-fat inducer even in healthy people. In him with Grade 2 NAFLD, it's a match on kerosene.</p>
+      <span class="te"><b>పండ్ల రసంలో ఉండే ఫ్రక్టోజ్ (సహజ చక్కెర) శత్రువు — సుశీల్‌కి స్పష్టంగా చెప్పండి:</b> ఇది నేరుగా కాలేయంలో కొవ్వుగా మారుతుంది. 1 గ్లాస్ నారింజ రసంలో 25 గ్రాముల ఫ్రక్టోజ్ ఉంటుంది — ఆరోగ్యంగా ఉన్నవారికి కూడా కాలేయంలో కొవ్వు పెంచుతుంది. కాలేయంలో ఇప్పటికే కొవ్వు ఉన్న సుశీల్‌కి అది మంటలో కిరోసిన్ పోసినట్టు.</span>
+      <ul>
+        <li><b>Fructose traps to STOP now:</b> Fruit juices (even fresh nimbu-pani sweetened), soft drinks, packaged fruit-flavor drinks, <b>bellam (jaggery) in excess</b> (cap 5 g/day), tamarind chutney in bulk, mango pickle syrup, dry fruits like dates/raisins in bulk (concentrated fructose).
+        <span class="te"><b>ఇప్పుడే ఆపేయాల్సినవి:</b> పండ్ల రసాలు (తాజా నిమ్మ షర్బత్ కూడా), కూల్‌డ్రింక్స్, పేకెట్ డ్రింక్స్, <b>ఎక్కువ బెల్లం</b> (రోజుకి 5 గ్రాములు మాత్రమే), చింతపండు చట్నీ ఎక్కువ, మామిడి ఊరగాయ రసం, ఎండు ఖర్జూరాలు/కిస్మిస్ ఎక్కువ.</span></li>
+        <li><b>Choline sources in Telugu vegetarian food:</b>
+        <span class="te"><b>కోలిన్ కోసం (శాకాహారంలో):</b></span>
+          <ul>
+            <li>Sesame seeds — 1 tbsp daily as chutney (30 mg choline)
+            <span class="te">నువ్వులు — రోజుకి 1 చెంచా పచ్చడిగా (30 మి.గ్రా.)</span></li>
+            <li>Peanuts — 20 nuts (30 mg)
+            <span class="te">వేరుశనగలు — 20 గింజలు (30 మి.గ్రా.)</span></li>
+            <li>Cauliflower (<span class="telugu">cauliflower vepudu</span>) — 100g (45 mg)
+            <span class="te">కాలీఫ్లవర్ వేపుడు — 100 గ్రా. (45 మి.గ్రా.)</span></li>
+            <li>Milk 400 ml/day (80 mg)
+            <span class="te">పాలు రోజుకి 400 మి.లీ. (80 మి.గ్రా.)</span></li>
+            <li>Paneer 40g (20 mg)
+            <span class="te">పనీర్ 40 గ్రా. (20 మి.గ్రా.)</span></li>
+            <li>Toor dal 1 katori (35 mg)
+            <span class="te">కంది పప్పు 1 గిన్నె (35 మి.గ్రా.)</span></li>
+            <li>Wheat germ if available — sprinkle on dosa/upma
+            <span class="te">గోధుమ మొలకలు దొరికితే — దోశ/ఉప్మా పైన చల్లండి.</span></li>
+          </ul>
+        </li>
+        <li><b>Liver-supporting Andhra foods a 14-y-old will actually eat:</b>
+        <span class="te"><b>14 ఏళ్ళ పిల్లవాడు నిజంగా తినే కాలేయానికి మంచి ఆహారాలు:</b></span>
+          <ul>
+            <li><span class="telugu">Kakarakaya bajji</span> baked (not fried) — with jeera and hing so bitterness is muted
+            <span class="te">కాకరకాయ బజ్జీ కాల్చినది (వేయించినది కాదు) — జీలకర్ర, ఇంగువతో చేదు తగ్గుతుంది.</span></li>
+            <li><span class="telugu">Munakkaya sambar</span> — he already likes the drumstick flesh
+            <span class="te">మునగకాయ సాంబార్ — ఇప్పటికే ఇష్టంగా తింటాడు.</span></li>
+            <li><span class="telugu">Gongura pappu</span> — sour + tangy, teenagers accept
+            <span class="te">గోంగూర పప్పు — పులుపు రుచి పిల్లలకు నచ్చుతుంది.</span></li>
+            <li><span class="telugu">Usirikaya pachadi</span> (amla chutney) with rice
+            <span class="te">ఉసిరికాయ పచ్చడి అన్నంతో.</span></li>
+            <li>Turmeric milk at night
+            <span class="te">రాత్రి పసుపు పాలు.</span></li>
+          </ul>
+        </li>
+        <li><b>Soluble fiber for liver fat reduction:</b> Oats are Western — Andhra equivalents: ragi (β-glucan cousin), foxtail millet, moong dal, bhindi mucilage, ash-gourd, ripe raw-banana. Ragi ambali 3× a week AM.
+        <span class="te"><b>కాలేయంలో కొవ్వు తగ్గించడానికి పీచు:</b> ఓట్స్ బదులు — రాగులు, కొర్రలు, పెసర పప్పు, బెండకాయ, గుమ్మడికాయ, అరటికాయ. వారానికి 3 సార్లు రాగి అంబలి ఉదయం.</span></li>
+      </ul>
+
+      <h4>Premature graying — Andhra nutrition protocol <span class="te-inline">/ చిన్న వయసులో జుట్టు నెరవడానికి ఆహారం</span></h4>
+      <ul>
+        <li><b>Copper is the melanin-pathway rate-limiter.</b> Sesame seeds (1 tbsp/day = 1.5 mg), curry leaves (chew, do not discard), <span class="telugu">nalla senagalu</span> (black chana sprouted — 0.7 mg per 40g).
+        <span class="te"><b>జుట్టు నలుపు కోసం కాపర్ ముఖ్యం.</b> నువ్వులు (రోజుకి 1 చెంచా), కరివేపాకు (కంచంలో వదిలేయవద్దు — నమిలి తినండి), నల్ల శనగలు మొలకెత్తినవి.</span></li>
+        <li><b>B12 (vegetarian challenge):</b> Fermented idli/dosa batter (48 h ferment maximizes), curd 200g/day, paneer, milk 400 ml. At his age, ask pediatrician about oral B12 test — often subclinically low in Indian teens.
+        <span class="te"><b>B12 (శాకాహారంలో కష్టం):</b> బాగా పులిసిన ఇడ్లీ/దోశ పిండి, రోజూ 200 గ్రా. పెరుగు, పనీర్, 400 మి.లీ. పాలు. డాక్టర్‌ని అడిగి B12 పరీక్ష చేయించండి.</span></li>
+        <li><b>Catalase support (breaks down H₂O₂ that bleaches hair):</b> Curry leaves &amp; drumstick leaves are the Andhra equivalents of wheatgrass. 4×/wk in dal or pachadi.
+        <span class="te"><b>జుట్టు రంగు కోల్పోకుండా:</b> కరివేపాకు, మునగాకు వారానికి 4 సార్లు పప్పులో లేదా పచ్చడిలో.</span></li>
+        <li><b>Iron for pigment cells:</b> Gongura, raisins (small — watch fructose), ragi, jaggery in tiny amounts, cooking in iron kadai (adds 3–5 mg per meal).
+        <span class="te"><b>ఐరన్ కోసం:</b> గోంగూర, రాగులు, ఇనుప కడాయిలో వండటం (ప్రతి భోజనానికి 3–5 మి.గ్రా. ఐరన్ కలుస్తుంది).</span></li>
+        <li><b>Antioxidants a teen eats:</b> Amla morning chew (make it a habit — 30 seconds), turmeric milk, tomato-cooked curries.
+        <span class="te"><b>పిల్లలు తినే యాంటీ-ఆక్సిడెంట్లు:</b> ఉదయం ఉసిరికాయ (అలవాటు చేయండి), పసుపు పాలు, టమాటాతో వండిన కూరలు.</span></li>
+      </ul>
+
+      <h4>Growth-safe weight loss protections <span class="te-inline">/ పెరుగుదలకి ఇబ్బంది లేకుండా బరువు తగ్గించడం</span></h4>
+      <ul>
+        <li>Protein floor: 95 g/day. Ragi + moong + curd + milk + paneer + peanuts easily hit this.
+        <span class="te">ప్రోటీన్ కనీసం 95 గ్రా. — రాగులు + పెసర + పెరుగు + పాలు + పనీర్ + వేరుశనగలు కలిస్తే వస్తుంది.</span></li>
+        <li>Calcium: 1200 mg — ragi sangati, sesame chutney, 400 ml milk. Bones are still lengthening.
+        <span class="te">క్యాల్షియం 1200 మి.గ్రా. — రాగి సంగటి, నువ్వుల పచ్చడి, 400 మి.లీ. పాలు. ఎముకలు ఇంకా పెరుగుతున్నాయి.</span></li>
+        <li>Iron: 15 mg — gongura pappu 3×/wk covers it.
+        <span class="te">ఐరన్ 15 మి.గ్రా. — వారానికి 3 సార్లు గోంగూర పప్పు.</span></li>
+        <li>Zinc: 12 mg — sesame + moong + curd.
+        <span class="te">జింక్ 12 మి.గ్రా. — నువ్వులు + పెసర + పెరుగు.</span></li>
+        <li>No days below 1800 kcal. No skipping meals. Skipping is dangerous with NAFLD (increases hepatic ketogenesis pressure).
+        <span class="te">1800 క్యాలరీల కంటే తక్కువ ఏ రోజైనా వద్దు. భోజనం మిస్ అవ్వొద్దు — కాలేయానికి ప్రమాదం.</span></li>
+      </ul>
+
+      <h4>School canteen &amp; peer strategy <span class="te-inline">/ స్కూల్ క్యాంటీన్ &amp; స్నేహితుల ప్రభావం</span></h4>
+      <div class="callout good">
+        <b>Carry from home every day:</b>
+        <span class="te"><b>రోజూ ఇంటి నుండి తీసుకెళ్ళాలి:</b></span>
+        <ul style="margin-left:20px">
+          <li>Steel dabba 1: dosa or ragi roti + sabzi (drumstick or bitter gourd)
+          <span class="te">స్టీల్ డబ్బా 1: దోశ లేదా రాగి రొట్టె + కూర (మునగకాయ లేదా కాకరకాయ)</span></li>
+          <li>Steel dabba 2: sprouted moong salad OR curd rice (Veni-style, less rice)
+          <span class="te">స్టీల్ డబ్బా 2: పెసర మొలకల సలాడ్ లేదా పెరుగన్నం (తక్కువ అన్నం)</span></li>
+          <li>Steel dabba 3: 1 amla + 15 peanuts + 4 walnuts
+          <span class="te">స్టీల్ డబ్బా 3: 1 ఉసిరికాయ + 15 వేరుశనగలు + 4 అఖ్రోట్‌లు</span></li>
+          <li>Water bottle: 1 L. <b>Not from canteen.</b>
+          <span class="te">వాటర్ బాటిల్: 1 లీ. <b>క్యాంటీన్ నుండి కొనొద్దు.</b></span></li>
+        </ul>
+        <b>If forced to buy from canteen:</b> pulihora (small), idli-sambar (yes), <b>never</b> samosa/puff/cake/biscuit/soda/frooti.
+        <span class="te"><b>క్యాంటీన్‌లో తప్పకుండా కొనాల్సి వస్తే:</b> పులిహోర (కొంచెం), ఇడ్లీ-సాంబార్ (సరే), <b>ఎప్పుడూ కాదు</b> — సమోసా/పఫ్/కేక్/బిస్కెట్/సోడా/ఫ్రూటీ.</span>
+        <br><b>Peer strategy:</b> teach him to say "I'm on liver treatment" — teenagers accept a medical reason. Do not shame him for weight; frame it as fixing liver.
+        <span class="te"><b>స్నేహితులతో:</b> "నేను కాలేయ చికిత్సలో ఉన్నాను" అని చెప్పమనండి — పిల్లలు వైద్య కారణం అర్థం చేసుకుంటారు. బరువు గురించి తిట్టవద్దు; కాలేయం బాగు చేయడం అని చెప్పండి.</span>
+      </div>
+
+      <h4>Behavioral compliance — the treats window <span class="te-inline">/ ప్రవర్తన — స్వీట్లు ఎప్పుడు తినొచ్చు</span></h4>
+      <p>Total denial fails at 14. Design a Sunday celebration slot: 1 small mysore pak OR 1 laddu OR 1 gulab jamun — <b>after</b> a heavy fiber+protein meal (blunts insulin spike). Never on empty stomach. Never at breakfast.</p>
+      <span class="te">14 ఏళ్ళలో పూర్తిగా వద్దు అనడం కుదరదు. ఆదివారం ఒక్క ట్రీట్: 1 చిన్న మైసూర్ పాక్ లేదా 1 లడ్డు లేదా 1 గులాబ్ జామూన్ — <b>పీచు, ప్రోటీన్ ఎక్కువగా ఉన్న భోజనం తర్వాత మాత్రమే</b>. ఖాళీ కడుపుతో వద్దు. ఉదయం అల్పాహారంలో వద్దు.</span>
+    </div>
+
+    <!-- KARTHIKEYA -->
+    <div class="person-card karthik">
+      <h3>2D · Karthikeya (Elder Son, 24) — Triple Ligament Post-Op · Active Recovery Phase</h3>
+      <span class="te">కార్తికేయ (పెద్ద కొడుకు, 24) — మోకాలి 3 లిగమెంట్ల ఆపరేషన్ తర్వాత · కోలుకుంటున్న దశ</span>
+      <div class="callout warn"><b>Triple ligament reconstruction is a demanding recovery.</b> Collagen synthesis, capillary health, and control of systemic oxidative stress are the daily priorities. Diet must supply high antioxidant load, high Vitamin C, and complete amino-acid coverage every day to keep ligament rebuild on track.
+      <span class="te"><b>3 లిగమెంట్ల ఆపరేషన్ నుండి కోలుకోవడం కష్టం.</b> కొల్లాజెన్ తయారీ, రక్తనాళాల ఆరోగ్యం, వాపు నియంత్రణ — ఇవి రోజువారీ ప్రాధాన్యతలు. యాంటీ-ఆక్సిడెంట్లు, విటమిన్ C ఎక్కువగా, ప్రోటీన్ పూర్తిగా ప్రతిరోజూ ఇవ్వాలి.</span></div>
+
+      <div class="grid-2">
+        <div class="macro-box"><div class="label">Daily Calories</div><div class="val">2,400 kcal</div><div class="sub">Maintenance + tissue repair surplus</div><span class="te">క్యాలరీలు — నార్మల్ + కోలుకోవడానికి అదనం.</span></div>
+        <div class="macro-box"><div class="label">Protein</div><div class="val">110 g</div><div class="sub">1.6 g/kg — collagen substrate</div><span class="te">ప్రోటీన్ — కొల్లాజెన్ (కీళ్ళ కణజాలం) కోసం.</span></div>
+        <div class="macro-box"><div class="label">Carbs</div><div class="val">300 g</div><div class="sub">Complex; he is lean; rice is OK</div><span class="te">పిండి పదార్థాలు — సన్నగా ఉన్నాడు, అన్నం పరవాలేదు.</span></div>
+        <div class="macro-box"><div class="label">Fat</div><div class="val">70 g</div><div class="sub">MUFA + omega-3 flax</div><span class="te">కొవ్వు — మంచి నూనె + అవిసె గింజలు.</span></div>
+        <div class="macro-box"><div class="label">Vitamin C</div><div class="val">400–500 mg</div><div class="sub">Baseline 90 + oxidative-stress recovery + collagen surge for ligament</div><span class="te">విటమిన్ C — లిగమెంట్ మరమ్మతు కోసం ఎక్కువ అవసరం.</span></div>
+        <div class="macro-box"><div class="label">Zinc</div><div class="val">15 mg</div><div class="sub">Tissue repair</div><span class="te">జింక్ — కణజాల మరమ్మతు.</span></div>
+      </div>
+
+      <h4>Collagen synthesis nutrition — Andhra vegetarian sources <span class="te-inline">/ కీళ్ళ కణజాలం (కొల్లాజెన్) కోసం ఆహారం</span></h4>
+      <ul>
+        <li><b>Vitamin C (collagen hydroxylation cofactor):</b> <span class="telugu">Usirikaya</span> — 2 fresh amla daily (~800 mg), lemon in majjiga, raw tomato slice at lunch, capsicum in curries (Andhra homes do use this).
+        <span class="te"><b>విటమిన్ C:</b> రోజూ 2 ఉసిరికాయలు (~800 మి.గ్రా.), మజ్జిగలో నిమ్మరసం, భోజనంలో పచ్చి టమాటా ముక్క, కూరలలో క్యాప్సికం.</span></li>
+        <li><b>Proline &amp; glycine (collagen amino acids):</b> Paneer (proline-rich), curd, milk. Ragi has good glycine content. 200 ml milk AM + 200 ml PM + 40 g paneer + 200 g curd + ragi sangati 3×/wk covers this.
+        <span class="te"><b>ప్రోలిన్ &amp; గ్లైసిన్ (కొల్లాజెన్ ప్రోటీన్లు):</b> పనీర్, పెరుగు, పాలు. రాగులలో గ్లైసిన్ ఉంటుంది. ఉదయం 200 మి.లీ. పాలు + సాయంత్రం 200 మి.లీ. + 40 గ్రా. పనీర్ + 200 గ్రా. పెరుగు + వారానికి 3 సార్లు రాగి సంగటి — సరిపోతాయి.</span></li>
+        <li><b>Lysine (collagen structural):</b> Moong dal, toor dal, urad dal, peanuts, sesame — Andhra diet delivers naturally with dals across the day.
+        <span class="te"><b>లైసిన్ (కొల్లాజెన్ నిర్మాణం):</b> పెసర పప్పు, కంది పప్పు, మినపప్పు, వేరుశనగలు, నువ్వులు — మన ఆంధ్ర భోజనంలో సహజంగా ఉంటాయి.</span></li>
+        <li><b>Silica (connective tissue matrix):</b> Cucumber (<span class="telugu">dosakaya</span>), ragi, bajra, banana. Silica-rich water: soak 1 tbsp ragi flour in 100 ml water overnight — drink water.
+        <span class="te"><b>సిలికా (కణజాల నిర్మాణం):</b> దోసకాయ, రాగులు, సజ్జలు, అరటిపండు. రాత్రి 1 చెంచా రాగి పిండి నానబెట్టి నీళ్ళు తాగండి.</span></li>
+        <li><b>Manganese (cartilage synthesis):</b> Chana dal, sesame, whole grains, pineapple (occasional).
+        <span class="te"><b>మాంగనీస్ (మృదు కీళ్ళకు):</b> శనగపప్పు, నువ్వులు, ధాన్యాలు, అనాస (అప్పుడప్పుడు).</span></li>
+        <li><b>Zinc (tissue repair):</b> Moong sprouts, sesame, chana, peanuts, curd.
+        <span class="te"><b>జింక్ (కణజాల మరమ్మతు):</b> పెసర మొలకలు, నువ్వులు, శనగలు, వేరుశనగలు, పెరుగు.</span></li>
+      </ul>
+
+      <h4>Antioxidant &amp; respiratory wellness protocol <span class="te-inline">/ యాంటీ-ఆక్సిడెంట్ &amp; శ్వాసకోశ ఆరోగ్యం</span></h4>
+      <ul>
+        <li><b>Vitamin C load-up:</b> Aim 500 mg/day for collagen rebuild.
+        <span class="te"><b>విటమిన్ C:</b> రోజుకి 500 మి.గ్రా. — కొల్లాజెన్ మరమ్మతుకు.</span>
+          <ul>
+            <li>Morning ritual: 1 amla whole with warm water (400 mg)
+            <span class="te">ఉదయం: 1 ఉసిరికాయ + వెచ్చని నీళ్ళు (400 మి.గ్రా.)</span></li>
+            <li>Lunch: 1 tsp amla pachadi (100 mg)
+            <span class="te">మధ్యాహ్నం: 1 చెంచా ఉసిరికాయ పచ్చడి (100 మి.గ్రా.)</span></li>
+            <li>Evening boost: warm water + lemon + 1/2 tsp honey + tulsi (recovery drink after any physical exertion)
+            <span class="te">సాయంత్రం: వెచ్చని నీళ్ళు + నిమ్మ + 1/2 చెంచా తేనె + తులసి (శారీరక శ్రమ తర్వాత రికవరీ డ్రింక్)</span></li>
+          </ul>
+        </li>
+        <li><b>Respiratory &amp; immunity foods:</b>
+        <span class="te"><b>శ్వాసకోశ &amp; రోగనిరోధక ఆహారాలు:</b></span>
+          <ul>
+            <li><span class="telugu">Tulasi</span> (holy basil) tea 2×/day — steep 5 fresh leaves + 1/2 inch ginger 5 min, strain
+            <span class="te">తులసి టీ రోజుకి 2 సార్లు — 5 తులసి ఆకులు + 1/2 అంగుళం అల్లం 5 నిమిషాలు కాచి వడకట్టండి.</span></li>
+            <li>Turmeric in every dal &amp; curry (curcumin — anti-inflammatory)
+            <span class="te">ప్రతి పప్పు, కూరలో పసుపు — వాపు తగ్గిస్తుంది.</span></li>
+            <li>Black pepper freshly cracked
+            <span class="te">తాజా మిరియాలు నలిపి వేయండి.</span></li>
+            <li>Fresh ginger in tea, dal, rasam
+            <span class="te">టీలో, పప్పులో, చారులో తాజా అల్లం.</span></li>
+            <li><span class="telugu">Vaamu</span> (ajwain) water when chest feels heavy or after strenuous physio
+            <span class="te">ఛాతి బరువుగా ఉంటే లేదా భారీ ఫిజియో తర్వాత వాము (ఓమం) నీళ్ళు.</span></li>
+            <li>Cardamom (<span class="telugu">yelakulu</span>) 2 pods/day — chew after meal
+            <span class="te">యాలకులు రోజుకి 2 — భోజనం తర్వాత నమలండి.</span></li>
+          </ul>
+        </li>
+        <li><b>Antioxidant surge for recovery:</b> β-carotene from drumstick leaves + carrot (raw or cooked); lycopene from <b>cooked</b> tomato (raw is fine but cooked releases 3× more); polyphenols from cinnamon (<span class="telugu">dalchina chekka</span>) in milk; catechins from green tea 1 cup/day.
+        <span class="te"><b>రికవరీకి యాంటీ-ఆక్సిడెంట్లు:</b> మునగాకు + క్యారెట్; <b>వండిన</b> టమాటా (వండితే 3 రెట్లు ఎక్కువ లభిస్తుంది); పాలలో దాల్చిన చెక్క; రోజుకి 1 గ్రీన్ టీ.</span></li>
+        <li><b>Alkaline food emphasis:</b> Vegetables + fresh fruit reduce systemic acid load — supports recovery tissue and overall metabolic wellness. Coriander seed water is a traditional gentle daily drink for this.
+        <span class="te"><b>ఆల్కలైన్ ఆహారాలు:</b> కూరగాయలు + తాజా పండ్లు — శరీరంలో యాసిడ్ తగ్గి రికవరీకి సహాయం. రోజూ ధనియాల నీళ్ళు మంచి పాత చిట్కా.</span></li>
+        <li><b>Liver support:</b> Same protocol as Susheel — bitter gourd, drumstick, amla, gongura, turmeric.
+        <span class="te"><b>కాలేయ ఆరోగ్యం:</b> సుశీల్‌లాగే — కాకరకాయ, మునగకాయ, ఉసిరికాయ, గోంగూర, పసుపు.</span></li>
+      </ul>
+
+      <h4>What Karthikeya must not eat <span class="te-inline">/ కార్తికేయ తినకూడనివి</span></h4>
+      <div class="callout warn">
+        <ul style="margin-left:20px">
+          <li><b>Processed/packaged snacks that compound oxidative damage:</b> namkeens with palm oil, packaged chips, cream biscuits
+          <span class="te"><b>పేకెట్ స్నాక్స్ వద్దు:</b> నామ్‌కీన్‌లు, చిప్స్, క్రీమ్ బిస్కెట్లు.</span></li>
+          <li><b>Excess caffeine</b> — 2 filter coffees/day max. Coffee excess acidifies the system and slows recovery tissue repair.
+          <span class="te"><b>ఎక్కువ కాఫీ వద్దు</b> — రోజుకి 2 ఫిల్టర్ కాఫీలు గరిష్టంగా. రికవరీ నెమ్మదిస్తుంది.</span></li>
+          <li><b>Alcohol</b> — with post-op ligament, alcohol doubles collagen destruction and delays knee recovery by months. Zero recommended during recovery phase.
+          <span class="te"><b>మద్యం</b> — ఆపరేషన్ తర్వాత మద్యం తాగితే కొల్లాజెన్ రెట్టింపు నష్టం, మోకాలి రికవరీ నెలలు ఆలస్యం. రికవరీ సమయంలో అస్సలు వద్దు.</span></li>
+          <li>Deep-fried items daily — occasional is fine at 24 with his BMI, but oxidized oils undermine ligament recovery.
+          <span class="te">రోజూ నూనె వేయించినవి వద్దు — అప్పుడప్పుడు పరవాలేదు, కానీ చెడిన నూనెలు లిగమెంట్ రికవరీకి హాని.</span></li>
+        </ul>
+      </div>
+
+      <p><b>Note on routine:</b> Cinnamon-milk at night, higher magnesium (sesame chutney), and a walk after every meal (1 km) — this physical routine supports steady recovery and steady energy through the day.</p>
+      <span class="te"><b>రొటీన్:</b> రాత్రి దాల్చిన పాలు, ఎక్కువ మెగ్నీషియం (నువ్వుల పచ్చడి), ప్రతి భోజనం తర్వాత నడక (1 కి.మీ.) — రోజంతా శక్తి, రికవరీ బాగుంటాయి.</span>
+    </div>
+
+  </div>
+</section>
+<!-- ==================== SECTION 3 ==================== -->
+<section id="s3" class="section s-turmeric">
+  <div class="section-header">
+    <h2><span class="num">03</span>Integrated Family Meal Plan — 7 Days <span class="te-inline">/ 7 రోజుల భోజన ప్రణాళిక</span></h2>
+    <button class="print-btn" onclick="printSection('s3')">Print this section</button>
+  </div>
+  <div class="section-body">
+    <p>Cooked once by Veni. One base per meal; per-person modifications shown for each. Colors on the cards below match each person (Suresh · Veni · Susheel · Karthikeya). Day 7 is festival-mode showing how to handle celebration food.</p>
+    <span class="te">వేణి ఒక్కసారే వండాలి. ఒక్క వంట, ఒక్కొక్కరికి కంచంలో ఎంత వడ్డించాలో ఇక్కడ ఉంది. ప్రతి కార్డు రంగు ఒక్కొక్క వ్యక్తికి (సురేష్ · వేణి · సుశీల్ · కార్తికేయ). 7వ రోజు — పండగ రోజు, ఆ రోజు ఎలా తినాలో చూపిస్తుంది.</span>
+
+    <div class="day-tabs no-print">
+      <button class="day-tab active" data-d="1" onclick="switchDay(1)">Mon</button>
+      <button class="day-tab" data-d="2" onclick="switchDay(2)">Tue</button>
+      <button class="day-tab" data-d="3" onclick="switchDay(3)">Wed</button>
+      <button class="day-tab" data-d="4" onclick="switchDay(4)">Thu</button>
+      <button class="day-tab" data-d="5" onclick="switchDay(5)">Fri</button>
+      <button class="day-tab" data-d="6" onclick="switchDay(6)">Sat</button>
+      <button class="day-tab" data-d="7" onclick="switchDay(7)">Sun · Festival</button>
+    </div>
+
+    <!-- DAY 1 -->
+    <div class="day-panel active" id="day-1">
+      <h4>Monday · Foundation Day <span class="te-inline">/ సోమవారం · పునాది రోజు</span></h4>
+
+      <div class="meal">
+        <div class="meal-time">5:30–6:30 AM · Morning ritual <span class="te-inline">/ ఉదయం అలవాటు</span></div>
+        <div class="meal-dish">Person-specific — see Section 6.</div>
+        <span class="te">ఒక్కొక్కరికి వేర్వేరు — సెక్షన్ 6 చూడండి.</span>
+        <div class="per-person">
+          <div class="pp"><b>Suresh</b>Warm water + turmeric + pepper + tulsi<span class="te">వెచ్చని నీళ్ళు + పసుపు + మిరియాలు + తులసి</span></div>
+          <div class="pp v"><b>Veni</b>Methi-soaked water + chew seeds<span class="te">నానబెట్టిన మెంతుల నీళ్ళు + గింజలు నమలండి</span></div>
+          <div class="pp su"><b>Susheel</b>Warm water + lemon + jeera powder<span class="te">వెచ్చని నీళ్ళు + నిమ్మ + జీలకర్ర పొడి</span></div>
+          <div class="pp k"><b>Karthik</b>1 amla whole + tulsi tea<span class="te">1 ఉసిరికాయ + తులసి టీ</span></div>
+        </div>
+      </div>
+
+      <div class="meal">
+        <div class="meal-time">7:30–8:30 AM · Breakfast <span class="te-inline">/ అల్పాహారం</span></div>
+        <div class="meal-dish"><span class="telugu">Idli + Sambar + Coconut chutney</span> (with drumstick in sambar)</div>
+        <span class="te">ఇడ్లీ + సాంబార్ + కొబ్బరి చట్నీ (సాంబార్‌లో మునగకాయలు)</span>
+        <div class="per-person">
+          <div class="pp"><b>Suresh · 380 kcal</b>2 idli + extra sambar (no papad, half spoon chutney)<span class="te">2 ఇడ్లీ + ఎక్కువ సాంబార్ (అప్పడం వద్దు, అర చెంచా చట్నీ)</span></div>
+          <div class="pp v"><b>Veni · 340 kcal</b>2 idli + methi-topped sambar + curd 100g (fiber-first)<span class="te">2 ఇడ్లీ + మెంతులు వేసిన సాంబార్ + 100 గ్రా. పెరుగు (ముందు పీచు)</span></div>
+          <div class="pp su"><b>Susheel · 480 kcal</b>3 idli + extra sambar + 1 tsp coconut chutney (cap fructose)<span class="te">3 ఇడ్లీ + ఎక్కువ సాంబార్ + 1 చెంచా కొబ్బరి చట్నీ మాత్రమే</span></div>
+          <div class="pp k"><b>Karthik · 550 kcal</b>4 idli + sambar + chutney + amla pickle<span class="te">4 ఇడ్లీ + సాంబార్ + చట్నీ + ఉసిరికాయ పచ్చడి</span></div>
+        </div>
+        <div class="meal-note">Ferment batter 12 h — B12 boost. Add drumstick + moringa leaves in the last 3 min of sambar to preserve lutein.</div>
+        <span class="te">పిండి 12 గంటలు పులియబెట్టండి — B12 పెరుగుతుంది. సాంబార్ చివరి 3 నిమిషాలలో మునగకాయ + మునగాకు వేయండి.</span>
+      </div>
+
+      <div class="meal">
+        <div class="meal-time">10:30 AM · Mid-morning <span class="te-inline">/ మధ్యాహ్నానికి ముందు</span></div>
+        <div class="meal-dish"><span class="telugu">Majjiga</span> (spiced buttermilk)</div>
+        <span class="te">మజ్జిగ (మసాలాలతో)</span>
+        <div class="per-person">
+          <div class="pp"><b>Suresh</b>1 glass, low salt, cumin + curry leaves<span class="te">1 గ్లాస్, తక్కువ ఉప్పు, జీలకర్ర + కరివేపాకు</span></div>
+          <div class="pp v"><b>Veni</b>1 glass — cools spondylitis, spikes no glucose<span class="te">1 గ్లాస్ — నొప్పి తగ్గిస్తుంది, షుగర్ పెంచదు</span></div>
+          <div class="pp su"><b>Susheel</b>1 glass + 8 peanuts (choline)<span class="te">1 గ్లాస్ + 8 వేరుశనగలు</span></div>
+          <div class="pp k"><b>Karthik</b>1 glass + 1 tsp amla powder<span class="te">1 గ్లాస్ + 1 చెంచా ఉసిరికాయ పొడి</span></div>
+        </div>
+        <div class="meal-cal">~80 kcal each</div>
+      </div>
+
+      <div class="meal">
+        <div class="meal-time">1:00–2:00 PM · Lunch <span class="te-inline">/ మధ్యాహ్న భోజనం</span></div>
+        <div class="meal-dish">Rice · <span class="telugu">Kandi pappu</span> (toor dal) · <span class="telugu">Munakkaya sambar</span> · <span class="telugu">Gongura pachadi</span> · Curd · <span class="telugu">Kakarakaya vepudu</span> (dry bitter gourd curry)</div>
+        <span class="te">అన్నం · కంది పప్పు · మునగకాయ సాంబార్ · గోంగూర పచ్చడి · పెరుగు · కాకరకాయ వేపుడు</span>
+        <div class="per-person">
+          <div class="pp"><b>Suresh · 550 kcal</b>3/4 katori hand-pounded rice + 1 katori dal + drumstick pieces + 1 tsp gongura + curd. No papad, no pickle.<span class="te">3/4 గిన్నె దబ్బెల అన్నం + 1 గిన్నె పప్పు + మునగకాయ + 1 చెంచా గోంగూర + పెరుగు. అప్పడం, పచ్చడి వద్దు.</span></div>
+          <div class="pp v"><b>Veni · 480 kcal</b>Start with bitter gourd first. Then 1/2 katori par-boiled rice + 1 katori dal + gongura 1 tsp + curd. 1 tsp ghee on rice.<span class="te">ముందు కాకరకాయ కూర. తర్వాత 1/2 గిన్నె ఉప్పుడు అన్నం + 1 గిన్నె పప్పు + 1 చెంచా గోంగూర + పెరుగు. 1 చెంచా నెయ్యి అన్నంలో.</span></div>
+          <div class="pp su"><b>Susheel · 650 kcal</b>1 katori rice + 1.5 katori dal + extra bitter gourd (liver!) + gongura + curd + 4 munakkaya sticks<span class="te">1 గిన్నె అన్నం + 1.5 గిన్నె పప్పు + ఎక్కువ కాకరకాయ (కాలేయానికి!) + గోంగూర + పెరుగు + 4 మునగకాయలు</span></div>
+          <div class="pp k"><b>Karthik · 750 kcal</b>1.5 katori rice + dal + curries + curd + 40g paneer sautéed with sambar<span class="te">1.5 గిన్నె అన్నం + పప్పు + కూరలు + పెరుగు + 40 గ్రా. పనీర్ సాంబార్‌లో వేయించి</span></div>
+        </div>
+        <div class="meal-note">Cook kakarakaya with methi seeds &amp; hing — bitterness drops, momordicin retained. Sesame chutney available on side (calcium for all).</div>
+        <span class="te">కాకరకాయను మెంతులు + ఇంగువతో వండండి — చేదు తగ్గుతుంది, ఔషధగుణం ఉంటుంది. పక్కన నువ్వుల పచ్చడి (అందరికీ క్యాల్షియం).</span>
+      </div>
+
+      <div class="meal">
+        <div class="meal-time">4:30–5:00 PM · Evening tiffin <span class="te-inline">/ సాయంత్రం ఫలహారం</span></div>
+        <div class="meal-dish"><span class="telugu">Sundal</span> (roasted chana with coconut, curry leaves, ginger)</div>
+        <span class="te">సుండల్ (కాల్చిన శనగలు, కొబ్బరి, కరివేపాకు, అల్లం)</span>
+        <div class="per-person">
+          <div class="pp"><b>Suresh · 180 kcal</b>3/4 katori — potassium, low salt version<span class="te">3/4 గిన్నె — తక్కువ ఉప్పు</span></div>
+          <div class="pp v"><b>Veni · 150 kcal</b>1/2 katori — low GI, chromium<span class="te">1/2 గిన్నె — తక్కువ GI</span></div>
+          <div class="pp su"><b>Susheel · 220 kcal</b>1 katori — copper for hair, choline for liver<span class="te">1 గిన్నె — జుట్టుకి కాపర్, కాలేయానికి కోలిన్</span></div>
+          <div class="pp k"><b>Karthik · 250 kcal</b>1 katori + tulsi tea<span class="te">1 గిన్నె + తులసి టీ</span></div>
+        </div>
+      </div>
+
+      <div class="meal">
+        <div class="meal-time">7:00–8:00 PM · Dinner <span class="te-inline">/ రాత్రి భోజనం</span></div>
+        <div class="meal-dish"><span class="telugu">Ragi sangati / Ragi mudde</span> + <span class="telugu">Pesara pappu</span> (moong dal) + <span class="telugu">Sorakaya charu</span> (bottle gourd rasam)</div>
+        <span class="te">రాగి సంగటి + పెసర పప్పు + సొరకాయ చారు</span>
+        <div class="per-person">
+          <div class="pp"><b>Suresh · 420 kcal</b>1 ragi ball + 1 katori dal + rasam — knees benefit<span class="te">1 రాగి ముద్ద + 1 గిన్నె పప్పు + చారు — మోకాలికి మంచిది</span></div>
+          <div class="pp v"><b>Veni · 380 kcal</b>1 ragi ball + dal + rasam — spondylitis calcium load<span class="te">1 రాగి ముద్ద + పప్పు + చారు — నొప్పికి క్యాల్షియం</span></div>
+          <div class="pp su"><b>Susheel · 500 kcal</b>1.5 ragi balls + dal + rasam + steamed veg<span class="te">1.5 రాగి ముద్దలు + పప్పు + చారు + ఉడకబెట్టిన కూర</span></div>
+          <div class="pp k"><b>Karthik · 600 kcal</b>2 ragi balls + dal + rasam + 1 glass milk<span class="te">2 రాగి ముద్దలు + పప్పు + చారు + 1 గ్లాస్ పాలు</span></div>
+        </div>
+        <div class="meal-note">Ragi = calcium 344 mg/100g. Bottle gourd rasam = potassium + hydration + light on stomach for sleep.</div>
+        <span class="te">రాగులలో క్యాల్షియం చాలా ఎక్కువ. సొరకాయ చారు = పొటాషియం + నీటి శాతం + తేలికగా ఉంటుంది.</span>
+      </div>
+
+      <div class="meal">
+        <div class="meal-time">9:00 PM · Post-dinner <span class="te-inline">/ రాత్రి భోజనం తర్వాత</span></div>
+        <div class="meal-dish">Turmeric milk (haldi doodh) for Susheel &amp; Karthikeya only</div>
+        <span class="te">సుశీల్ &amp; కార్తికేయకి మాత్రమే పసుపు పాలు</span>
+        <div class="meal-cal">Suresh &amp; Veni: skip — early dinner window benefits BP + glucose overnight fasting.<span class="te">సురేష్ &amp; వేణి: వద్దు — త్వరగా భోజనం, రాత్రంతా ఖాళీ కడుపు బీపీ &amp; షుగర్‌కి మంచిది.</span></div>
+      </div>
+    </div>
+
+    <!-- DAY 2 -->
+    <div class="day-panel" id="day-2">
+      <h4>Tuesday · Protein Density Day <span class="te-inline">/ మంగళవారం · ప్రోటీన్ ఎక్కువ రోజు</span></h4>
+
+      <div class="meal">
+        <div class="meal-time">5:30–6:30 AM</div>
+        <div class="meal-dish">Morning rituals as Monday.<span class="te">సోమవారం లాగే ఉదయ దినచర్య.</span></div>
+      </div>
+
+      <div class="meal">
+        <div class="meal-time">7:30–8:30 AM · Breakfast <span class="te-inline">/ అల్పాహారం</span></div>
+        <div class="meal-dish"><span class="telugu">Pesarattu</span> (whole moong dosa) + Ginger chutney</div>
+        <span class="te">పెసరట్టు + అల్లం చట్నీ</span>
+        <div class="per-person">
+          <div class="pp"><b>Suresh · 350 kcal</b>2 pesarattu + ginger chutney (BP-friendly)<span class="te">2 పెసరట్టులు + అల్లం చట్నీ</span></div>
+          <div class="pp v"><b>Veni · 320 kcal</b>2 pesarattu — low GI, high protein, low fructose<span class="te">2 పెసరట్టులు — షుగర్‌కి మంచిది</span></div>
+          <div class="pp su"><b>Susheel · 480 kcal</b>3 pesarattu — protein for growth + liver-friendly moong<span class="te">3 పెసరట్టులు — పెరుగుదలకి ప్రోటీన్, కాలేయానికి మంచిది</span></div>
+          <div class="pp k"><b>Karthik · 550 kcal</b>3 pesarattu + 1 tsp ghee + extra ginger chutney (anti-inflammatory)<span class="te">3 పెసరట్టులు + 1 చెంచా నెయ్యి + ఎక్కువ అల్లం చట్నీ</span></div>
+        </div>
+        <div class="meal-note">Soak moong 6 h — grind with ginger + green chili + jeera. No maida, no rice flour additions. Fresh coriander top.</div>
+        <span class="te">పెసలు 6 గంటలు నానబెట్టండి — అల్లం, పచ్చిమిర్చి, జీలకర్రతో మెత్తగా రుబ్బండి. మైదా వద్దు, బియ్యం పిండి వద్దు. తాజా కొత్తిమీర పైన.</span>
+      </div>
+
+      <div class="meal">
+        <div class="meal-time">10:30 AM</div>
+        <div class="meal-dish">Karthik: 1 amla + walnuts (4). Susheel: 1 amla + peanuts (15). Suresh: coconut water 200 ml. Veni: green tea unsweetened.</div>
+        <span class="te">కార్తికేయ: 1 ఉసిరికాయ + 4 అఖ్రోట్‌లు. సుశీల్: 1 ఉసిరికాయ + 15 వేరుశనగలు. సురేష్: 200 మి.లీ. కొబ్బరి నీళ్ళు. వేణి: పంచదార లేని గ్రీన్ టీ.</span>
+        <div class="meal-cal">~100 kcal each</div>
+      </div>
+
+      <div class="meal">
+        <div class="meal-time">1:00–2:00 PM · Lunch <span class="te-inline">/ మధ్యాహ్న భోజనం</span></div>
+        <div class="meal-dish">Rice + <span class="telugu">Pesara pappu</span> + <span class="telugu">Beerakaya kura</span> (ridge gourd curry) + <span class="telugu">Tomato charu</span> + Curd + Sesame chutney</div>
+        <span class="te">అన్నం + పెసర పప్పు + బీరకాయ కూర + టమాటా చారు + పెరుగు + నువ్వుల పచ్చడి</span>
+        <div class="per-person">
+          <div class="pp"><b>Suresh · 540 kcal</b>3/4 katori rice + 1 katori dal + veg + rasam. Sesame chutney 1 tbsp (Ca+Mg for BP/joints).<span class="te">3/4 గిన్నె అన్నం + 1 గిన్నె పప్పు + కూర + చారు. 1 చెంచా నువ్వుల పచ్చడి.</span></div>
+          <div class="pp v"><b>Veni · 470 kcal</b>1/2 katori foxtail millet instead of rice + dal + ridge gourd + curd. Fiber-first — steamed ridge gourd bite before rice.<span class="te">అన్నానికి బదులు 1/2 గిన్నె కొర్రలు + పప్పు + బీరకాయ + పెరుగు. ముందు ఉడకబెట్టిన బీరకాయ ముక్క తినండి.</span></div>
+          <div class="pp su"><b>Susheel · 640 kcal</b>1 katori rice + extra dal + sesame chutney 2 tbsp (copper!) + veg<span class="te">1 గిన్నె అన్నం + ఎక్కువ పప్పు + 2 చెంచాల నువ్వుల పచ్చడి + కూర</span></div>
+          <div class="pp k"><b>Karthik · 740 kcal</b>1.5 katori rice + all sides + 1 tomato slice raw (Vit C)<span class="te">1.5 గిన్నె అన్నం + అన్ని కూరలు + 1 పచ్చి టమాటా ముక్క</span></div>
+        </div>
+      </div>
+
+      <div class="meal">
+        <div class="meal-time">4:30 PM · Evening <span class="te-inline">/ సాయంత్రం</span></div>
+        <div class="meal-dish">Sprouted moong salad with lemon, jeera, coriander, chopped raw onion</div>
+        <span class="te">పెసర మొలకల సలాడ్ — నిమ్మరసం, జీలకర్ర, కొత్తిమీర, ముక్కలు చేసిన ఉల్లిపాయ</span>
+        <div class="per-person">
+          <div class="pp"><b>Suresh · 150 kcal</b>1 katori — magnesium, potassium<span class="te">1 గిన్నె</span></div>
+          <div class="pp v"><b>Veni · 140 kcal</b>1 katori — low GI protein snack<span class="te">1 గిన్నె</span></div>
+          <div class="pp su"><b>Susheel · 200 kcal</b>1.5 katori<span class="te">1.5 గిన్నెలు</span></div>
+          <div class="pp k"><b>Karthik · 220 kcal</b>1.5 katori + amla powder pinch<span class="te">1.5 గిన్నెలు + చిటికెడు ఉసిరికాయ పొడి</span></div>
+        </div>
+      </div>
+
+      <div class="meal">
+        <div class="meal-time">7:00–8:00 PM · Dinner <span class="te-inline">/ రాత్రి భోజనం</span></div>
+        <div class="meal-dish"><span class="telugu">Jonna roti</span> (jowar) + <span class="telugu">Boodida gummadikaya pulusu</span> (ash gourd) + Curd</div>
+        <span class="te">జొన్న రొట్టె + బూడిద గుమ్మడికాయ పులుసు + పెరుగు</span>
+        <div class="per-person">
+          <div class="pp"><b>Suresh · 420 kcal</b>2 rotis + ash gourd + curd — potassium loading pre-sleep<span class="te">2 రొట్టెలు + గుమ్మడికాయ + పెరుగు</span></div>
+          <div class="pp v"><b>Veni · 380 kcal</b>2 rotis + ash gourd (liver-cooling, glucose-safe)<span class="te">2 రొట్టెలు + గుమ్మడికాయ (షుగర్‌కి సురక్షితం)</span></div>
+          <div class="pp su"><b>Susheel · 500 kcal</b>3 rotis + ash gourd — hepatoprotective<span class="te">3 రొట్టెలు + గుమ్మడికాయ — కాలేయానికి మంచిది</span></div>
+          <div class="pp k"><b>Karthik · 580 kcal</b>3 rotis + ash gourd + tulsi tea after<span class="te">3 రొట్టెలు + గుమ్మడికాయ + తర్వాత తులసి టీ</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 3 -->
+    <div class="day-panel" id="day-3">
+      <h4>Wednesday · Ragi Day <span class="te-inline">/ బుధవారం · రాగుల రోజు</span></h4>
+
+      <div class="meal">
+        <div class="meal-time">7:30–8:30 AM · Breakfast <span class="te-inline">/ అల్పాహారం</span></div>
+        <div class="meal-dish"><span class="telugu">Ragi dosa</span> + <span class="telugu">Karivepaku podi</span> (curry leaf powder) + Coconut chutney (small)</div>
+        <span class="te">రాగి దోశ + కరివేపాకు పొడి + కొంచెం కొబ్బరి చట్నీ</span>
+        <div class="per-person">
+          <div class="pp"><b>Suresh · 380 kcal</b>2 dosa + podi + 1 tsp chutney (calcium loading for knees)<span class="te">2 దోశలు + పొడి + 1 చెంచా చట్నీ</span></div>
+          <div class="pp v"><b>Veni · 340 kcal</b>2 dosa + podi (low GI + spondylitis calcium)<span class="te">2 దోశలు + పొడి</span></div>
+          <div class="pp su"><b>Susheel · 480 kcal</b>3 dosa + podi + 1 tsp coconut chutney<span class="te">3 దోశలు + పొడి + 1 చెంచా కొబ్బరి చట్నీ</span></div>
+          <div class="pp k"><b>Karthik · 550 kcal</b>3 dosa + podi + ghee 1 tsp + amla pachadi<span class="te">3 దోశలు + పొడి + 1 చెంచా నెయ్యి + ఉసిరికాయ పచ్చడి</span></div>
+        </div>
+        <div class="meal-note">Ragi dosa batter: 2 cups ragi flour, 1/2 cup rice flour, 1/4 cup urad, ferment 8 h. Karivepaku podi = curry leaves + urad + chana + red chili + hing + sesame. This podi delivers copper, iron, calcium — daily therapeutic condiment.</div>
+        <span class="te">రాగి దోశ పిండి: 2 కప్పులు రాగి పిండి, 1/2 కప్పు బియ్యం పిండి, 1/4 కప్పు మినపప్పు, 8 గంటలు పులియబెట్టండి. కరివేపాకు పొడి రోజువారీ ఉపయోగించే ఔషధగుణమున్న పొడి — కాపర్, ఐరన్, క్యాల్షియం ఇస్తుంది.</span>
+      </div>
+
+      <div class="meal">
+        <div class="meal-time">10:30 AM</div>
+        <div class="meal-dish">Buttermilk (majjiga) — see day 1.<span class="te">మజ్జిగ — సోమవారం చూడండి.</span></div>
+      </div>
+
+      <div class="meal">
+        <div class="meal-time">1:00–2:00 PM · Lunch <span class="te-inline">/ మధ్యాహ్న భోజనం</span></div>
+        <div class="meal-dish">Rice + <span class="telugu">Menthi kura pappu</span> (fenugreek leaf dal) + <span class="telugu">Bendakaya vepudu</span> (okra curry) + <span class="telugu">Miriyala charu</span> (pepper rasam) + Curd</div>
+        <span class="te">అన్నం + మెంతికూర పప్పు + బెండకాయ వేపుడు + మిరియాల చారు + పెరుగు</span>
+        <div class="per-person">
+          <div class="pp"><b>Suresh · 540 kcal</b>Pepper rasam is anti-BP + anti-sciatic. 3/4 katori rice, 1 katori dal, okra 100g.<span class="te">మిరియాల చారు బీపీకి, నొప్పికి మంచిది. 3/4 గిన్నె అన్నం, 1 గిన్నె పప్పు, 100 గ్రా. బెండ.</span></div>
+          <div class="pp v"><b>Veni · 470 kcal</b>Methi-dal + okra = twin hypoglycemic combination. Foxtail millet 1/2 katori.<span class="te">మెంతికూర పప్పు + బెండ = షుగర్‌కి రెండు మంచివి. 1/2 గిన్నె కొర్రలు.</span></div>
+          <div class="pp su"><b>Susheel · 640 kcal</b>1 katori rice + methi dal (liver!) + okra + rasam<span class="te">1 గిన్నె అన్నం + మెంతికూర పప్పు + బెండ + చారు</span></div>
+          <div class="pp k"><b>Karthik · 740 kcal</b>Full portions + 1 tsp ghee<span class="te">నిండుగా + 1 చెంచా నెయ్యి</span></div>
+        </div>
+      </div>
+
+      <div class="meal">
+        <div class="meal-time">4:30 PM</div>
+        <div class="meal-dish"><span class="telugu">Vegetable upma</span> (rava with drumstick, carrot, peas) OR 1 fruit for those low-cal</div>
+        <span class="te">కూరగాయల ఉప్మా (రవ్వతో మునగకాయ, క్యారెట్, బఠానీ) లేదా 1 పండు</span>
+        <div class="per-person">
+          <div class="pp"><b>Suresh · 150 kcal</b>Small serving upma, no coconut<span class="te">కొద్దిగా ఉప్మా, కొబ్బరి వద్దు</span></div>
+          <div class="pp v"><b>Veni · 130 kcal</b>Replace rava with foxtail millet upma<span class="te">రవ్వకి బదులు కొర్రల ఉప్మా</span></div>
+          <div class="pp su"><b>Susheel · 200 kcal</b>1 katori upma + curry leaves + peanuts<span class="te">1 గిన్నె ఉప్మా + కరివేపాకు + వేరుశనగలు</span></div>
+          <div class="pp k"><b>Karthik · 220 kcal</b>1 katori upma + 1 amla + tulsi tea<span class="te">1 గిన్నె ఉప్మా + 1 ఉసిరికాయ + తులసి టీ</span></div>
+        </div>
+      </div>
+
+      <div class="meal">
+        <div class="meal-time">7:00–8:00 PM · Dinner <span class="te-inline">/ రాత్రి భోజనం</span></div>
+        <div class="meal-dish"><span class="telugu">Ragi ambali</span> (fermented ragi porridge) + <span class="telugu">Munakkaya pappu</span> (drumstick dal) + Steamed vegetables</div>
+        <span class="te">రాగి అంబలి (పులిసిన రాగి గంజి) + మునగకాయ పప్పు + ఉడకబెట్టిన కూర</span>
+        <div class="per-person">
+          <div class="pp"><b>Suresh · 420 kcal</b>1 katori ambali + dal — calcium + potassium wind-down<span class="te">1 గిన్నె అంబలి + పప్పు</span></div>
+          <div class="pp v"><b>Veni · 380 kcal</b>Ambali is fermented → B12, low GI, spondylitis-friendly<span class="te">అంబలి పులిసినది → B12, షుగర్‌కి మంచిది</span></div>
+          <div class="pp su"><b>Susheel · 500 kcal</b>1.5 katori ambali + drumstick dal (liver+growth)<span class="te">1.5 గిన్నెలు అంబలి + మునగకాయ పప్పు</span></div>
+          <div class="pp k"><b>Karthik · 580 kcal</b>2 katori ambali + dal + 1 glass milk after<span class="te">2 గిన్నెలు అంబలి + పప్పు + తర్వాత 1 గ్లాస్ పాలు</span></div>
+        </div>
+        <div class="meal-note">Ferment ragi batter 8–12 h with pinch of curd starter — B12, better mineral absorption, natural cooling. This is the traditional Kurnool preparation.</div>
+        <span class="te">రాగి పిండిని 8–12 గంటలు కొద్దిగా పెరుగుతో పులియబెట్టండి — ఇది కర్నూలు సంప్రదాయ పద్ధతి, చల్లదనం, B12 పెంచుతుంది.</span>
+      </div>
+    </div>
+
+    <!-- DAY 4 -->
+    <div class="day-panel" id="day-4">
+      <h4>Thursday · Millet Day <span class="te-inline">/ గురువారం · చిరుధాన్యాల రోజు</span></h4>
+
+      <div class="meal">
+        <div class="meal-time">7:30 AM · Breakfast <span class="te-inline">/ అల్పాహారం</span></div>
+        <div class="meal-dish"><span class="telugu">Korralu upma</span> (foxtail millet upma with drumstick, curry leaves, ginger, hing) + Coconut chutney</div>
+        <span class="te">కొర్రల ఉప్మా (మునగకాయ, కరివేపాకు, అల్లం, ఇంగువతో) + కొబ్బరి చట్నీ</span>
+        <div class="per-person">
+          <div class="pp"><b>Suresh · 380 kcal</b>1.5 katori upma + 1 tsp chutney<span class="te">1.5 గిన్నెలు ఉప్మా + 1 చెంచా చట్నీ</span></div>
+          <div class="pp v"><b>Veni · 320 kcal</b>1 katori upma — ideal diabetic breakfast<span class="te">1 గిన్నె ఉప్మా — షుగర్‌కి పర్ఫెక్ట్</span></div>
+          <div class="pp su"><b>Susheel · 480 kcal</b>2 katori upma + peanuts + chutney<span class="te">2 గిన్నెలు ఉప్మా + వేరుశనగలు + చట్నీ</span></div>
+          <div class="pp k"><b>Karthik · 550 kcal</b>2 katori upma + ghee 1 tsp + amla<span class="te">2 గిన్నెలు ఉప్మా + 1 చెంచా నెయ్యి + ఉసిరికాయ</span></div>
+        </div>
+        <div class="meal-note">Dry-roast foxtail millet before cooking → nuttier, more digestible. Add moringa leaves in last 2 min.</div>
+        <span class="te">కొర్రలను వండేముందు పొడిగా వేయించండి → రుచి బాగుంటుంది, జీర్ణం త్వరగా అవుతుంది. చివరి 2 నిమిషాలలో మునగాకు వేయండి.</span>
+      </div>
+
+      <div class="meal">
+        <div class="meal-time">10:30 AM</div>
+        <div class="meal-dish">Fresh fruit: papaya slice (200g) for Susheel &amp; Karthik. Apple (small) for Suresh. Guava (100g) for Veni.</div>
+        <span class="te">తాజా పండ్లు: సుశీల్, కార్తికేయకి బొప్పాయి ముక్క (200 గ్రా.). సురేష్‌కి చిన్న ఆపిల్. వేణికి 100 గ్రా. జామపండు.</span>
+        <div class="meal-cal">~80–120 kcal</div>
+      </div>
+
+      <div class="meal">
+        <div class="meal-time">1:00 PM · Lunch <span class="te-inline">/ మధ్యాహ్న భోజనం</span></div>
+        <div class="meal-dish">Rice + <span class="telugu">Bobbarla pappu</span> (black-eyed pea dal) + <span class="telugu">Aratikaya kura</span> (raw banana curry) + <span class="telugu">Tomato rasam</span> + Curd</div>
+        <span class="te">అన్నం + బొబ్బర్ల పప్పు + అరటికాయ కూర + టమాటా చారు + పెరుగు</span>
+        <div class="per-person">
+          <div class="pp"><b>Suresh · 540 kcal</b>3/4 katori rice + bobbarla (potassium!) + raw banana (resistant starch)<span class="te">3/4 గిన్నె అన్నం + బొబ్బర్లు + అరటికాయ</span></div>
+          <div class="pp v"><b>Veni · 470 kcal</b>1/2 katori par-boiled rice + full dal + veg + curd (fiber-first)<span class="te">1/2 గిన్నె ఉప్పుడు అన్నం + నిండు పప్పు + కూర + పెరుగు</span></div>
+          <div class="pp su"><b>Susheel · 640 kcal</b>1 katori rice + extra bobbarla + veg + curd + amla pachadi<span class="te">1 గిన్నె అన్నం + ఎక్కువ బొబ్బర్లు + కూర + పెరుగు + ఉసిరి పచ్చడి</span></div>
+          <div class="pp k"><b>Karthik · 740 kcal</b>Full portions + 1 tomato slice + 1 tsp ghee<span class="te">నిండుగా + 1 టమాటా ముక్క + 1 చెంచా నెయ్యి</span></div>
+        </div>
+      </div>
+
+      <div class="meal">
+        <div class="meal-time">4:30 PM</div>
+        <div class="meal-dish">Steamed <span class="telugu">chamadumpa</span> (colocasia) with jeera-hing tadka OR 1 katori roasted chana</div>
+        <span class="te">ఉడకబెట్టిన చామదుంపలు (జీలకర్ర-ఇంగువ తాళింపుతో) లేదా 1 గిన్నె కాల్చిన శనగలు</span>
+        <div class="per-person">
+          <div class="pp"><b>Suresh · 180 kcal</b>Colocasia — potassium loading<span class="te">చామదుంపలు</span></div>
+          <div class="pp v"><b>Veni · 130 kcal</b>Roasted chana only (colocasia GI higher)<span class="te">కాల్చిన శనగలు మాత్రమే</span></div>
+          <div class="pp su"><b>Susheel · 220 kcal</b>Colocasia + roasted chana mix<span class="te">చామదుంపలు + కాల్చిన శనగలు</span></div>
+          <div class="pp k"><b>Karthik · 250 kcal</b>Colocasia + peanuts<span class="te">చామదుంపలు + వేరుశనగలు</span></div>
+        </div>
+      </div>
+
+      <div class="meal">
+        <div class="meal-time">7:00 PM · Dinner <span class="te-inline">/ రాత్రి భోజనం</span></div>
+        <div class="meal-dish"><span class="telugu">Attu</span> (rice-lentil crepe from leftover dosa batter) + <span class="telugu">Allam chutney</span> (ginger chutney) + Rasam</div>
+        <span class="te">అట్టు (మిగిలిన దోశ పిండితో) + అల్లం చట్నీ + చారు</span>
+        <div class="per-person">
+          <div class="pp"><b>Suresh · 420 kcal</b>2 attu + rasam + chutney<span class="te">2 అట్లు + చారు + చట్నీ</span></div>
+          <div class="pp v"><b>Veni · 380 kcal</b>2 attu made with methi in batter + rasam<span class="te">పిండిలో మెంతులు వేసిన 2 అట్లు + చారు</span></div>
+          <div class="pp su"><b>Susheel · 500 kcal</b>3 attu + rasam + amla pachadi<span class="te">3 అట్లు + చారు + ఉసిరి పచ్చడి</span></div>
+          <div class="pp k"><b>Karthik · 580 kcal</b>3 attu + ghee + rasam + milk after<span class="te">3 అట్లు + నెయ్యి + చారు + తర్వాత పాలు</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 5 -->
+    <div class="day-panel" id="day-5">
+      <h4>Friday · Andhra Traditional Day <span class="te-inline">/ శుక్రవారం · ఆంధ్ర సంప్రదాయ రోజు</span></h4>
+
+      <div class="meal">
+        <div class="meal-time">7:30 AM · Breakfast <span class="te-inline">/ అల్పాహారం</span></div>
+        <div class="meal-dish"><span class="telugu">Ponganalu / Paddu / Guntapongadalu</span> (dosa-batter savory dumplings) + Coconut chutney + <span class="telugu">Kobbari podi</span></div>
+        <span class="te">పొంగనాలు / గుంతపొంగడాలు + కొబ్బరి చట్నీ + కొబ్బరి పొడి</span>
+        <div class="per-person">
+          <div class="pp"><b>Suresh · 380 kcal</b>4 ponganalu — cooked in cast-iron with 1/4 tsp oil per cavity, not deep-fried<span class="te">4 పొంగనాలు — ఇనుప పెనంలో 1/4 చెంచా నూనెతో, వేయించొద్దు</span></div>
+          <div class="pp v"><b>Veni · 340 kcal</b>4 ponganalu (add methi to batter) + chutney small<span class="te">4 పొంగనాలు (పిండిలో మెంతులు వేసి) + కొంచెం చట్నీ</span></div>
+          <div class="pp su"><b>Susheel · 480 kcal</b>6 ponganalu + peanut chutney (choline)<span class="te">6 పొంగనాలు + వేరుశనగ చట్నీ</span></div>
+          <div class="pp k"><b>Karthik · 550 kcal</b>6 ponganalu + coconut chutney + amla side<span class="te">6 పొంగనాలు + కొబ్బరి చట్నీ + ఉసిరికాయ</span></div>
+        </div>
+        <div class="meal-note">Season with grated ginger, chopped onion, curry leaves, jeera, hing, green chili in batter.</div>
+        <span class="te">పిండిలో తురిమిన అల్లం, ముక్కల ఉల్లిపాయ, కరివేపాకు, జీలకర్ర, ఇంగువ, పచ్చిమిర్చి వేయండి.</span>
+      </div>
+
+      <div class="meal">
+        <div class="meal-time">10:30 AM</div>
+        <div class="meal-dish">Majjiga or coriander seed water for Veni (glaucoma protocol)</div>
+        <span class="te">మజ్జిగ లేదా వేణి కోసం ధనియాల నీళ్ళు (కంటి కోసం)</span>
+      </div>
+
+      <div class="meal">
+        <div class="meal-time">1:00 PM · Lunch <span class="te-inline">/ మధ్యాహ్న భోజనం</span></div>
+        <div class="meal-dish">Rice + <span class="telugu">Chintapandu pulusu</span> (light tamarind stew — restrained) + <span class="telugu">Vankaya masala kura</span> (brinjal — restrained portions) + <span class="telugu">Munakkaya charu</span> + Curd</div>
+        <span class="te">అన్నం + తేలికపాటి చింతపండు పులుసు + వంకాయ మసాలా కూర (కొంచెం) + మునగకాయ చారు + పెరుగు</span>
+        <div class="per-person">
+          <div class="pp"><b>Suresh · 540 kcal</b>Brinjal SKIP today (nightshade). 3/4 katori rice + drumstick rasam + curd + roasted veg substitute.<span class="te">వంకాయ ఈ రోజు వద్దు. 3/4 గిన్నె అన్నం + మునగకాయ చారు + పెరుగు + వేరే కూర.</span></div>
+          <div class="pp v"><b>Veni · 470 kcal</b>Brinjal SKIP. Foxtail millet + drumstick rasam + methi-dal.<span class="te">వంకాయ వద్దు. కొర్రలు + మునగకాయ చారు + మెంతికూర పప్పు.</span></div>
+          <div class="pp su"><b>Susheel · 640 kcal</b>1 katori rice + brinjal (2 pieces) + drumstick rasam + dal<span class="te">1 గిన్నె అన్నం + వంకాయ (2 ముక్కలు) + మునగకాయ చారు + పప్పు</span></div>
+          <div class="pp k"><b>Karthik · 740 kcal</b>Full traditional plate + brinjal (antioxidants for recovery)<span class="te">సంప్రదాయ నిండు భోజనం + వంకాయ</span></div>
+        </div>
+        <div class="meal-note">Family note: on brinjal days, Suresh &amp; Veni get an alternate curry (e.g., ridge gourd or drumstick sabzi) already portioned. Do not tell them "eat brinjal, it's fine" — the science says limit for their conditions.</div>
+        <span class="te">కుటుంబ సూచన: వంకాయ రోజుల్లో సురేష్ &amp; వేణికి వేరే కూర (బీరకాయ లేదా మునగకాయ) సిద్ధంగా ఉంచండి. వాళ్ళ ఆరోగ్యం దృష్ట్యా వంకాయ తగ్గించాలి.</span>
+      </div>
+
+      <div class="meal">
+        <div class="meal-time">4:30 PM</div>
+        <div class="meal-dish"><span class="telugu">Vada</span> (baked, not fried) + tomato chutney</div>
+        <span class="te">కాల్చిన వడ (వేయించినది కాదు) + టమాటా చట్నీ</span>
+        <div class="per-person">
+          <div class="pp"><b>Suresh · 200 kcal</b>1 baked vada — no fried version<span class="te">1 కాల్చిన వడ</span></div>
+          <div class="pp v"><b>Veni · 180 kcal</b>1 baked vada<span class="te">1 కాల్చిన వడ</span></div>
+          <div class="pp su"><b>Susheel · 240 kcal</b>2 baked vada<span class="te">2 కాల్చిన వడలు</span></div>
+          <div class="pp k"><b>Karthik · 280 kcal</b>2 baked vada + amla<span class="te">2 కాల్చిన వడలు + ఉసిరికాయ</span></div>
+        </div>
+        <div class="meal-note">Baked vada method: dal batter into idli-shape mold or air-fryer at 200°C 15 min. Same taste, 90% less oil.</div>
+        <span class="te">కాల్చిన వడ ఎలా: పప్పు పిండిని ఇడ్లీ మౌల్డ్‌లో లేదా ఎయిర్ ఫ్రయర్‌లో 200°C వద్ద 15 నిమిషాలు. అదే రుచి, 90% తక్కువ నూనె.</span>
+      </div>
+
+      <div class="meal">
+        <div class="meal-time">7:00 PM · Dinner <span class="te-inline">/ రాత్రి భోజనం</span></div>
+        <div class="meal-dish">Idli + Sambar + Chutney (Friday night idli is a Kurnool tradition — keep it)</div>
+        <span class="te">ఇడ్లీ + సాంబార్ + చట్నీ (శుక్రవారం రాత్రి ఇడ్లీ కర్నూలు సంప్రదాయం — ఉంచాలి)</span>
+        <div class="per-person">
+          <div class="pp"><b>Suresh · 400 kcal</b>2 idli + sambar<span class="te">2 ఇడ్లీ + సాంబార్</span></div>
+          <div class="pp v"><b>Veni · 360 kcal</b>2 idli + sambar + curd small<span class="te">2 ఇడ్లీ + సాంబార్ + కొంచెం పెరుగు</span></div>
+          <div class="pp su"><b>Susheel · 500 kcal</b>3 idli + sambar<span class="te">3 ఇడ్లీ + సాంబార్</span></div>
+          <div class="pp k"><b>Karthik · 580 kcal</b>3 idli + sambar + milk after<span class="te">3 ఇడ్లీ + సాంబార్ + తర్వాత పాలు</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 6 -->
+    <div class="day-panel" id="day-6">
+      <h4>Saturday · Batch-Prep Assist Day <span class="te-inline">/ శనివారం · ముందుగా వండే రోజు</span></h4>
+
+      <div class="meal">
+        <div class="meal-time">7:30 AM · Breakfast <span class="te-inline">/ అల్పాహారం</span></div>
+        <div class="meal-dish"><span class="telugu">Uggani</span> (puffed rice upma) with peanuts, curry leaves, onion + <span class="telugu">Mirchi bajji</span> replacement: baked capsicum stuffed with sesame-jeera podi</div>
+        <span class="te">ఉగ్గాని (బొరుగుల ఉప్మా — వేరుశనగలు, కరివేపాకు, ఉల్లిపాయతో) + మిర్చీ బజ్జీకి బదులు: నువ్వుల-జీలకర్ర పొడితో నింపిన కాల్చిన క్యాప్సికం</span>
+        <div class="per-person">
+          <div class="pp"><b>Suresh · 380 kcal</b>1.5 katori uggani + 1 baked capsicum<span class="te">1.5 గిన్నెలు ఉగ్గాని + 1 కాల్చిన క్యాప్సికం</span></div>
+          <div class="pp v"><b>Veni · 320 kcal</b>1 katori uggani (light) + baked capsicum (Vit C for glaucoma)<span class="te">1 గిన్నె ఉగ్గాని + కాల్చిన క్యాప్సికం</span></div>
+          <div class="pp su"><b>Susheel · 480 kcal</b>2 katori uggani + 2 baked capsicum<span class="te">2 గిన్నెలు ఉగ్గాని + 2 కాల్చిన క్యాప్సికం</span></div>
+          <div class="pp k"><b>Karthik · 550 kcal</b>2 katori uggani + 2 baked capsicum + amla side<span class="te">2 గిన్నెలు ఉగ్గాని + 2 క్యాప్సికం + ఉసిరికాయ</span></div>
+        </div>
+      </div>
+
+      <div class="meal">
+        <div class="meal-time">1:00 PM · Lunch <span class="te-inline">/ మధ్యాహ్న భోజనం</span></div>
+        <div class="meal-dish">Rice + <span class="telugu">Menthi pappu</span> (methi seed dal) + <span class="telugu">Dosakaya pachadi</span> + <span class="telugu">Munakkaya charu</span> + Curd + Sesame chutney</div>
+        <span class="te">అన్నం + మెంతి పప్పు + దోసకాయ పచ్చడి + మునగకాయ చారు + పెరుగు + నువ్వుల పచ్చడి</span>
+        <div class="per-person">
+          <div class="pp"><b>Suresh · 540 kcal</b>3/4 katori rice + dal + drumstick rasam + sesame chutney (Ca+Mg)<span class="te">3/4 గిన్నె అన్నం + పప్పు + మునగకాయ చారు + నువ్వుల పచ్చడి</span></div>
+          <div class="pp v"><b>Veni · 470 kcal</b>Methi + drumstick = daily anti-diabetic + anti-glaucoma combo. 1/2 katori rice + all sides.<span class="te">మెంతి + మునగకాయ = షుగర్ + కంటికి రెండూ మంచివి. 1/2 గిన్నె అన్నం + అన్ని కూరలు.</span></div>
+          <div class="pp su"><b>Susheel · 640 kcal</b>Full portions + sesame chutney (copper for hair)<span class="te">నిండుగా + నువ్వుల పచ్చడి (జుట్టుకి కాపర్)</span></div>
+          <div class="pp k"><b>Karthik · 740 kcal</b>Full portions<span class="te">నిండుగా</span></div>
+        </div>
+      </div>
+
+      <div class="meal">
+        <div class="meal-time">4:30 PM</div>
+        <div class="meal-dish">Sprouted moong chaat with lemon, coriander, chopped onion, tomato, amla powder</div>
+        <span class="te">పెసర మొలకల చాట్ — నిమ్మ, కొత్తిమీర, ఉల్లిపాయ, టమాటా, ఉసిరికాయ పొడితో</span>
+      </div>
+
+      <div class="meal">
+        <div class="meal-time">7:00 PM · Dinner <span class="te-inline">/ రాత్రి భోజనం</span></div>
+        <div class="meal-dish"><span class="telugu">Sajja roti</span> (bajra roti) + <span class="telugu">Gongura pappu</span> + <span class="telugu">Charu</span> + Curd</div>
+        <span class="te">సజ్జ రొట్టె + గోంగూర పప్పు + చారు + పెరుగు</span>
+        <div class="per-person">
+          <div class="pp"><b>Suresh · 420 kcal</b>2 rotis + gongura dal<span class="te">2 రొట్టెలు + గోంగూర పప్పు</span></div>
+          <div class="pp v"><b>Veni · 380 kcal</b>2 rotis + dal (iron loading day)<span class="te">2 రొట్టెలు + పప్పు (ఐరన్ కోసం)</span></div>
+          <div class="pp su"><b>Susheel · 500 kcal</b>3 rotis + dal (iron for anti-graying + growth)<span class="te">3 రొట్టెలు + పప్పు (జుట్టుకి + పెరుగుదలకి ఐరన్)</span></div>
+          <div class="pp k"><b>Karthik · 580 kcal</b>3 rotis + dal + curd + milk after<span class="te">3 రొట్టెలు + పప్పు + పెరుగు + తర్వాత పాలు</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 7 - FESTIVAL -->
+    <div class="day-panel" id="day-7">
+      <h4>Sunday · Festival / Celebration Day</h4>
+      <div class="callout"><b>Purpose:</b> Show the family that festival food fits inside this system. This day is modeled loosely on a Sankranti-style Sunday: sesame, pongal, and one sweet. If it were Ugadi, replace with pachadi (see Section 8). If Varalakshmi Vratham, prasadam-inclusive.</div>
+
+      <div class="meal">
+        <div class="meal-time">7:30 AM · Breakfast</div>
+        <div class="meal-dish"><span class="telugu">Ven Pongal</span> (rice + moong dal + pepper + jeera + ghee + cashew + curry leaves) + Coconut chutney</div>
+        <div class="per-person">
+          <div class="pp"><b>Suresh · 400 kcal</b>3/4 katori pongal (use hand-pounded rice) + 1 tsp chutney. Pepper is BP-good.</div>
+          <div class="pp v"><b>Veni · 360 kcal</b>Substitute 1/2 rice with foxtail millet in pongal — same taste, low GI</div>
+          <div class="pp su"><b>Susheel · 500 kcal</b>1 katori pongal + peanut chutney</div>
+          <div class="pp k"><b>Karthik · 600 kcal</b>1.5 katori pongal + coconut chutney + 1 amla</div>
+        </div>
+      </div>
+
+      <div class="meal">
+        <div class="meal-time">11:00 AM · Festival snack</div>
+        <div class="meal-dish"><span class="telugu">Nuvvula unde</span> (sesame-jaggery balls) — the healthiest Andhra sweet</div>
+        <div class="per-person">
+          <div class="pp"><b>Suresh · 120 kcal</b>1 small unde (limit jaggery — BP)</div>
+          <div class="pp v"><b>Veni · 100 kcal</b>1 small unde AFTER main meal only, not empty stomach</div>
+          <div class="pp su"><b>Susheel · 150 kcal</b>1 small unde (jaggery cap — 5g) — sesame's copper &amp; calcium are worth it</div>
+          <div class="pp k"><b>Karthik · 180 kcal</b>2 small unde</div>
+        </div>
+        <div class="meal-note">Sesame-jaggery ratio 3:1 (not 1:1 like street version). Bind with a splash of ghee — no maida, no khoya.</div>
+      </div>
+
+      <div class="meal">
+        <div class="meal-time">1:00–2:00 PM · Festival lunch</div>
+        <div class="meal-dish"><span class="telugu">Pulihora</span> (tamarind rice — restrained) + <span class="telugu">Chakra pongali substitute</span> + <span class="telugu">Munakkaya sambar</span> + <span class="telugu">Vada</span> (baked) + Curd + <span class="telugu">Gongura pachadi</span> + <span class="telugu">Boondi raita</span></div>
+        <div class="per-person">
+          <div class="pp"><b>Suresh · 650 kcal</b>1/2 katori pulihora (salt cap) + sambar + baked vada 1 + curd + no chakra pongali</div>
+          <div class="pp v"><b>Veni · 550 kcal</b>1/2 katori pulihora + sambar + curd. Skip chakra pongali entirely. Methi salad first.</div>
+          <div class="pp su"><b>Susheel · 750 kcal</b>1 katori pulihora + sambar + baked vada + 1 tsp chakra pongali (jaggery cap 5g) + amla</div>
+          <div class="pp k"><b>Karthik · 850 kcal</b>Full festival plate</div>
+        </div>
+        <div class="meal-note">Pulihora tamarind restrained (Susheel fructose). No fried vada — baked. Chakra pongali replacement for Suresh/Veni: <span class="telugu">ragi payasam</span> made with 5g jaggery + cardamom + dry-fruit — same festival feel, safer glucose.</div>
+      </div>
+
+      <div class="meal">
+        <div class="meal-time">5:00 PM</div>
+        <div class="meal-dish">Family walk 30 min post-lunch (Suresh: 15 min slow; Veni: 20 min; Susheel: 30 min brisk; Karthik: 30 min) + majjiga on return</div>
+      </div>
+
+      <div class="meal">
+        <div class="meal-time">7:30 PM · Dinner (light)</div>
+        <div class="meal-dish"><span class="telugu">Charu annam</span> (rasam rice) or <span class="telugu">Ragi ambali</span> — light because lunch was heavy</div>
+        <div class="per-person">
+          <div class="pp"><b>Suresh · 300 kcal</b>Small rasam rice + curd</div>
+          <div class="pp v"><b>Veni · 280 kcal</b>Ragi ambali</div>
+          <div class="pp su"><b>Susheel · 380 kcal</b>Ragi ambali + steamed veg</div>
+          <div class="pp k"><b>Karthik · 450 kcal</b>Rasam rice + milk after</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- ==================== SECTION 4 ==================== -->
+<section id="s4" class="section">
+  <div class="section-header">
+    <h2><span class="num">04</span>Twelve Therapeutic Andhra Recipes</h2>
+    <button class="print-btn" onclick="printSection('s4')">Print this section</button>
+  </div>
+  <div class="section-body">
+    <p>Each recipe below is calibrated to at least one family member's condition. Where a substitution matters clinically it is stated. Serving sizes assume family of 4.</p>
+
+    <!-- 4.1 -->
+    <div class="recipe">
+      <div class="recipe-title">4.1 · Low-Sodium Drumstick Pepper Rasam · <span class="telugu">Munakkaya Miriyala Charu</span></div>
+      <div><b>For:</b> Suresh's BP + joint inflammation · Veni's glaucoma (drumstick lutein) · Karthik's lung (pepper piperine)</div>
+      <span class="section-lbl">Ingredients</span>
+      <ul>
+        <li>2 drumsticks, cut into 2-inch pieces</li>
+        <li>1 medium tomato (Suresh/Veni: skip; use 1 tsp tamarind pulp instead)</li>
+        <li>1 tsp freshly cracked black pepper</li>
+        <li>1 tsp cumin, freshly ground</li>
+        <li>10 curry leaves</li>
+        <li>1/4 tsp turmeric</li>
+        <li>Small piece hing (rice-grain size)</li>
+        <li>1 tsp cold-pressed sesame oil</li>
+        <li>1/2 tsp mustard seeds</li>
+        <li><b>Rock salt (sendha namak): 1/4 tsp for whole pot</b> (that is roughly half of usual)</li>
+        <li>Fresh coriander to finish</li>
+        <li>1/2 inch fresh ginger, grated</li>
+        <li>Water 750 ml</li>
+      </ul>
+      <span class="section-lbl">Method</span>
+      <ol>
+        <li>Simmer drumsticks in water with turmeric, salt, ginger 10 min.</li>
+        <li>Add tomato (if using) or tamarind pulp; simmer 5 min.</li>
+        <li>In a small tadka pan, heat sesame oil; splutter mustard, add cumin, hing, curry leaves; pour into the pot.</li>
+        <li>Add fresh-cracked pepper last (piperine volatilizes if boiled long — 30 seconds only).</li>
+        <li>Finish with coriander. Rest 5 min before serving so drumstick pieces release their flesh.</li>
+      </ol>
+      <span class="section-lbl">Why each ingredient</span>
+      <p>Drumstick: isothiocyanates lower BP by ~5 mmHg systolic in traditional practice; lutein for eye. Pepper: piperine dilates capillaries. Cumin: mild antihypertensive. Sesame oil: sesamin — antihypertensive. Ginger: gingerols — anti-inflammatory. Reduced salt: half the usual sodium; the pepper + tamarind + curry leaves rebuild flavor.</p>
+    </div>
+
+    <!-- 4.2 -->
+    <div class="recipe">
+      <div class="recipe-title">4.2 · Methi Dosa · <span class="telugu">Menthi Dosai</span></div>
+      <div><b>For:</b> Veni's diabetes · Susheel's liver (fiber) · Karthik's anti-inflammatory</div>
+      <span class="section-lbl">The bitterness solve</span>
+      <p>The problem with methi is bitterness intolerance. Trick: soak seeds &amp; use their gel-water in the batter — bitterness stays under 15% while galactomannan (the hypoglycemic fiber) is fully retained.</p>
+      <span class="section-lbl">Batter (for ~15 dosas)</span>
+      <ul>
+        <li>2 cups par-boiled rice</li>
+        <li>1/2 cup urad dal</li>
+        <li><b>2 tbsp methi seeds soaked 6 h in 1/2 cup water — do not discard water</b></li>
+        <li>1 tbsp poha (helps crispness)</li>
+        <li>Salt 1/2 tsp (Suresh: separate his batch, use 1/4 tsp)</li>
+      </ul>
+      <span class="section-lbl">Method</span>
+      <ol>
+        <li>Soak rice + urad separately 5 h.</li>
+        <li>Grind urad first to a fluff. Then rice. Add methi + methi water at final grind (do not roast).</li>
+        <li>Ferment 8–12 h in warm spot (Kurnool summer: 6 h enough).</li>
+        <li>Cook thin on flat iron tawa with 1/4 tsp sesame oil per dosa.</li>
+        <li>Serve with ginger chutney (Recipe 4.6 companion) or tomato-free coconut chutney.</li>
+      </ol>
+      <span class="section-lbl">Clinical dose</span>
+      <p>Veni: 2 dosas AM cover ~1.2g methi galactomannan — clinically documented to reduce post-prandial glucose 15–20%.</p>
+    </div>
+
+    <!-- 4.3 -->
+    <div class="recipe">
+      <div class="recipe-title">4.3 · Kakarakaya Menthi Kura · Bitter Gourd Fenugreek Curry</div>
+      <div><b>For:</b> Veni's diabetes · Susheel's NAFLD</div>
+      <span class="section-lbl">Ingredients</span>
+      <ul>
+        <li>4 medium bitter gourds, sliced thin (2 mm rounds)</li>
+        <li>1 tsp salt — for pre-treating (rinsed out)</li>
+        <li>1 medium onion, chopped fine</li>
+        <li>1 tsp methi seeds</li>
+        <li>1 tsp mustard, 1/2 tsp cumin, 1/4 tsp turmeric</li>
+        <li>Small piece hing</li>
+        <li>1 tsp jaggery (yes — balances bitterness. 1 tsp total across the pan)</li>
+        <li>1 tbsp roasted peanut powder</li>
+        <li>1 tsp tamarind pulp (very light)</li>
+        <li>2 tsp groundnut oil</li>
+        <li>Curry leaves, coriander to finish</li>
+        <li>Cooking salt 1/4 tsp final</li>
+      </ul>
+      <span class="section-lbl">Method</span>
+      <ol>
+        <li><b>Bitterness taming:</b> Sprinkle 1 tsp salt on sliced bitter gourd, rest 15 min. Squeeze &amp; rinse — removes 40% bitter, keeps momordicin.</li>
+        <li>Heat oil, splutter mustard, add methi (careful — don't burn methi, 5 sec), cumin, hing.</li>
+        <li>Add onion, sauté 3 min. Add turmeric.</li>
+        <li>Add bitter gourd, cover, cook 8 min stirring occasionally.</li>
+        <li>Add tamarind, jaggery, salt. Cook uncovered 3 min.</li>
+        <li>Off flame — stir in peanut powder + curry leaves + coriander.</li>
+      </ol>
+      <span class="section-lbl">Why</span>
+      <p>Charantin + polypeptide-p in bitter gourd act like plant insulin. Methi's galactomannan doubles the effect. Peanut powder + jaggery = palatability without deep frying. Skinny-slice + short-cook preserves the active compounds vs the deep-fried Andhra restaurant style which destroys most of them.</p>
+    </div>
+
+    <!-- 4.4 -->
+    <div class="recipe">
+      <div class="recipe-title">4.4 · Moringa Leaf Dal · <span class="telugu">Munakkaya Aaku Pappu</span></div>
+      <div><b>For:</b> All four — flagship therapeutic dal.</div>
+      <ul>
+        <li>1 cup toor dal</li>
+        <li>2 handfuls fresh moringa leaves (pluck from stem, ~50g)</li>
+        <li>1 small onion chopped</li>
+        <li>1 small tomato (Suresh/Veni: half)</li>
+        <li>1/2 tsp turmeric, 1/2 tsp red chili powder</li>
+        <li>1 tsp tamarind pulp</li>
+        <li><b>Tadka:</b> 2 tsp ghee OR 1 tsp ghee + 1 tsp groundnut oil, 1 tsp mustard, 1/2 tsp cumin, hing, 2 dry red chilies, 10 curry leaves</li>
+        <li>Salt to family taste — Suresh's portion separately salted</li>
+      </ul>
+      <span class="section-lbl">Method</span>
+      <ol>
+        <li>Pressure cook toor dal with turmeric + a pinch of oil (prevents overflow) 3 whistles.</li>
+        <li>In a pan, sauté onion + tomato until soft. Add tamarind + chili + salt + 1 cup water.</li>
+        <li>Add cooked dal, simmer 5 min.</li>
+        <li>Add moringa leaves in the last 3 min — do not boil to death, chlorophyll dies fast.</li>
+        <li>Prepare tadka in a small kadai; pour over. Rest 3 min, serve.</li>
+      </ol>
+      <span class="section-lbl">Per-person benefit</span>
+      <ul>
+        <li><b>Suresh:</b> Calcium (moringa 185 mg/100g) + potassium — knees + BP</li>
+        <li><b>Veni:</b> Lutein + zeaxanthin — glaucoma. Iron for perimenopause.</li>
+        <li><b>Susheel:</b> Iron + copper co-factors — hair. Choline in dal — liver.</li>
+        <li><b>Karthikeya:</b> Antioxidant load, vitamin C, magnesium</li>
+      </ul>
+    </div>
+
+    <!-- 4.5 -->
+    <div class="recipe">
+      <div class="recipe-title">4.5 · Ragi Sangati · <span class="telugu">Ragulu Sangati</span></div>
+      <div><b>For:</b> Suresh (calcium+weight) · Veni (low GI + calcium) · Susheel (liver + growth calcium) · Karthik (occasional)</div>
+      <ul>
+        <li>1 cup ragi flour</li>
+        <li>1/2 cup broken rice</li>
+        <li>4 cups water</li>
+        <li>Pinch salt</li>
+      </ul>
+      <span class="section-lbl">Method (traditional Rayalaseema)</span>
+      <ol>
+        <li>Boil rice in 3 cups water till 3/4 done.</li>
+        <li>Slurry ragi flour in 1 cup cold water separately.</li>
+        <li>Pour slurry into simmering rice, stirring constantly to prevent lumps (this step is the whole game). Reduce heat.</li>
+        <li>Cook 8–10 min stirring, until it thickens and turns glossy.</li>
+        <li>Turn off. Rest covered 5 min. Shape into balls with a wet katori.</li>
+      </ol>
+      <span class="section-lbl">Serve with</span>
+      <p><span class="telugu">Natukodi pulusu</span> is the traditional pairing but not applicable here. For this family: <b>drumstick pulusu, gongura pappu, or a light tomato-free rasam</b>. Dip the ragi ball into the pulusu/dal.</p>
+      <span class="section-lbl">Clinical why</span>
+      <p>Ragi at ~344 mg calcium/100g is the single densest vegetarian calcium source in Andhra cooking. GI ~55. Slowly digested. For Suresh's post-op knees, Susheel's growing bones, Veni's spondylitis — this dinner 3×/wk is medicinal.</p>
+    </div>
+
+    <!-- 4.6 -->
+    <div class="recipe">
+      <div class="recipe-title">4.6 · Pesarattu with Ginger Chutney · <span class="telugu">Pesarattu + Allam Pachadi</span></div>
+      <div><b>For:</b> Karthik (collagen + anti-inflammatory) · Susheel (liver-friendly protein) · Suresh (weight, low GI)</div>
+      <span class="section-lbl">Pesarattu batter</span>
+      <ul>
+        <li>1 cup whole green moong, soaked 6 h</li>
+        <li>1/4 cup rice (for texture)</li>
+        <li>1 inch ginger</li>
+        <li>2 green chilies</li>
+        <li>1/2 tsp cumin</li>
+        <li>Salt small</li>
+      </ul>
+      <span class="section-lbl">Method</span>
+      <ol>
+        <li>Grind soaked moong + rice + ginger + chili + cumin with minimum water to dosa consistency. <b>Do not ferment</b> — pesarattu is unfermented, fresh.</li>
+        <li>Cook on tawa, thin. Sprinkle chopped onion + curry leaves + fresh coriander on top BEFORE it firms.</li>
+        <li>Drizzle 1/4 tsp oil around edges. Fold, serve hot.</li>
+      </ol>
+      <span class="section-lbl">Ginger chutney (allam pachadi)</span>
+      <ul>
+        <li>4-inch ginger piece, peeled &amp; chopped</li>
+        <li>2 tbsp roasted chana dal</li>
+        <li>2 tbsp tamarind pulp (small — Susheel note)</li>
+        <li>2 tbsp jaggery (family total — small)</li>
+        <li>4 dry red chilies</li>
+        <li>1 tsp cumin</li>
+        <li>Salt small</li>
+        <li><b>Tadka:</b> 1 tsp sesame oil, 1/2 tsp mustard, 1/4 tsp cumin, curry leaves, hing</li>
+      </ul>
+      <p>Grind everything except tadka with a splash of water into a coarse paste. Temper and mix. Keeps 1 week refrigerated.</p>
+      <span class="section-lbl">Why</span>
+      <p>Whole moong = complete plant protein (20g protein per cup batter). Karthik: collagen amino acids. Susheel: liver-friendly slow-carb + fiber. Ginger chutney: gingerols anti-inflammatory for all knees.</p>
+    </div>
+
+    <!-- 4.7 -->
+    <div class="recipe">
+      <div class="recipe-title">4.7 · Ash Gourd Pulusu · <span class="telugu">Boodida Gummadikaya Pulusu</span></div>
+      <div><b>For:</b> All four — cooling, liver-supportive, low-cal, hydrating.</div>
+      <ul>
+        <li>300 g ash gourd, cubed 1-inch</li>
+        <li>1 small onion, sliced</li>
+        <li>2 green chilies, slit</li>
+        <li>1 tsp tamarind pulp</li>
+        <li>1/4 tsp turmeric, 1/2 tsp red chili powder</li>
+        <li>1/2 tsp jaggery</li>
+        <li><b>Tadka:</b> 1 tsp sesame oil, 1/2 tsp mustard, 1/4 tsp fenugreek, hing, curry leaves</li>
+        <li>2 cups water</li>
+        <li>Salt (Suresh's plate lightly)</li>
+      </ul>
+      <span class="section-lbl">Method</span>
+      <ol>
+        <li>Tadka in a pot. Add onion, chili, sauté.</li>
+        <li>Add ash gourd, turmeric, chili powder — coat.</li>
+        <li>Add water, tamarind, jaggery, salt. Simmer 15 min till ash gourd is translucent.</li>
+        <li>Finish with fresh coriander.</li>
+      </ol>
+      <p><b>Why:</b> Ash gourd is 96% water, potassium-dense, alkalizing. In Ayurveda considered a specific liver-cooling food (Susheel). The methi seeds in tadka contribute galactomannan (Veni). Low-cal, low-sodium (Suresh). Neutral flavor — the whole family accepts it.</p>
+    </div>
+
+    <!-- 4.8 -->
+    <div class="recipe">
+      <div class="recipe-title">4.8 · Gongura Pappu · <span class="telugu">Gongura Pappu</span></div>
+      <div><b>For:</b> Veni (iron), Susheel (iron+liver), Suresh (BP-safe sour) — Kurnool signature</div>
+      <ul>
+        <li>1 cup toor dal</li>
+        <li>2 large bunches gongura, stems removed (~150 g leaves)</li>
+        <li>1 medium onion, chopped</li>
+        <li>1/2 tsp turmeric</li>
+        <li>1 tsp red chili powder (adjust)</li>
+        <li><b>No tamarind — gongura is already sour</b></li>
+        <li><b>Tadka:</b> 1 tsp ghee + 1 tsp sesame oil, 1 tsp mustard, 1/2 tsp cumin, 3 dry red chilies, 10 curry leaves, hing</li>
+        <li>Salt to Suresh's cap</li>
+      </ul>
+      <span class="section-lbl">Method</span>
+      <ol>
+        <li>Pressure cook toor dal with turmeric 3 whistles. Mash smooth.</li>
+        <li>Sauté onion in 1 tsp oil until translucent.</li>
+        <li>Add gongura leaves + chili powder + salt; cook 4 min till leaves wilt and turn khaki.</li>
+        <li>Add cooked dal; simmer 5 min. Adjust water for pouring consistency.</li>
+        <li>Tadka in ghee + oil; pour over. Rest 5 min.</li>
+      </ol>
+      <p><b>Serve with sesame chutney</b> — sesame's calcium binds gongura's oxalate, preventing any kidney-stone risk. This is why traditional Andhra pairings developed this way — the science existed inside the culture.</p>
+    </div>
+
+    <!-- 4.9 -->
+    <div class="recipe">
+      <div class="recipe-title">4.9 · Sesame Chutney Podi · <span class="telugu">Nuvvula Podi / Karam Podi</span></div>
+      <div><b>For:</b> All four. Daily therapeutic condiment.</div>
+      <ul>
+        <li>1 cup white sesame seeds</li>
+        <li>1/2 cup black sesame (if available — higher calcium)</li>
+        <li>1/2 cup chana dal (roasted)</li>
+        <li>1/4 cup urad dal (roasted)</li>
+        <li>4 dry red chilies</li>
+        <li>1 tbsp jeera</li>
+        <li>10 curry leaves</li>
+        <li>Small piece hing</li>
+        <li>Salt 1/4 tsp total</li>
+        <li>Optional: 1 tsp jaggery powder for gentle sweetness</li>
+      </ul>
+      <span class="section-lbl">Method</span>
+      <ol>
+        <li>Dry-roast sesame separately on <b>low flame</b> until they pop and lightly change color — high heat destroys sesamol. Cool.</li>
+        <li>Dry-roast dals till golden. Cool.</li>
+        <li>Roast red chilies + curry leaves briefly (30 sec) with hing.</li>
+        <li>Grind everything <b>in short pulses</b> — you want a dry, coarse powder, not oil. Grinding too fine releases oil and shortens shelf life.</li>
+        <li>Store airtight for 3 weeks.</li>
+      </ol>
+      <span class="section-lbl">Daily use</span>
+      <p>1 tbsp on hot rice with a drizzle of ghee → delivers ~350 mg calcium, 4 mg copper, 100 mg magnesium in one spoon. This is the single most efficient therapeutic condiment for this household.</p>
+    </div>
+
+    <!-- 4.10 -->
+    <div class="recipe">
+      <div class="recipe-title">4.10 · Amla Pachadi · <span class="telugu">Usirikaya Pachadi</span></div>
+      <div><b>For:</b> All — vitamin C loading. Critical for Karthik (collagen recovery), Veni (glaucoma), Susheel (liver antioxidant).</div>
+      <ul>
+        <li>10 fresh amla (usirikaya)</li>
+        <li>2 tbsp roasted chana dal</li>
+        <li>1/2 inch ginger</li>
+        <li>4 dry red chilies</li>
+        <li>1 tsp cumin</li>
+        <li>Salt small</li>
+        <li>Optional: 1 tsp jaggery (Susheel cap)</li>
+        <li><b>Tadka:</b> 1 tsp sesame oil, 1/2 tsp mustard, 1/4 tsp cumin, hing, curry leaves</li>
+      </ul>
+      <span class="section-lbl">Method — Vit C preservation is the goal</span>
+      <ol>
+        <li>Steam whole amla 4 min only (not boil — Vit C leaches). Cool.</li>
+        <li>De-seed. Chop.</li>
+        <li>Grind with chana dal + ginger + chili + cumin + salt into a coarse chutney.</li>
+        <li>Temper &amp; combine. <b>Do not heat after mixing.</b></li>
+      </ol>
+      <p>Storage: 1 week refrigerated. Vit C degrades ~20%/week even refrigerated — make fresh weekly.</p>
+      <p><b>Daily dose:</b> 1 tsp per person with rice at lunch = ~50–80 mg Vit C. Combined with 1 raw amla morning, family hits their target.</p>
+    </div>
+
+    <!-- 4.11 -->
+    <div class="recipe">
+      <div class="recipe-title">4.11 · Therapeutic Buttermilk · <span class="telugu">Ghumma Ghumma Majjiga</span></div>
+      <div><b>For:</b> All. Post-lunch daily.</div>
+      <ul>
+        <li>1 cup fresh curd (not sour)</li>
+        <li>3 cups cool water</li>
+        <li>1/2 tsp cumin, dry-roasted &amp; ground</li>
+        <li>1/2 inch fresh ginger, grated fine</li>
+        <li>1 green chili, slit (removes seed → milder)</li>
+        <li>10 curry leaves</li>
+        <li>Small pinch hing</li>
+        <li>Rock salt 1/4 tsp total</li>
+        <li>Fresh coriander</li>
+        <li>Optional Suresh version: extra ginger — anti-inflammatory</li>
+      </ul>
+      <span class="section-lbl">Method</span>
+      <ol>
+        <li>Whisk curd + water till completely smooth (no lumps — bad churn = poor emulsification).</li>
+        <li>Add roasted cumin powder, ginger, salt, hing.</li>
+        <li><b>Tempering (optional but Kurnool traditional):</b> heat 1/4 tsp ghee, splutter 1/4 tsp mustard + curry leaves; add hot — the aroma is medicinal.</li>
+        <li>Garnish coriander. Serve at room temp — not chilled (spondylitis for Veni; joint for Suresh).</li>
+      </ol>
+      <p><b>Why daily:</b> probiotic Lactobacillus (gut for all), cooling (Pitta balance — Suresh), digestive (post-lunch bloating), potassium for Suresh's BP, calcium for all. The ginger + hing replace the "digestive gap" of no garlic.</p>
+    </div>
+
+    <!-- 4.12 -->
+    <div class="recipe">
+      <div class="recipe-title">4.12 · Susheel-Safe Sweet · <span class="telugu">Ragi-Kharjura Ladoo</span> (Ragi &amp; Date Ladoo)</div>
+      <div><b>For:</b> Susheel's occasional treat that doesn't spike liver. Also OK for family.</div>
+      <ul>
+        <li>1 cup ragi flour</li>
+        <li>1 cup sesame seeds</li>
+        <li>1/2 cup peanuts, roasted</li>
+        <li>6–8 dates, deseeded &amp; chopped (limit — dates are fructose. This is the treat variable.)</li>
+        <li>2 tbsp cashew, chopped</li>
+        <li>2 tbsp ghee</li>
+        <li>1/2 tsp cardamom powder</li>
+        <li>1 tsp dry ginger powder (Suresh joint bonus)</li>
+        <li><b>No added jaggery, no sugar.</b> Dates are the entire sweetness.</li>
+      </ul>
+      <span class="section-lbl">Method</span>
+      <ol>
+        <li>Roast ragi flour in dry pan on low heat 8 min till nutty aroma. Set aside.</li>
+        <li>Roast sesame + peanut + cashew separately, coarse-grind.</li>
+        <li>In a food processor: chopped dates + 1 tbsp ghee → paste.</li>
+        <li>Combine ragi flour + nut mix + date paste + cardamom + ginger + remaining ghee. Knead 3 min into a pliable dough.</li>
+        <li>Roll into small ladoos (walnut-size). Yields ~18. Store airtight, refrigerate — 2 weeks.</li>
+      </ol>
+      <span class="section-lbl">Portion caps</span>
+      <ul>
+        <li><b>Susheel:</b> 1 ladoo/day AFTER a fiber-rich meal — NOT on empty stomach. Once/day cap.</li>
+        <li><b>Veni:</b> 1 ladoo AFTER lunch — the ragi is low GI, dates are the fructose watch. Not daily.</li>
+        <li><b>Suresh:</b> 1/day — the sesame is joint-medicine.</li>
+        <li><b>Karthik:</b> 2/day OK.</li>
+      </ul>
+      <p><b>Why this recipe wins:</b> Susheel gets a "sweet" that is 60% mineral-density food (sesame, ragi, peanut), fructose is bound in whole-date fiber (slower absorption than jaggery), and the ragi delivers calcium + iron + fiber. He can carry these in his school box — a homemade treat that fits his liver protocol.</p>
+    </div>
+
+  </div>
+</section>
+<!-- ==================== SECTION 5 ==================== -->
+<section id="s5" class="section s-sky">
+  <div class="section-header">
+    <h2><span class="num">05</span>Cooking Oil &amp; Fat Protocol</h2>
+    <button class="print-btn" onclick="printSection('s5')">Print this section</button>
+  </div>
+  <div class="section-body">
+    <p>In Andhra kitchens, oil is not incidental — it's a chemistry decision. This is the household protocol.</p>
+
+    <h3>Which oil for what</h3>
+    <div class="tbl-wrap"><table>
+      <tr><th>Purpose</th><th>Oil</th><th>Why</th><th>Family cap/day</th></tr>
+      <tr><td>Everyday cooking (curries, tadka)</td><td><span class="telugu">Verusenaga nune</span> — groundnut oil, cold-pressed</td><td>MUFA-dominant, smoke pt 232°C — suits Andhra high-heat cooking. Neutral flavor lets spices lead.</td><td>Family total 4 tbsp/day</td></tr>
+      <tr><td>Therapeutic tadka (specific dals/chutneys)</td><td><span class="telugu">Nuvvula nune</span> — cold-pressed sesame oil</td><td>Sesamin + sesamol antioxidants; mildly antihypertensive (Suresh). Best for gongura pappu, ash gourd pulusu.</td><td>2 tbsp/wk household</td></tr>
+      <tr><td>Occasional (specific chutneys, festival)</td><td>Coconut oil, virgin</td><td>Lauric acid — antimicrobial, MCT. Contested for LDL — use restrained.</td><td>1 tbsp/wk. Skip for Suresh.</td></tr>
+      <tr><td>Drizzle on plated food</td><td><span class="telugu">Neyyi</span> — ghee, home-made from cow milk</td><td>Butyrate (gut), fat-soluble vitamin carrier. Slows glucose response on rice.</td><td>See per-person below</td></tr>
+      <tr><td>NEVER</td><td>Refined palm/soybean/sunflower blended oils; reused frying oil; margarine; vanaspati</td><td>Oxidized fats = joint inflammation (Suresh), liver stress (Susheel), collagen breakdown (Karthik)</td><td>0</td></tr>
+    </table></div>
+
+    <h3>Per-person daily fat allocation</h3>
+    <div class="tbl-wrap"><table>
+      <tr><th>Person</th><th>Cooking oil</th><th>Ghee</th><th>Nuts/seeds fats</th><th>Notes</th></tr>
+      <tr><td>Suresh</td><td>2 tsp (in his portioned curries)</td><td>1 tsp on lunch rice</td><td>1 tbsp sesame chutney</td><td>Strict cap. Fat total ~55 g/day.</td></tr>
+      <tr><td>Veni</td><td>2 tsp</td><td>1 tsp (blunts glucose)</td><td>1 tbsp sesame chutney + 10 peanuts</td><td>~45 g fat</td></tr>
+      <tr><td>Susheel</td><td>3 tsp</td><td>1 tsp</td><td>20 peanuts + 1 tbsp sesame + 4 walnuts</td><td>Growing boy — 55g fat needed</td></tr>
+      <tr><td>Karthik</td><td>3 tsp</td><td>2 tsp OK</td><td>25 peanuts + sesame + 6 walnuts</td><td>70 g fat for recovery</td></tr>
+    </table></div>
+
+    <h3>Ghee — when medicinal, when to avoid</h3>
+    <div class="callout good"><b>Therapeutic ghee use:</b>
+      <ul style="margin-left:20px">
+        <li>1 tsp on hot rice with dal → fat-soluble vitamins absorbed, glucose response slower (Veni benefits).</li>
+        <li>1/4 tsp in tadka of dal → aroma + curcumin bioavailability (turmeric is fat-soluble).</li>
+        <li>1/4 tsp in warm milk at night → butyrate → sleep/gut.</li>
+      </ul>
+    </div>
+    <div class="callout warn"><b>Avoid ghee for:</b>
+      <ul style="margin-left:20px">
+        <li>Deep-frying anything.</li>
+        <li>Excess in sweets (Suresh's cap).</li>
+        <li>Fried Andhra snacks (mysore bonda, punugulu, bajji) — Suresh: never; Veni: never; Susheel: rare; Karthik: occasional.</li>
+      </ul>
+    </div>
+
+    <h3>Tadka / popu optimization</h3>
+    <p>Two changes multiply flavor per drop of oil:</p>
+    <ol>
+      <li><b>Bloom spices in a smaller pan first, add to a larger low-oil dish</b> — you're extracting spice into 1 tsp oil, then diluting into the whole dish. Same flavor, 1/3 the oil.</li>
+      <li><b>Toast spices dry before oil.</b> Dry-toast mustard/cumin till fragrant → add hot oil → the aromatics are already released. Requires only 1/2 tsp oil to carry vs. usual 1 tbsp.</li>
+    </ol>
+
+    <h3>Frying vs. tempering vs. stir-frying — Andhra style</h3>
+    <ul>
+      <li><b>Frying (deep):</b> only 1×/wk, only for Karthik as an occasional item — punugulu or bajji. For Suresh, Veni, Susheel: <b>use baked/air-fried substitutes</b>. Baked mirchi bajji at 200°C 20 min is 90% less oil, similar taste.</li>
+      <li><b>Tempering (popu):</b> 1–2 tsp oil per pot of dal/curry — this is family-safe.</li>
+      <li><b>Stir-frying (vepudu):</b> 2 tsp oil per 250g vegetable is the ceiling. Cover briefly to steam-cook — less oil needed than continuous open sauté.</li>
+    </ul>
+
+    <div class="callout"><b>The one behavior change that matters most:</b> stop pouring oil "till it looks right." Measure with a teaspoon. In this household, Veni will save 3 tbsp oil/day = 350 kcal × 4 people = an accidental family weight-loss.</div>
+  </div>
+</section>
+
+<!-- ==================== SECTION 6 ==================== -->
+<section id="s6" class="section s-maroon">
+  <div class="section-header">
+    <h2><span class="num">06</span>Daily Therapeutic Morning Rituals</h2>
+    <button class="print-btn" onclick="printSection('s6')">Print this section</button>
+  </div>
+  <div class="section-body">
+    <p>Before breakfast, before anyone speaks to anyone. 5:30–6:30 AM. Fifteen minutes. Person-specific. No Western supplements — these are traditional South Indian and Ayurvedic preparations.</p>
+
+    <div class="person-card">
+      <h3>Suresh · 5:30 AM · Anti-BP + Joint Ritual</h3>
+      <ol>
+        <li><b>Warm water 300 ml</b>, sip slowly (not gulp — sudden cold OR gulping raises BP).</li>
+        <li>Into a second cup: <b>200 ml warm water + 1/4 tsp turmeric + pinch black pepper + 5 tulsi leaves + 1/2 tsp lemon juice</b>. Steep 3 min, drink slow.</li>
+        <li><b>Chew 5 tulsi leaves + 3 curry leaves</b> (empty stomach chlorophyll + adaptogen).</li>
+        <li><b>Ashwagandha 1/4 tsp powder in warm milk (100 ml)</b> — 3×/wk, not daily. Ask Ayurveda vaidya locally about safe brand.</li>
+        <li>15 min sunlight on lower back &amp; legs (sciatica-relieving, D3-boosting).</li>
+      </ol>
+      <p><b>Why:</b> Turmeric-pepper combination gives 20 mg curcumin at max bioavailability — anti-inflammatory for sciatica + knees. Tulsi is an ACE-inhibitor-mild — supports BP. Warm water hydration timed with cortisol rise (5:30–6:30 is peak cortisol) reduces morning BP spike. Ashwagandha helps chronic-pain-related stress.</p>
+    </div>
+
+    <div class="person-card veni">
+      <h3>Veni · 5:30 AM · Diabetes + Glaucoma Ritual</h3>
+      <ol>
+        <li><b>Methi water:</b> The night before, soak 1 tsp methi seeds in 200 ml water. Drink the water AM + chew the seeds. Non-negotiable daily.</li>
+        <li><b>Coriander seed water:</b> Same night before — 1 tsp coriander seeds in 150 ml water. Drink 30 min after methi water. This is the glaucoma protocol.</li>
+        <li><b>1 fresh amla — grated on rock salt</b> or eaten whole. Vit C for capillaries + chromium for glucose.</li>
+        <li><b>Neem twig chew 30 seconds</b> (traditional — mild hypoglycemic + oral health).</li>
+        <li>5 min gentle neck rotations + gentle spinal stretches for spondylitis.</li>
+        <li>Sunlight 10 min.</li>
+      </ol>
+      <p><b>Why:</b> Methi galactomannan reduces morning fasting glucose over weeks. Coriander seed water lowers intraocular pressure (traditional; mild but documented). Amla chromium + Vit C. Neem: bitter compounds mildly improve insulin sensitivity. Sequence — soaked-water first, then amla, then movement — allows glucose regulation activation before food.</p>
+    </div>
+
+    <div class="person-card susheel">
+      <h3>Susheel · 6:00 AM · Liver-Cycling Ritual</h3>
+      <ol>
+        <li><b>Warm water 300 ml + 1/2 lemon squeezed + 1/2 tsp jeera powder</b>. This is a mild bile-flow starter — supports liver glycogen cycling out of the overnight fast.</li>
+        <li><b>50 ml ash gourd juice</b>, freshly extracted (200g ash gourd → juice in blender → strain). Traditional Ayurveda liver-cooling. Rotate: 3 days/week if fresh availability is a problem.</li>
+        <li><b>1 fresh amla chewed with a pinch of rock salt</b> — Vit C for hair pigmentation cofactor + hepatoprotective.</li>
+        <li><b>5–7 fresh curry leaves chewed</b> — copper for melanin, iron, hepatoprotective alkaloids.</li>
+        <li>15 min walk (school-day pace) OR 10 min surya namaskar. Movement is critical for NAFLD — fat is mobilized out of liver only by muscle demand.</li>
+        <li>Breakfast within 45 min. Do not extend fast beyond 12 h overnight — NAFLD liver produces excess ketones which stress it further.</li>
+      </ol>
+      <p><b>Why:</b> Liver runs glycogen cycles overnight — a gentle acidic wake-up (lemon-jeera) triggers healthy bile flow. Ash gourd juice is the single most-studied Ayurveda liver-cooler. Amla &amp; curry leaves address graying at the pigment-synthesis level. Morning movement + food-within-45-min stabilizes hepatic metabolism.</p>
+    </div>
+
+    <div class="person-card karthik">
+      <h3>Karthikeya · 6:30 AM · Vit C Load + Recovery Ritual</h3>
+      <ol>
+        <li><b>1 large fresh amla whole</b> — chew slowly with rock salt. 400+ mg Vit C for collagen rebuild and antioxidant load.</li>
+        <li><b>Tulsi-ginger tea:</b> 200 ml water + 5 tulsi leaves + 1/2 inch grated ginger + 3 black pepper corns crushed. Steep 5 min. <b>1/2 tsp raw honey</b> at end (do not boil honey). Slowly sipped — 10 min.</li>
+        <li><b>Pranayama 10 min</b> — Anulom-Vilom (alternate nostril) + Bhramari. Improves oxygenation, calms stress axis, aids recovery.</li>
+        <li><b>1 tbsp soaked flax seeds</b> — omega-3 for collagen &amp; inflammation.</li>
+        <li>Physiotherapy exercises for knee (as prescribed by ortho).</li>
+        <li>Breakfast within 60 min.</li>
+      </ol>
+      <p><b>Why:</b> The Vit C loading is essential for post-op ligament rebuild — 400 mg AM + 100 mg lunch + 100 mg evening supports collagen synthesis at the demanding levels a triple-ligament repair requires. Tulsi has documented adaptogen and respiratory-supportive effects. Pranayama improves oxygenation and reduces stress hormones that slow tissue repair. Flax is his omega-3 within a vegetarian frame.</p>
+    </div>
+
+    <div class="callout"><b>Compliance tip:</b> Prep the previous night. Methi &amp; coriander seeds in labeled jars. Amla washed &amp; ready. Tulsi &amp; ginger cut. The ritual should take zero cognitive effort at 5:30 AM.</div>
+  </div>
+</section>
+
+<!-- ==================== SECTION 7 ==================== -->
+<section id="s7" class="section">
+  <div class="section-header">
+    <h2><span class="num">07</span>What to Strictly Avoid</h2>
+    <button class="print-btn" onclick="printSection('s7')">Print this section</button>
+  </div>
+  <div class="section-body">
+
+    <h3>7A · Family-wide strict avoids</h3>
+    <ul>
+      <li><b>Maida (refined wheat flour) in all forms:</b> maida dosa (some hotels use it), pav, bread, biscuits (Britannia/Parle-G/creams), rusk, samosa/kachori pastry, cakes, pastries, Andhra restaurant sweets with maida binder, packaged parotta.</li>
+      <li><b>Refined sugar in packet form:</b> switch coffee to unsweetened; if sweetness essential, 1/4 tsp jaggery. Chai: unsweetened OR 1/4 tsp jaggery. <b>Soft drinks, packaged juices, energy drinks, flavored milks: zero.</b></li>
+      <li><b>Vanaspati / dalda:</b> hidden in bakery items — Congress cake, ribbon pakoda from packets, packaged bhujia.</li>
+      <li><b>Deep-fried packaged snacks:</b> Lays, Kurkure, Bingo, mixture packets, packaged murukku, packet chudva/chivda.</li>
+      <li><b>Reused frying oil:</b> street vendor pooris, punugulu, mysore bonda. Common Kurnool tiffin-stall temptation. Home-fried once = OK occasionally; recycled oil = joint inflammation + liver damage + collagen breakdown all at once.</li>
+      <li><b>MSG-heavy foods:</b> instant noodles, Chinese street food, packet soups.</li>
+      <li><b>Excess pickle:</b> avakaya, magaya, tokku pachadi — sodium 2000+ mg per tsp. Family total: 1 tsp/day cap.</li>
+      <li><b>Papad (appadam) in bulk:</b> 1 papad = 400 mg sodium. Max 1/wk, roasted only.</li>
+    </ul>
+
+    <h3>7B · Suresh — specific avoids (BP + Joints)</h3>
+    <div class="callout warn">
+      <ul style="margin-left:20px">
+        <li><b>Avakaya, gongura pachadi with brine, tokku pachadi</b> — zero. If he eats gongura, it should be in dal form (gongura pappu), not pickle.</li>
+        <li><b>Papad — zero.</b></li>
+        <li><b>Cheese slices, butter (salted), packaged paneer</b> — hidden sodium.</li>
+        <li><b>Salted namkeens, chekkalu, murukku (packet)</b> — the salt trap.</li>
+        <li><b>Deep-fried:</b> mysore bonda, punugulu, mirchi bajji, mirapakaya bajji, ariselu — all bad for joints (oxidized fat = inflammation) and BP (salt).</li>
+        <li><b>Purine-heavy items post-surgery:</b> heavy urad-dal-only meals in bulk, mushroom (if introduced), yeast extract, cauliflower excess.</li>
+        <li><b>Nightshades in bulk:</b> brinjal 1×/wk max; tomato 1 medium/day cap; potato small portions only.</li>
+        <li><b>Coffee:</b> 1 filter coffee/day, unsweetened, half-and-half with milk. Not the "3 cups a day" Kurnool habit.</li>
+        <li><b>Late-night snacks:</b> zero after 8:30 PM.</li>
+      </ul>
+    </div>
+
+    <h3>7C · Veni — specific avoids (Diabetes + Glaucoma)</h3>
+    <div class="callout warn">
+      <ul style="margin-left:20px">
+        <li><b>Empty-stomach fruit:</b> banana AM, mango, chikoo, grapes — spike glucose fastest. Fruit only after meal, small portion.</li>
+        <li><b>Fruit juices (all — even fresh):</b> zero.</li>
+        <li><b>Sweetened lassi, flavored yogurt, milkshakes.</b></li>
+        <li><b>Rice-only large meals</b> without dal/curry — extremely high GI.</li>
+        <li><b>Sabudana / sago (khichdi):</b> extremely high GI. Wednesday fasting day switch to fruit + nuts + majjiga.</li>
+        <li><b>White rice large portions:</b> cap 1/2 katori par-boiled per meal.</li>
+        <li><b>Nightshades in bulk for spondylitis:</b> as Suresh.</li>
+        <li><b>Excess caffeine:</b> raises intraocular pressure. 1 cup coffee/day cap. No espresso shots.</li>
+        <li><b>Steroid-effect foods:</b> licorice (mulethi) — some Ayurvedic mixes contain — raises BP + IOP.</li>
+        <li><b>Sugary Andhra sweets:</b> mysore pak, badusha, jangiri, gulab jamun — <b>ZERO.</b> Recipe 4.12 is her sweet.</li>
+      </ul>
+    </div>
+
+    <h3>7D · Susheel — specific avoids (NAFLD + Adolescent)</h3>
+    <div class="callout warn">
+      <ul style="margin-left:20px">
+        <li><b>Fructose bombs — full family understanding needed:</b>
+          <ul>
+            <li>Frooti, Maaza, Slice, Real, Tropicana, Real Activ — all packaged juices</li>
+            <li>Coca-cola, Pepsi, Sprite, Thums Up, Mirinda, 7up</li>
+            <li>Sweetened Amul Kool, Nescafé bottled, Milo</li>
+            <li>Bottled ice tea (Lipton), energy drinks (Red Bull, Sting)</li>
+            <li>Ketchup (surprisingly fructose-heavy), packaged jams</li>
+            <li>Dry fruit binges: dates, raisins, figs — concentrated fructose; 3 dates OK, 10 dates = damage</li>
+            <li>Excess jaggery in sweets — cap 5g/day</li>
+            <li>Honey in bulk — spoonful in tea OK, spoonful spooned direct = fructose spike</li>
+          </ul>
+        </li>
+        <li><b>School canteen traps (Kurnool schools):</b> samosa, puff, "veg roll", cream biscuits, mixtures/kurkure, chai with sugar, cold drinks, milk-based sweet packets, Bourbon/Oreo.</li>
+        <li><b>Fried snacks at 14 that kill his liver:</b> mirchi bajji (bulk), pakoda, mysore bonda, punugulu, samosa, kachori, poori (frequent).</li>
+        <li><b>Late-night snacks:</b> anything after 9 PM — liver fat accumulates in nocturnal eating window.</li>
+        <li><b>Fast food:</b> Domino's, McDonald's, KFC-veg, Subway (sauce-heavy).</li>
+        <li><b>Peer situations to plan for:</b> birthday parties (allow 1 slice cake OR 1 samosa, not both; then no dinner), cinema outings (no popcorn XL — small, unsalted), sleepovers (send home food).</li>
+      </ul>
+    </div>
+
+    <h3>7E · Karthikeya — specific avoids (Ligament + Recovery)</h3>
+    <div class="callout warn">
+      <ul style="margin-left:20px">
+        <li><b>Processed snacks that add oxidative load:</b> namkeens, chips, packaged mixture.</li>
+        <li><b>Excess coffee:</b> excess coffee acidifies the system and slows recovery. 2 cups max.</li>
+        <li><b>Alcohol:</b> combined with post-op ligament recovery, alcohol doubles collagen destruction and delays recovery by months.</li>
+        <li><b>Reused oil street food:</b> punugulu, bajji from stalls.</li>
+        <li><b>Excess spicy pickle:</b> can worsen gastric issues + doesn't help recovery.</li>
+        <li><b>Deficit dieting:</b> he is 70 kg with a triple-ligament injury — he needs 2400 kcal, not less. Skipping meals is off-limits during recovery.</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+<!-- ==================== SECTION 8 ==================== -->
+<section id="s8" class="section s-turmeric">
+  <div class="section-header">
+    <h2><span class="num">08</span>Festivals &amp; Seasonal Navigation</h2>
+    <button class="print-btn" onclick="printSection('s8')">Print this section</button>
+  </div>
+  <div class="section-body">
+
+    <h3>Ugadi Pachadi · <span class="telugu">Ugadi Pachadi</span></h3>
+    <p>The six-taste pachadi is medically brilliant — each family member should focus on different tastes:</p>
+    <div class="tbl-wrap"><table>
+      <tr><th>Ingredient</th><th>Taste</th><th>Best For</th><th>Person-Cap</th></tr>
+      <tr><td>Neem flowers</td><td>Bitter</td><td>Veni (mild hypoglycemic), Susheel (liver-cleanse)</td><td>All can eat freely</td></tr>
+      <tr><td>Jaggery</td><td>Sweet</td><td>Karthik OK. Susheel &amp; Veni: minimal.</td><td>Suresh: 1/4 tsp; Veni: 1/4 tsp; Susheel: 1/2 tsp; Karthik: 1 tsp</td></tr>
+      <tr><td>Tamarind pulp</td><td>Sour</td><td>All in moderation</td><td>Susheel light — fructose</td></tr>
+      <tr><td>Raw mango</td><td>Astringent</td><td>All — Vit C, low sugar</td><td>OK</td></tr>
+      <tr><td>Green chili</td><td>Pungent</td><td>All — mild capsaicin</td><td>Suresh: light — BP-safe but capsaicin can transiently spike</td></tr>
+      <tr><td>Rock salt</td><td>Salty</td><td>Sendha namak — sodium lower than sea salt</td><td>Suresh: minimal even here</td></tr>
+    </table></div>
+    <p><b>Serving method for this family:</b> Prepare a single pachadi with jaggery only 1 tbsp for the whole 4-serving batch. Serve 1 tbsp per person. This is a ceremony, not a meal — do not eat a whole katori.</p>
+
+    <h3>Sankranti · <span class="telugu">Bhogi · Sankranti · Kanuma</span></h3>
+    <p>Traditional Sankranti = ven pongal + chakra pongali + arisalu + bobbatlu + payasam + pulihora.</p>
+    <ul>
+      <li><b>Ven pongal:</b> Family-safe — use hand-pounded rice + moong + pepper + ghee + cashew. Suresh: 3/4 katori; Veni: substitute 1/2 rice with foxtail millet.</li>
+      <li><b>Chakra pongali (sweet pongal):</b> Susheel: 1 tbsp AFTER lunch, not standalone. Veni: 1 tbsp same rule. Suresh: 1 tbsp — heart-medicine-user should check BP that day. Karthik: 1 katori OK.</li>
+      <li><b>Sesame preparations (nuvvula unde, chikki):</b> Actively beneficial. See Recipe 4.9 for the mineral value. Just cap jaggery. 1 small unde/person.</li>
+      <li><b>Arisalu, bobbatlu, ariselu:</b> Ceremonial 1-piece taste for Suresh, Veni, Susheel. Karthik 2.</li>
+      <li><b>Pulihora:</b> 1/2 katori for Veni &amp; Suresh; 1 katori for boys. Cook with fresh curry leaves + peanuts — those are the therapeutic components.</li>
+      <li><b>Post-Sankranti day:</b> Lighter day — ash gourd pulusu + moong dal + charu annam to compensate hepatic and BP load.</li>
+    </ul>
+
+    <h3>Varalakshmi Vratham / Poojas</h3>
+    <ul>
+      <li>Prasadam (typically sweet pongal, kesari, payasam): 1 tbsp for Susheel &amp; Veni & Suresh AFTER a heavy fiber+protein meal. Do not eat prasadam on empty stomach.</li>
+      <li>Karthik: 1 small katori OK.</li>
+      <li>Consecrated food (naivedyam like ragi laddoos or coconut-based prasadam) — small servings.</li>
+    </ul>
+
+    <h3>Vinayaka Chavithi / Ganesh</h3>
+    <ul>
+      <li>Modak / kudumulu — steamed varieties (kudumulu) are family-safe. Fried varieties (poornam boorelu) — 1 for Suresh/Veni/Susheel; 3 for Karthik.</li>
+    </ul>
+
+    <h3>Diwali</h3>
+    <ul>
+      <li>Karam &amp; chekkalu (fried) — cap 3 pieces/person. Bake versions preferable.</li>
+      <li>Sweets: 1 mysore pak OR 1 kaju katli piece for Suresh/Veni/Susheel. Karthik: 2. NOT both.</li>
+      <li>Suggest home-made ragi ladoo (Recipe 4.12) as the family's Diwali sweet — everyone can eat freely.</li>
+    </ul>
+
+    <h3>Andhra Summer Protocol · March–June</h3>
+    <p>Kurnool summers hit 42°C+. Priorities: hydration, potassium, avoid heat-aggravating foods.</p>
+    <ul>
+      <li><b>Family daily:</b> Fresh majjiga (see Recipe 4.11) 2× daily. Ash gourd juice 100 ml AM for Susheel &amp; Veni. Tender coconut water — Suresh, Karthik daily; Veni 2×/wk (natural sugars, moderate); Susheel 3×/wk.</li>
+      <li><b>Cooling foods:</b> ash gourd, bottle gourd, dosakaya, ridge gourd, curd rice, tender cucumber. Do most cooking mornings — light dinners.</li>
+      <li><b>Reduce:</b> heat-generating foods — heavy urad-dal preps, deep-fried, mustard-oil pickles, tamarind excess, extra red chili.</li>
+      <li><b>Buttermilk:</b> post-lunch mandatory in summer, all four.</li>
+      <li><b>Fruit:</b> watermelon (Karthik/Suresh in moderation), muskmelon, papaya. Veni: limit watermelon (glucose spike). Susheel: papaya, muskmelon OK; watermelon small.</li>
+    </ul>
+
+    <h3>Monsoon · July–September</h3>
+    <ul>
+      <li>Digestive fires (agni) dip. Cooking should emphasize warm spices — ginger, pepper, ajwain.</li>
+      <li>Steamed &gt; raw vegetables (contamination risk).</li>
+      <li>Wash leafy greens 3× in salt water.</li>
+      <li>Tulsi tea for family — immunity + Karthik lung.</li>
+      <li>Reduce curd at night — replace with warm milk-turmeric for Susheel &amp; Karthik.</li>
+      <li>Ridge gourd, snake gourd, ivy gourd (dondakaya) — seasonal specials, work them in.</li>
+    </ul>
+
+    <h3>Winter · November–February</h3>
+    <ul>
+      <li>Bajra (sajja) rotis 2×/wk — iron, warming.</li>
+      <li>Sesame ladoos legitimate here — calcium loading for Suresh's knees, Veni's spondylitis.</li>
+      <li>Seasonal Andhra vegetables: bendakaya (winter), chikkudukaya (winter), fresh methi leaves (season peak).</li>
+      <li>Ghee slightly more permissible — Ayurvedic winter allowance. Suresh: still 1 tsp cap.</li>
+      <li>Sunlight remains critical — even 20 min gives useful D3 in Kurnool winter.</li>
+    </ul>
+
+    <h3>Fasting (Ekadashi, Vratam, Aadi/Purnima traditions)</h3>
+    <ul>
+      <li><b>Veni:</b> Never total-fast with diabetes. Fruit + majjiga + peanuts throughout — split into 5 small meals.</li>
+      <li><b>Susheel:</b> Never long fasts with NAFLD — increases hepatic ketogenesis stress. If a family fast: fruit + peanut chikki (small) + majjiga.</li>
+      <li><b>Suresh:</b> Fasting acceptable but sipping water frequently — dehydration spikes BP. Sabudana khichdi — <b>skip</b>, it's high GI. Substitute: <b>foxtail millet upma without onion</b>.</li>
+      <li><b>Karthik:</b> Fasting is fine but delays recovery — discuss with him.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ==================== SECTION 9 ==================== -->
+<section id="s9" class="section">
+  <div class="section-header">
+    <h2><span class="num">09</span>Managing a Combined Household — One Cook, Four Needs</h2>
+    <button class="print-btn" onclick="printSection('s9')">Print this section</button>
+  </div>
+  <div class="section-body">
+    <p>Veni cannot cook four separate meals. She should not have to. This section is the operational system.</p>
+
+    <h3>The "Base + Modification" cook-once framework</h3>
+    <p><b>Rule 1: cook to Veni-safe seasoning.</b> Diabetic + low-salt is the strictest baseline. Add jaggery / extra salt at individual plates only if needed.</p>
+    <p><b>Rule 2: use portion, not recipe, to differentiate.</b> The dal is the same. Suresh gets 1 katori dal + 3/4 katori rice. Susheel gets 1.5 katori dal + 1 katori rice. Same pot.</p>
+    <p><b>Rule 3: always have 2 sides — one starch-safe (millet), one veg-safe (bitter gourd / ridge gourd).</b> Veni &amp; Suresh eat the veg side first, then rice/dal. Boys eat everything.</p>
+    <p><b>Rule 4: one condiment does multi-duty.</b> Sesame chutney podi (Recipe 4.9) provides calcium for Suresh's knees, copper for Susheel's hair, calcium for Veni's spondylitis, silica/protein for Karthik. Kept in a jar, used daily by all — Veni cooks it once every 3 weeks.</p>
+
+    <h3>Always-ready pantry — the therapeutic five</h3>
+    <div class="tbl-wrap"><table>
+      <tr><th>Item</th><th>Prep once</th><th>Use throughout week</th><th>Serves</th></tr>
+      <tr><td>Sesame chutney podi (Recipe 4.9)</td><td>Sunday, 30 min</td><td>1 tbsp/person on rice at lunch</td><td>All four — Ca, Mg, Cu, B-vits</td></tr>
+      <tr><td>Ginger chutney (allam pachadi)</td><td>Sunday, 20 min</td><td>1 tsp with dosa, rice</td><td>All — anti-inflammatory, digestive</td></tr>
+      <tr><td>Amla pachadi (Recipe 4.10)</td><td>Weekly fresh</td><td>1 tsp/person at lunch</td><td>All — Vit C load</td></tr>
+      <tr><td>Karivepaku podi (curry leaf powder)</td><td>Fortnightly</td><td>1 tbsp/person on rice/dosa</td><td>All — iron, copper, calcium</td></tr>
+      <tr><td>Methi seeds — pre-portioned in jar with tsp measure</td><td>N/A</td><td>1 tsp soaked overnight for Veni's morning water</td><td>Veni daily; family in tadka</td></tr>
+    </table></div>
+
+    <h3>Sunday batch-prep session (2 hours)</h3>
+    <ol>
+      <li>Sesame chutney podi — 30 min</li>
+      <li>Ginger chutney — 20 min</li>
+      <li>Amla pachadi — 20 min (weekly)</li>
+      <li>Sprout whole moong &amp; kala chana — start (need 24 h) — 5 min setup</li>
+      <li>Grind idli-dosa batter for the week (2 batches, refrigerate one — ferment second half-week) — 30 min</li>
+      <li>Pre-portion morning ritual jars (methi + coriander seeds) — 10 min</li>
+      <li>Wash &amp; refrigerate vegetables cut for 3 days — 15 min</li>
+    </ol>
+
+    <h3>Weekly shopping list — Kurnool market realistic</h3>
+
+    <h4>Vegetables (weekly, per family of 4)</h4>
+    <ul>
+      <li>Drumsticks — 8–10</li>
+      <li>Drumstick leaves — 2 bunches (from local rythu bazaar)</li>
+      <li>Bitter gourd — 6 medium</li>
+      <li>Ash gourd — 1 medium (whole, keeps 10 days cut &amp; refrigerated)</li>
+      <li>Bottle gourd — 2</li>
+      <li>Ridge gourd — 3</li>
+      <li>Okra — 500 g</li>
+      <li>Gongura — 3 bunches (spread across the week)</li>
+      <li>Raw banana — 4</li>
+      <li>Ripe papaya — 1 medium (Susheel &amp; Karthik)</li>
+      <li>Onions — 1 kg</li>
+      <li>Green chili — 100 g</li>
+      <li>Ginger — 200 g fresh</li>
+      <li>Curry leaves — 4 bunches (freeze extra)</li>
+      <li>Coriander — 3 bunches</li>
+      <li>Fresh methi leaves — 2 bunches (seasonal)</li>
+      <li>Tomato — 1 kg</li>
+      <li>Fresh amla — 30 pieces (buy season, freeze)</li>
+      <li>Lemon — 6</li>
+      <li>Coconut — 1 (small pieces for chutneys)</li>
+    </ul>
+
+    <h4>Dals &amp; grains (fortnightly)</h4>
+    <ul>
+      <li>Toor dal — 1 kg</li>
+      <li>Moong dal (split) — 500 g</li>
+      <li>Whole green moong — 500 g (sprouts)</li>
+      <li>Chana dal — 500 g</li>
+      <li>Urad dal — 500 g</li>
+      <li>Black chana (kala chana) — 500 g</li>
+      <li>Hand-pounded rice / Sona Masoori — 5 kg</li>
+      <li>Par-boiled rice (for Veni) — 2 kg</li>
+      <li>Ragi flour — 1 kg</li>
+      <li>Jowar flour — 500 g</li>
+      <li>Bajra flour — 500 g</li>
+      <li>Foxtail millet (korralu) — 1 kg</li>
+      <li>Little millet (saamalu) — 500 g</li>
+      <li>Whole wheat flour — 2 kg</li>
+    </ul>
+
+    <h4>Fats, spices &amp; therapeutic</h4>
+    <ul>
+      <li>Cold-pressed groundnut oil — 1 L bottle</li>
+      <li>Cold-pressed sesame oil — 250 ml</li>
+      <li>Cow ghee — homemade preferred, 200 g store</li>
+      <li>Turmeric powder — buy whole turmeric fingers, powder monthly</li>
+      <li>Black pepper — whole peppercorns, grind fresh</li>
+      <li>Cumin seeds — 100 g</li>
+      <li>Mustard seeds — 100 g</li>
+      <li>Fenugreek seeds — 100 g (critical for Veni)</li>
+      <li>Coriander seeds — 100 g (glaucoma protocol)</li>
+      <li>Pure hing resin — 25 g (not compounded starch versions)</li>
+      <li>Cardamom, cinnamon, cloves — small quantities</li>
+      <li>Sesame seeds white &amp; black — 500 g each</li>
+      <li>Peanuts — 500 g</li>
+      <li>Walnuts — 250 g</li>
+      <li>Rock salt (sendha namak) — 500 g (Suresh's plate salt)</li>
+      <li>Tulsi plant — grow at home. 4-pot minimum.</li>
+    </ul>
+
+    <h4>Dairy (weekly)</h4>
+    <ul>
+      <li>Cow milk — 12 L/week (Susheel 400 ml, Karthik 400 ml, Suresh 200 ml, Veni 100 ml daily)</li>
+      <li>Set curd daily from starter</li>
+      <li>Paneer — 200 g homemade weekly (from 1 L milk)</li>
+    </ul>
+
+    <h3>Budget realism — Kurnool 2026 prices</h3>
+    <p>This entire plan should cost the family <b>~₹9,000–11,000/month</b> for four people (excluding festival splurges). Compared to:</p>
+    <ul>
+      <li>Eating out 2×/wk + street food snacks: ₹6,000–8,000/month wasted on foods worsening every condition here</li>
+      <li>Packaged foods (biscuits, chips, juices): ₹2,500–4,000/month</li>
+      <li>Medications the diet may reduce dependence on (with doctor's guidance): Veni's diabetes meds ₹1,500+, Suresh's BP meds ₹800+, Susheel's future risk = uncalculable</li>
+    </ul>
+    <p><b>Net effect: this plan costs the same or slightly less than the current eating pattern.</b> The investment is Veni's time (2 h Sunday + normal cooking daily). Nothing exotic — no quinoa, no chia seeds, no protein powder.</p>
+
+    <h3>Where to source in Kurnool</h3>
+    <ul>
+      <li><b>Rythu Bazaar</b> — best for fresh drumstick, moringa leaves, gongura, seasonal greens. Twice weekly visits.</li>
+      <li><b>Local kirana</b> — dals, rice, oil, spices. Choose the shop that stocks cold-pressed oils.</li>
+      <li><b>Local Ayurvedic store</b> — pure hing resin, quality methi, dried tulsi if plant not thriving.</li>
+      <li><b>Home garden</b> — grow tulsi (4 pots), curry leaves (in a large pot), moringa (needs space — 1 tree feeds family), amla if possible.</li>
+    </ul>
+
+    <h3>Kitchen equipment that pays back</h3>
+    <ul>
+      <li><b>Cast-iron kadai + iron tawa</b> — adds 3–5 mg iron per meal (important for Veni, Susheel).</li>
+      <li><b>Idli-molds + wet grinder</b> — home fermentation = B12 uplift.</li>
+      <li><b>Air-fryer / tandoor</b> — replaces deep-frying for bajji, vada, chekkalu. Big win for the whole family.</li>
+      <li><b>Stone mortar (rolu-rokali)</b> — freshly-pounded spices for max potency.</li>
+      <li><b>Small kitchen scale</b> — for the first month, measure oil and rice per person. Trains portion instinct.</li>
+    </ul>
+  </div>
+</section>
+<!-- ==================== SECTION 10 ==================== -->
+<section id="s10" class="section s-maroon">
+  <div class="section-header">
+    <h2><span class="num">10</span>Progress Milestones &amp; Warning Signs</h2>
+    <button class="print-btn" onclick="printSection('s10')">Print this section</button>
+  </div>
+  <div class="section-body">
+
+    <h3>10A · Expected milestones if the diet is followed consistently</h3>
+
+    <div class="person-card">
+      <h3>Suresh · Expected progress</h3>
+      <div class="tbl-wrap"><table>
+        <tr><th>Timeframe</th><th>Weight</th><th>BP (systolic)</th><th>Energy / joints</th></tr>
+        <tr><td>4 weeks</td><td>−2 kg (mostly water + inflammation loss)</td><td>~150 mmHg (from 160)</td><td>Sciatica pain reduced 15–20%. Morning stiffness less.</td></tr>
+        <tr><td>8 weeks</td><td>−4 kg</td><td>~140 mmHg</td><td>Knee load pain reduced. Walking 15 min easier.</td></tr>
+        <tr><td>3 months</td><td>−7–8 kg</td><td>~135 mmHg</td><td>Sciatica: 30–40% pain reduction. Sleep improved.</td></tr>
+        <tr><td>6 months</td><td>−12–15 kg (target 90 kg)</td><td>~130 mmHg</td><td>Significantly less pain. May reduce BP medication under doctor.</td></tr>
+        <tr><td>12 months</td><td>−22–25 kg (target 80–85 kg)</td><td>~125 mmHg (near normal)</td><td>Post-op knees under substantially less load. Nerve health improved.</td></tr>
+      </table></div>
+    </div>
+
+    <div class="person-card veni">
+      <h3>Veni · Expected progress</h3>
+      <div class="tbl-wrap"><table>
+        <tr><th>Timeframe</th><th>Pre-meal glucose</th><th>HbA1c</th><th>Other</th></tr>
+        <tr><td>2 weeks</td><td>~180 mg/dL</td><td>—</td><td>Fewer glucose crashes. Post-meal drowsiness decreased.</td></tr>
+        <tr><td>4 weeks</td><td>~150 mg/dL</td><td>—</td><td>Weight −1.5 kg. Morning energy up.</td></tr>
+        <tr><td>3 months</td><td>~130 mg/dL</td><td>Retest — hoped 7.5%</td><td>Spondylitis flare-ups reduced. Eye pressure test recommended.</td></tr>
+        <tr><td>6 months</td><td>~110 mg/dL (well-controlled)</td><td>Hoped 6.5–7%</td><td>Meds may reduce under endocrinologist. Weight −5–6 kg. Vision stability improved.</td></tr>
+        <tr><td>12 months</td><td>Well-controlled</td><td>&lt; 6.5% target</td><td>Glaucoma progression slowed. Spondylitis meaningfully improved.</td></tr>
+      </table></div>
+    </div>
+
+    <div class="person-card susheel">
+      <h3>Susheel · Expected progress</h3>
+      <div class="tbl-wrap"><table>
+        <tr><th>Timeframe</th><th>Weight (safe rate)</th><th>Liver enzymes (SGOT/SGPT)</th><th>Other</th></tr>
+        <tr><td>4 weeks</td><td>−2 kg</td><td>Small drop expected</td><td>Better morning energy. Fewer sugar cravings after 2 weeks (adjustment phase).</td></tr>
+        <tr><td>3 months</td><td>−6 kg</td><td>Meaningful drop toward normal</td><td>Hair graying rate — expect no new grays; existing ones may not reverse but stop growth. Growth height maintained (this is critical).</td></tr>
+        <tr><td>6 months</td><td>−12–14 kg (target ~100 kg)</td><td>Approaching normal range</td><td>Repeat ultrasound at 6 months — Grade 2 NAFLD may improve to Grade 1.</td></tr>
+        <tr><td>12 months</td><td>−22–25 kg (target 90 kg)</td><td>Normal range</td><td>Grade 1 NAFLD, possibly resolved. Height fully preserved. Hair pigmentation: new hair growing may be pigmented.</td></tr>
+      </table></div>
+      <div class="callout"><b>Safety note:</b> more than 2 kg/month weight loss in a 14-year-old with NAFLD can worsen liver stress. Do not let him crash-diet even if he wants to.</div>
+    </div>
+
+    <div class="person-card karthik">
+      <h3>Karthikeya · Expected progress</h3>
+      <div class="tbl-wrap"><table>
+        <tr><th>Timeframe</th><th>Ligament recovery</th><th>Overall wellness</th></tr>
+        <tr><td>4 weeks</td><td>Collagen synthesis rate improved; less swelling</td><td>Improved energy; tulsi + turmeric protocol supports immunity and stress recovery</td></tr>
+        <tr><td>3 months</td><td>Physio milestones on track — normal for triple-lig recovery</td><td>Vit C supplementation via diet keeps collagen deficit at bay; sleep &amp; digestion improve</td></tr>
+        <tr><td>6 months</td><td>Normal ROM ~80–90% (this is the standard timeline; diet is a supporter, not a replacement for physio)</td><td>Overall stamina and recovery capacity meaningfully improved</td></tr>
+        <tr><td>12 months</td><td>Full or near-full ligament function if physio &amp; diet compliance held</td><td>Recovery consolidated; body composition strong for a 24-year-old</td></tr>
+      </table></div>
+      <div class="callout"><b>Note:</b> Diet supports recovery — it does not replace physiotherapy. Consistent diet + prescribed physio + adequate sleep are the three legs of a triple-ligament recovery.</div>
+    </div>
+
+    <h3>10B · Red Flags — when to see a doctor immediately</h3>
+
+    <div class="callout warn">
+      <b>Suresh — call/visit doctor if:</b>
+      <ul style="margin-left:20px">
+        <li>Systolic BP &gt; 180 mmHg OR diastolic &gt; 110 mmHg on 2 readings 30 min apart — <b>ER visit</b></li>
+        <li>Sudden severe headache with vision changes / weakness — <b>ER</b> (possible stroke)</li>
+        <li>Chest pain, tightness, jaw/arm radiation — <b>ER</b></li>
+        <li>Sciatica pain progresses to leg weakness, foot drop, loss of bladder/bowel control — <b>ER</b> (cauda equina)</li>
+        <li>New knee: redness, warmth, fever, drainage from surgical site — <b>Ortho within 24 h</b></li>
+        <li>Weight loss &gt; 3 kg in 1 week without effort — investigate (thyroid, other)</li>
+      </ul>
+    </div>
+
+    <div class="callout warn">
+      <b>Veni — call/visit doctor if:</b>
+      <ul style="margin-left:20px">
+        <li>Pre-meal blood glucose &gt; 300 mg/dL <b>or &lt; 70 mg/dL</b> (hypoglycemia — if she starts skipping meals with unchanged medication, this becomes dangerous)</li>
+        <li>Symptoms of diabetic ketoacidosis: fruity breath, deep breathing, vomiting, confusion — <b>ER</b></li>
+        <li>Sudden vision changes, blind spots, halos around lights — <b>Ophthalmologist within 24 h</b> (glaucoma acute)</li>
+        <li>Eye pain with nausea and vomiting — <b>ER</b> (acute angle closure)</li>
+        <li>Sudden neck pain radiating to arm with weakness/tingling — <b>Ortho</b></li>
+      </ul>
+    </div>
+
+    <div class="callout warn">
+      <b>Susheel — call/visit doctor if:</b>
+      <ul style="margin-left:20px">
+        <li>Jaundice (yellowing eyes, skin, dark urine) — <b>Hepatologist within 24 h</b></li>
+        <li>Persistent right upper abdominal pain — <b>Hepatologist</b></li>
+        <li>Repeat SGOT/SGPT tests rising instead of falling after 3 months on diet — <b>Hepatologist</b></li>
+        <li>Very rapid weight loss (&gt; 3 kg in a week) — dangerous for NAFLD</li>
+        <li>Fatigue disproportionate to activity, easy bruising, blood in stool — <b>Immediate GP</b></li>
+        <li>Height not increasing at 3–6 month checkups — <b>Pediatrician review</b> (nutrition may be too restrictive)</li>
+      </ul>
+    </div>
+
+    <div class="callout warn">
+      <b>Karthikeya — call/visit doctor if:</b>
+      <ul style="margin-left:20px">
+        <li>Post-op knee: sudden severe pain, swelling, warmth, inability to bear weight — <b>Ortho immediate</b></li>
+        <li>Signs of DVT (deep vein thrombosis): unilateral calf swelling, warmth, pain — <b>ER</b></li>
+        <li>Persistent cough &gt; 3 weeks, blood in sputum, breathlessness — <b>Pulmonologist</b></li>
+        <li>Chest pain — <b>ER</b> (do not dismiss chest pain at any age)</li>
+        <li>Persistent low mood, sleep disruption, anxiety spikes — <b>GP for support options</b></li>
+      </ul>
+    </div>
+
+    <h3>10C · Supplements — questions to ask the doctor</h3>
+    <p>This diet delivers most nutrients from food. But vegetarian diets have known gaps and clinical situations here may warrant supplementation. Please <b>ask the doctor</b> — do not self-medicate.</p>
+
+    <div class="tbl-wrap"><table>
+      <tr><th>Person</th><th>Ask about</th><th>Why</th></tr>
+      <tr><td>Whole family</td><td>Serum B12, 25(OH)D, ferritin</td><td>Vegetarians run chronic B12 low; D3 low is near-universal in Indian adults; ferritin for iron.</td></tr>
+      <tr><td>Whole family</td><td>Oral methylcobalamin 1500 mcg/day trial</td><td>Even if serum "normal," neurological presentation warrants supplementation. Affects Suresh's nerves, Susheel's hair, Karthik's recovery, Veni's neurological reserve.</td></tr>
+      <tr><td>Whole family</td><td>Vitamin D3 sachet (60,000 IU weekly loading, then maintenance)</td><td>Bone, immunity, insulin sensitivity, glaucoma. Get tested first.</td></tr>
+      <tr><td>Suresh</td><td>Magnesium glycinate 200–400 mg</td><td>BP + sciatica nerve health. Glycinate form is well-tolerated.</td></tr>
+      <tr><td>Suresh</td><td>Omega-3 (algae-based vegetarian) 500–1000 mg EPA+DHA</td><td>Vegetarian omega-3. Flax is ALA only — conversion inefficient. Algal EPA/DHA closes the gap.</td></tr>
+      <tr><td>Veni</td><td>Berberine (natural — plant alkaloid)</td><td>Documented mild hypoglycemic + lipid effect. Ask endocrinologist — some interactions with metformin.</td></tr>
+      <tr><td>Veni</td><td>Alpha lipoic acid</td><td>Diabetic neuropathy prevention + IOP support in some evidence.</td></tr>
+      <tr><td>Susheel</td><td>Vitamin E 400 IU (NAFLD-specific)</td><td>Trials show benefit in non-diabetic NAFLD. Pediatric hepatologist should decide.</td></tr>
+      <tr><td>Susheel</td><td>Choline supplement (in addition to food)</td><td>If food intake is inconsistent, adolescent NAFLD may benefit. Ask hepatologist.</td></tr>
+      <tr><td>Susheel</td><td>Iron level check</td><td>Adolescents grow fast — iron demand high; melanin pathway wants iron.</td></tr>
+      <tr><td>Karthik</td><td>Vitamin C 500–1000 mg oral (buffered)</td><td>Diet alone may not fully cover post-op collagen surge demand for a triple-ligament rebuild.</td></tr>
+      <tr><td>Karthik</td><td>Zinc 15 mg (with copper to avoid imbalance)</td><td>Tissue repair.</td></tr>
+      <tr><td>Karthik</td><td>NAC (N-acetyl cysteine)</td><td>Glutathione precursor — general liver and respiratory antioxidant support. Ask GP.</td></tr>
+    </table></div>
+
+    <div class="callout"><b>Home monitoring recommendation:</b>
+      <ul style="margin-left:20px">
+        <li>Digital BP monitor at home — Suresh's BP measured morning + evening; logged in a notebook or app for the GP.</li>
+        <li>Glucometer at home — Veni fasting + post-meal (2 h after lunch) tracked weekly.</li>
+        <li>Bathroom weighing scale — Suresh &amp; Susheel weekly (same time, same day), logged.</li>
+        <li>Susheel: 6-monthly liver ultrasound + LFT — hepatologist schedule.</li>
+        <li>Veni: 3-monthly HbA1c, annual eye pressure (IOP).</li>
+        <li>Karthik: physiotherapy milestones per ortho schedule; annual general health check with GP.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== SECTION 11 ==================== -->
+<section id="s11" class="section">
+  <div class="section-header">
+    <h2><span class="num">11</span>Energy Restoration Protocol</h2>
+    <button class="print-btn" onclick="printSection('s11')">Print this section</button>
+  </div>
+  <div class="section-body">
+    <p>All four are running a daily energy deficit. Different causes, one solution framework: <b>steady low-GI fuel, mineral density, mitochondrial cofactors, and circadian meal timing</b>.</p>
+
+    <h3>Why each is tired — the mechanism</h3>
+    <ul>
+      <li><b>Suresh:</b> Chronic pain burden = cortisol elevation = fatigue. Excess weight = every movement costs more. Poor sleep quality from BP-driven arousals. Sciatic nerve dysfunction impacts autonomic tone.</li>
+      <li><b>Veni:</b> Glucose spiking to 220 then dropping = massive energy crashes. Spondylitis pain interrupts sleep. Some diabetes medications also cause fatigue as side effect. Perimenopausal iron/hormone shifts.</li>
+      <li><b>Susheel:</b> Fatty liver impairs glucose regulation → energy crashes. Excess weight on adolescent frame = poor endurance. Poor sleep from mouth-breathing (common in obese teens).</li>
+      <li><b>Karthikeya:</b> Post-surgical recovery consumes metabolic surplus. Systemic oxidative stress from tissue rebuild diverts nutrients toward repair, leaving less for daily energy.</li>
+    </ul>
+
+    <h3>Sustained-energy Andhra foods — mechanism-based</h3>
+    <div class="tbl-wrap"><table>
+      <tr><th>Food</th><th>Mechanism</th><th>Best for</th></tr>
+      <tr><td>Ragi (sangati / ambali)</td><td>Slow-release carbs (GI ~55) + calcium + magnesium for mitochondrial ATP</td><td>All — especially Suresh, Susheel, Veni</td></tr>
+      <tr><td>Foxtail millet (korralu)</td><td>Complex carb, low GI, magnesium + zinc for enzyme cofactors</td><td>Veni's diabetic energy stabilizer</td></tr>
+      <tr><td>Sesame seeds (nuvvulu)</td><td>Sesamin — mitochondrial protection. Copper, magnesium, iron.</td><td>All. Daily podi.</td></tr>
+      <tr><td>Peanuts (palli)</td><td>Niacin (B3 — direct role in ATP), MUFA, magnesium</td><td>Susheel, Karthik especially</td></tr>
+      <tr><td>Curd (perugu)</td><td>Probiotic → improved nutrient absorption; B12; tryptophan → serotonin</td><td>All — post-lunch dose</td></tr>
+      <tr><td>Ghee (in dose)</td><td>SCFA butyrate → colonocyte energy → systemic effect. Fat-soluble vitamin absorption.</td><td>All in prescribed doses</td></tr>
+      <tr><td>Amla (usirikaya)</td><td>Vitamin C for adrenal function; adaptogen effect on stress axis</td><td>All — Suresh's chronic pain stress; Karthik's oxidative burden</td></tr>
+      <tr><td>Drumstick leaves</td><td>Iron + vit A + full amino acid profile in one plant</td><td>All — especially Veni for perimenopausal fatigue</td></tr>
+      <tr><td>Moong sprouts</td><td>Enzymatically active, easy digest protein, vit C uptick post-sprouting</td><td>Evening tiffin sustained energy</td></tr>
+      <tr><td>Gongura</td><td>Iron 2.3 mg/100g — direct energy nutrient</td><td>Veni, Susheel</td></tr>
+    </table></div>
+
+    <h3>Circadian eating aligned with Andhra meal culture</h3>
+    <ul>
+      <li><b>Wake 5:30–6:30:</b> Ritual + water. No food yet.</li>
+      <li><b>Breakfast 7:30–8:30:</b> Substantial (400–550 kcal). Protein + complex carbs. This is the day's biggest single meal after lunch. Empty-stomach coffee is a bad habit — sipping majjiga later is better.</li>
+      <li><b>Mid-morning 10:30:</b> Small refuel — majjiga or amla or sprouts. Prevents the 11 AM slump.</li>
+      <li><b>Lunch 1:00–2:00:</b> The largest meal. This is culturally correct — cortisol still supports insulin sensitivity, digestive fire (agni) peaks. Do NOT skip lunch. Do NOT rush it.</li>
+      <li><b>Evening 4:30–5:00:</b> Small tiffin, not fried. Sundal / roasted chana / sprout salad.</li>
+      <li><b>Dinner 7:00–8:00:</b> Lighter than lunch. Ragi / millet + dal + light veg. Rice + heavy curries in evening compromise sleep + weight + glucose overnight.</li>
+      <li><b>Post-dinner:</b> Only turmeric milk (Susheel, Karthik). Suresh &amp; Veni: nothing after 8:30 PM.</li>
+      <li><b>Sleep 10:00–5:30:</b> 7.5 h. Non-negotiable. Sleep restriction = insulin resistance + weight gain + BP rise + hair graying + collagen loss = worsens every condition in this house.</li>
+    </ul>
+
+    <h3>Iron-rich Andhra foods for fatigue</h3>
+    <ul>
+      <li><b>Gongura</b> — 2.3 mg per 100g leaves</li>
+      <li><b>Ragi</b> — 3.9 mg per 100g</li>
+      <li><b>Drumstick leaves</b> — 4.0 mg per 100g cooked</li>
+      <li><b>Sesame seeds</b> — 14.6 mg per 100g (very concentrated)</li>
+      <li><b>Bajra (sajja)</b> — 8 mg per 100g</li>
+      <li><b>Cooking in iron kadai</b> — adds 3–5 mg per meal (especially acidic dishes like tomato dal, gongura pappu)</li>
+      <li><b>Absorption enhancer:</b> always pair iron sources with Vit C — amla, lemon, tomato at the same meal</li>
+      <li><b>Absorption inhibitor to time apart:</b> tea/coffee tannins block iron; drink coffee 90 min away from iron-heavy meals</li>
+    </ul>
+
+    <h3>B-vitamins for energy — Andhra vegetarian sources</h3>
+    <div class="tbl-wrap"><table>
+      <tr><th>Vitamin</th><th>Andhra sources</th><th>Role</th></tr>
+      <tr><td>B1 (thiamine)</td><td>Whole grains (hand-pounded rice, ragi, jowar), moong dal, peanuts</td><td>Carb metabolism, nerve health</td></tr>
+      <tr><td>B2 (riboflavin)</td><td>Curd, milk, paneer, drumstick leaves, moong sprouts</td><td>Mitochondrial electron transport</td></tr>
+      <tr><td>B3 (niacin)</td><td>Peanuts, ragi, mushrooms (not typical here), par-boiled rice</td><td>Direct NAD⁺ → ATP</td></tr>
+      <tr><td>B5 (pantothenic acid)</td><td>Whole grains, dals, curd</td><td>Coenzyme A synthesis</td></tr>
+      <tr><td>B6 (pyridoxine)</td><td>Bananas, peanuts, chickpeas, sesame</td><td>Amino acid metabolism, neurotransmitters</td></tr>
+      <tr><td>B7 (biotin)</td><td>Peanuts, milk, sweet potato</td><td>Fatty acid + amino acid metabolism, hair (Susheel benefit)</td></tr>
+      <tr><td>B9 (folate)</td><td>Moong sprouts, drumstick leaves, gongura, beetroot</td><td>DNA synthesis, red blood cell production</td></tr>
+      <tr><td>B12 (cobalamin)</td><td>Fermented idli/dosa batter, curd, milk, paneer — <b>ONLY vegetarian sources; supplementation often needed</b></td><td>Nerve, red blood cell, energy metabolism</td></tr>
+    </table></div>
+
+    <h3>Adaptogens — Andhra / Ayurvedic tradition</h3>
+    <ul>
+      <li><b>Ashwagandha (<span class="telugu">aswagandha</span>):</b> Chronic stress fatigue, cortisol normalization. Suresh (chronic pain stress), Karthik (post-op recovery + oxidative stress). <b>Dose:</b> 1/4 tsp powder in warm milk at night, 3–5 nights/week. Ask an Ayurveda vaidya locally about a quality brand. Avoid in Veni if she is on antihypertensives — can potentiate.</li>
+      <li><b>Shatavari (<span class="telugu">shatavari</span>):</b> Perimenopausal support for Veni — hormonal balance, glandular tissue support. 1/2 tsp in warm milk at night. Ask a doctor if compatible with her diabetes medication.</li>
+      <li><b>Moringa (<span class="telugu">munakku</span>):</b> The comprehensive energy food. Not an adaptogen per se but functionally similar — mineral-dense, adaptogen-like effect on chronic low-energy. Already in this family's dal cycle 4×/wk. Consider dried moringa powder in majjiga (1 tsp) for a mid-morning boost.</li>
+      <li><b>Tulsi (<span class="telugu">tulasi</span>):</b> Daily tea — adaptogen for stress-related fatigue, cortisol normalization. Karthik &amp; Suresh benefit most.</li>
+      <li><b>Amla:</b> Not classical adaptogen but sustained daily use has adaptogenic-like effects on adrenal function. Daily for the whole family.</li>
+      <li><b>Guduchi / Giloy:</b> Immune adaptogen — occasional monsoon course only. Ayurveda vaidya consultation.</li>
+      <li><b>Brahmi:</b> Cognitive adaptogen — Susheel's school stress. 1/2 tsp powder in milk 3×/wk.</li>
+    </ul>
+
+    <h3>Movement — the multiplier no diet can replace</h3>
+    <p>This is a diet document, but nutrition without movement is half the equation.</p>
+    <ul>
+      <li><b>Suresh:</b> Physio-supervised walking, aim 20 min/day building to 40 min. Pool walking excellent for post-op knees. Chair yoga daily.</li>
+      <li><b>Veni:</b> Post-lunch 10 min walk (drops post-prandial glucose 20%). Total 30 min/day. Gentle neck/back stretches for spondylitis 2×/day. No high-impact.</li>
+      <li><b>Susheel:</b> 45 min/day movement — walking to school + evening play/badminton/cycling. Not gym-heavy at 14. Physical activity directly reduces liver fat.</li>
+      <li><b>Karthikeya:</b> Physio-prescribed knee rehab is the priority. Non-impact — swimming, stationary cycling. Once ortho clears — resistance training with correct form. Cardio for lung health.</li>
+    </ul>
+
+    <h3>Sleep as the missing therapy</h3>
+    <p>All four likely under-sleep. Prioritize:</p>
+    <ul>
+      <li>Sleep window 10 PM to 5:30 AM = 7.5 h</li>
+      <li>No screens 30 min before bed (Susheel, Karthik — especially)</li>
+      <li>Turmeric milk 30 min before bed (Susheel, Karthik)</li>
+      <li>Dark, cool room</li>
+      <li>Suresh: elevate operated knee on pillow; avoid late-night water (BP nocturia)</li>
+      <li>Veni: address any evening spondylitis pain with a warm compress + light stretching</li>
+    </ul>
+
+    <div class="callout good"><b>Final principle:</b> This household's energy will not be restored by a supplement, an app, or a superfood. It will be restored by six months of consistent millet dinners, moringa dals, sesame chutneys, morning rituals, walked-off lunches, and 7.5-hour nights. The food is here, in this document, in the Kurnool market, on Veni's stove. The compliance is the medicine.</div>
+  </div>
+</section>
+</main>
+
+<footer>
+  Prepared as a family reference. Not a substitute for supervised medical care.<br>
+  Please share findings with the family physician, hepatologist, ophthalmologist, and orthopaedic surgeon involved in ongoing care.
+</footer>
+
+<script>
+function printSection(id) {
+  const target = document.getElementById(id);
+  if (!target) return;
+  target.classList.add('print-target');
+  document.body.classList.add('print-single');
+  window.print();
+  setTimeout(() => {
+    target.classList.remove('print-target');
+    document.body.classList.remove('print-single');
+  }, 400);
+}
+function switchDay(dayNum) {
+  document.querySelectorAll('.day-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.day-panel').forEach(p => p.classList.remove('active'));
+  document.querySelector('.day-tab[data-d="' + dayNum + '"]').classList.add('active');
+  document.getElementById('day-' + dayNum).classList.add('active');
+}
+</script>
+</body>
+</html>
