@@ -39,10 +39,12 @@ function buildUserPrompt(payload, contextChunks) {
   const currentSection = payload.currentSection && payload.currentSection.heading
     ? `\nCurrent section: ${payload.currentSection.id || 'unknown'} · ${payload.currentSection.heading}`
     : '';
+  const history = formatConversation(payload.conversation);
 
   return [
     'Diet plan context:',
     context || 'No context chunks were retrieved. Use conservative general guidance and ask the family to check the plan.',
+    history,
     selectedText,
     currentSection,
     '',
@@ -50,6 +52,20 @@ function buildUserPrompt(payload, contextChunks) {
     '',
     'Give a practical answer. If giving a substitution, explain what to use, how to cook it, and what to adjust in the next meal if needed.'
   ].join('\n');
+}
+
+function formatConversation(conversation) {
+  if (!Array.isArray(conversation) || conversation.length === 0) return '';
+  const turns = conversation
+    .slice(-8)
+    .map(turn => {
+      const role = turn && turn.role === 'assistant' ? 'Assistant' : 'User';
+      const content = String(turn && turn.content || '').replace(/\s+/g, ' ').trim().slice(0, 700);
+      return content ? `${role}: ${content}` : '';
+    })
+    .filter(Boolean)
+    .join('\n');
+  return turns ? `\nRecent conversation:\n${turns}` : '';
 }
 
 function buildFollowUps(question) {

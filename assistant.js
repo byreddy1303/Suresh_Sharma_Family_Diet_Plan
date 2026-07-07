@@ -5,6 +5,8 @@
   const DEFAULT_API_BASE = 'https://suresh-sharma-family-diet-plan.vercel.app';
   const STORAGE_API_BASE = 'dietAssistantApiBase';
   const STORAGE_LANGUAGE = 'dietAssistantLanguage';
+  const CHAT_INACTIVITY_MS = 10 * 60 * 1000;
+  const MAX_CHAT_TURNS = 8;
   const DEFAULT_ENDPOINTS = {
     ask: '/api/ask',
     transcribe: '/api/transcribe',
@@ -15,7 +17,10 @@
     mediaRecorder: null,
     audioChunks: [],
     audioStream: null,
-    activeRequest: null
+    activeRequest: null,
+    chatMessages: [],
+    lastActivityAt: 0,
+    inactivityTimer: null
   };
 
   const examples = [
@@ -120,6 +125,10 @@
             ${examples.map(example => `<button class="da-chip" type="button" data-question="${escapeAttribute(example)}">${escapeHtml(example)}</button>`).join('')}
           </div>
 
+          <div class="da-chat" id="da-chat" aria-live="polite" aria-label="Diet assistant chat">
+            <div class="da-chat-empty">Ask a question to start a chat. Follow-up questions will remember the recent conversation.</div>
+          </div>
+
           <div class="da-composer-block">
             <label class="da-question-label" for="da-question">Your question</label>
             <div class="da-composer">
@@ -127,7 +136,7 @@
               <div class="da-composer-actions">
                 <div class="da-composer-left">
                   <button class="da-icon-btn mic" id="da-mic" type="button" title="Start voice question" aria-label="Start voice question">Voice</button>
-                  <button class="da-icon-btn" id="da-clear" type="button" title="Clear question" aria-label="Clear question">Clear</button>
+                  <button class="da-icon-btn" id="da-clear" type="button" title="Start a fresh chat" aria-label="Start a fresh chat">New chat</button>
                 </div>
                 <button class="da-send-btn" id="da-ask" type="button" aria-label="Ask the diet assistant">Ask</button>
               </div>
@@ -141,13 +150,9 @@
 
           <div class="da-status success" id="da-status" role="status">Ready. Ask a question or use voice.</div>
 
-          <div class="da-answer" id="da-answer" hidden>
-            <h3>Answer</h3>
-            <div class="da-answer-text" id="da-answer-text"></div>
-            <div class="da-followups" id="da-followups" hidden>
-              <p>Try asking next</p>
-              <div class="da-row tight" id="da-followup-list"></div>
-            </div>
+          <div class="da-followups" id="da-followups" hidden>
+            <p>Try asking next</p>
+            <div class="da-row tight" id="da-followup-list"></div>
           </div>
         </div>
       </section>
@@ -285,25 +290,31 @@
       return;
     }
 
-    setBusy(root, true, 'Asking the diet assistant...');
+    resetChatIfInactive(root);
+    const conversation = recentConversation();
+    appendChatMessage(root, 'user', question);
+    questionEl.value = '';
+    setBusy(root, true, state.chatMessages.length > 1 ? 'Continuing chat...' : 'Starting chat...');
     hideFollowups(root);
     try {
-      const payload = buildAskPayload(root, question);
+      const payload = buildAskPayload(root, question, conversation);
       const data = await postJson(buildUrl(endpointConfig().ask), payload);
       const answer = data.answer || data.message || data.text || '';
       if (!answer.trim()) {
         throw new Error('The backend replied, but no answer field was found.');
       }
-      renderAnswer(root, answer, data);
+      appendChatMessage(root, 'assistant', answer.trim());
+      renderFollowups(root, data.followUps || data.followups || data.suggestedQuestions || []);
       setStatus(root, 'Answer ready.', 'success');
     } catch (error) {
+      removeLastUserMessage(root, question);
       setStatus(root, error.message, 'error');
     } finally {
       setBusy(root, false);
     }
   }
 
-  function buildAskPayload(root, question) {
+  function buildAskPayload(root, question, conversation) {
     const activeSection = getActiveSection();
     return {
       documentId: DOCUMENT_ID,
@@ -313,6 +324,7 @@
       pageTitle: document.title,
       selectedText: getSelectedText(),
       currentSection: activeSection,
+      conversation: conversation || [],
       answerMode: 'practical_family_diet_assistant',
       userIntentExamples: [
         'ingredient substitution',
@@ -450,10 +462,7 @@
   }
 
   function renderAnswer(root, answer, data) {
-    const box = root.querySelector('#da-answer');
-    const text = root.querySelector('#da-answer-text');
-    box.hidden = false;
-    text.textContent = answer.trim();
+    appendChatMessage(root, 'assistant', answer.trim());
     renderFollowups(root, data.followUps || data.followups || data.suggestedQuestions || []);
   }
 
@@ -493,13 +502,74 @@
   }
 
   function clearAssistant(root) {
+    resetChat(root, 'New chat started. Ask a question or use voice.');
     root.querySelector('#da-question').value = '';
-    root.querySelector('#da-answer').hidden = true;
-    root.querySelector('#da-answer-text').textContent = '';
     root.querySelector('#da-transcript').hidden = true;
     root.querySelector('#da-transcript-text').textContent = '';
     hideFollowups(root);
     setStatus(root, getApiBase() ? 'Ready. Ask a question or use voice.' : 'Ready when the backend URL is connected.', getApiBase() ? 'success' : undefined);
+  }
+
+  function appendChatMessage(root, role, text) {
+    state.chatMessages.push({ role, content: String(text || '').trim(), ts: Date.now() });
+    if (state.chatMessages.length > MAX_CHAT_TURNS * 2) {
+      state.chatMessages = state.chatMessages.slice(-MAX_CHAT_TURNS * 2);
+    }
+    renderChat(root);
+    touchChat(root);
+  }
+
+  function removeLastUserMessage(root, question) {
+    const idx = state.chatMessages.map(m => m.role + ':' + m.content).lastIndexOf('user:' + question);
+    if (idx >= 0) state.chatMessages.splice(idx, 1);
+    renderChat(root);
+  }
+
+  function renderChat(root) {
+    const chat = root.querySelector('#da-chat');
+    if (!chat) return;
+    if (state.chatMessages.length === 0) {
+      chat.innerHTML = '<div class="da-chat-empty">Ask a question to start a chat. Follow-up questions will remember the recent conversation.</div>';
+      return;
+    }
+    chat.innerHTML = state.chatMessages.map(message => `
+      <div class="da-msg ${message.role === 'user' ? 'user' : 'assistant'}">
+        <div class="da-msg-role">${message.role === 'user' ? 'You' : 'Diet assistant'}</div>
+        <div class="da-msg-text">${escapeHtml(message.content)}</div>
+      </div>
+    `).join('');
+    chat.scrollTop = chat.scrollHeight;
+  }
+
+  function recentConversation() {
+    return state.chatMessages
+      .slice(-MAX_CHAT_TURNS)
+      .map(message => ({ role: message.role, content: message.content }));
+  }
+
+  function touchChat(root) {
+    state.lastActivityAt = Date.now();
+    if (state.inactivityTimer) clearTimeout(state.inactivityTimer);
+    state.inactivityTimer = setTimeout(() => {
+      resetChat(root, 'Chat reset after inactivity. Ask a new question when ready.');
+      setStatus(root, 'Chat reset after inactivity. Ask a new question when ready.', 'success');
+    }, CHAT_INACTIVITY_MS);
+  }
+
+  function resetChatIfInactive(root) {
+    if (state.lastActivityAt && Date.now() - state.lastActivityAt > CHAT_INACTIVITY_MS) {
+      resetChat(root, 'Chat reset after inactivity. Ask a new question when ready.');
+    }
+  }
+
+  function resetChat(root) {
+    state.chatMessages = [];
+    state.lastActivityAt = 0;
+    if (state.inactivityTimer) {
+      clearTimeout(state.inactivityTimer);
+      state.inactivityTimer = null;
+    }
+    renderChat(root);
   }
 
   function setStatus(root, message, type) {

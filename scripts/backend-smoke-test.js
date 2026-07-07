@@ -20,8 +20,18 @@ assert(chunks.some(chunk => ['s6', 's12', 's7', 's1'].includes(chunk.sectionId))
 
 const systemPrompt = buildSystemPrompt('english');
 const userPrompt = buildUserPrompt(payload, chunks);
+const followUpPrompt = buildUserPrompt({
+  ...payload,
+  question: 'What about Amma?',
+  conversation: [
+    { role: 'user', content: payload.question },
+    { role: 'assistant', content: 'Use ridge gourd and keep oil low.' }
+  ]
+}, chunks);
 assert(systemPrompt.includes('No garlic'), 'Expected family cooking rule in prompt.');
 assert(userPrompt.includes(payload.question), 'Expected question in user prompt.');
+assert(followUpPrompt.includes('Recent conversation'), 'Expected follow-up prompt to include recent conversation.');
+assert(followUpPrompt.includes('What about Amma?'), 'Expected follow-up question in prompt.');
 assert(transcribeHandler.getTranscriptionHint('telugu').code === 'te', 'Telugu voice should force ISO-639-1 code te.');
 assert(transcribeHandler.getTranscriptionHint('auto').code === 'te', 'Auto voice should default to Telugu to avoid Tamil misdetection.');
 assert(transcribeHandler.getTranscriptionHint('english').code === 'en', 'English voice should force ISO-639-1 code en.');

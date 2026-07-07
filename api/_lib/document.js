@@ -124,7 +124,8 @@ function retrieveContext(payload) {
   const query = [
     payload.question || '',
     payload.selectedText || '',
-    payload.currentSection && payload.currentSection.heading || ''
+    payload.currentSection && payload.currentSection.heading || '',
+    Array.isArray(payload.conversation) ? payload.conversation.map(turn => turn && turn.content || '').join(' ') : ''
   ].join(' ');
   const queryTokens = tokenize(query);
   const querySet = new Set(queryTokens);
