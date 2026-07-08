@@ -25,7 +25,26 @@
       "Bash(awk '/<section id=\"s10\"/{p=1} /<section id=\"s11\"/{p=0} p && /details/' '/Users/bkalyankrishnareddy/Desktop/diet plan/family-diet-plan.html')",
       "Bash(awk 'NR>=1')",
       "Bash(awk '/<section id=\"s10\"/,/<section id=\"s11\"/{if\\(/person-card\\\\|callout|10[ABC]/\\) print NR\": \"$0}' '/Users/bkalyankrishnareddy/Desktop/diet plan/family-diet-plan.html')",
-      "Bash(awk '/<section id=\"s3\"/{p=1} /<section id=\"s4\"/{p=0} p && /details\\\\.drop|<details/' '/Users/bkalyankrishnareddy/Desktop/diet plan/family-diet-plan.html')"
+      "Bash(awk '/<section id=\"s3\"/{p=1} /<section id=\"s4\"/{p=0} p && /details\\\\.drop|<details/' '/Users/bkalyankrishnareddy/Desktop/diet plan/family-diet-plan.html')",
+      "Bash(git -C \"/Users/bkalyankrishnareddy/Desktop/diet plan\" log --oneline -20)",
+      "Bash(git -C \"/Users/bkalyankrishnareddy/Desktop/diet plan\" status)",
+      "Bash(git -C \"/Users/bkalyankrishnareddy/Desktop/diet plan\" diff --stat)",
+      "Bash(git *)",
+      "Bash(node *)",
+      "Bash(npm run *)",
+      "Bash(curl -sf \"https://suresh-sharma-family-diet-plan.vercel.app/api/health\")",
+      "Bash(curl -s -o /tmp/r1.json -w 'HTTP %{http_code}\\\\n' -X POST https://suresh-sharma-family-diet-plan.vercel.app/api/health-profile/unlock)",
+      "Read(//tmp/**)",
+      "Bash(curl -s -o /tmp/r2.json -w 'HTTP %{http_code}\\\\n' -X POST https://suresh-sharma-family-diet-plan.vercel.app/api/health-profile/unlock -H 'X-Family-Passcode: definitely-not-the-passcode')",
+      "Bash(curl -s -o /tmp/r3.json -w 'HTTP %{http_code}\\\\n' https://suresh-sharma-family-diet-plan.vercel.app/api/health-profile)",
+      "Bash(curl -s -o /tmp/r4.json -w 'HTTP %{http_code}\\\\n' -X POST https://suresh-sharma-family-diet-plan.vercel.app/api/plan-preview)",
+      "Bash(curl -sf \"https://suresh-sharma-family-diet-plan.vercel.app/api/plan-adjustments\")",
+      "Bash(awk '/^<script>$/,/^<\\\\/script>$/' index.html)",
+      "Bash(awk '/<script>/{f=1;next} /<\\\\/script>/{f=0} f && !/^window\\\\.DIET_ASSISTANT/' index.html)",
+      "Bash(\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless --disable-gpu --no-sandbox --dump-dom \"http://localhost:8765/family-diet-plan.html\")",
+      "Read(//private/tmp/**)",
+      "Bash(npm install *)",
+      "Bash(pkill -f \"python3 -m http.server 8765\")"
     ]
   }
 }

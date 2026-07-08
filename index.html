@@ -384,6 +384,342 @@ nav.toc a:hover { background: var(--turmeric-light); border-color: var(--turmeri
 }
 .print-btn:hover { background: var(--turmeric-light); color: var(--coffee); transform: translateY(-1px); }
 .print-btn::before { content: "⎙  "; }
+
+/* Day-scoped print buttons (large-font day card) */
+.day-print-actions {
+  display: flex;
+  gap: 10px;
+  margin: 0 0 18px;
+  flex-wrap: wrap;
+}
+.day-print-btn {
+  padding: 9px 16px;
+  border: 1px solid var(--sage);
+  border-radius: 8px;
+  background: #FFFDF7;
+  color: var(--sage);
+  font-family: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.day-print-btn:hover {
+  background: var(--sage);
+  color: #FFFDF7;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(74, 106, 63, 0.25);
+}
+.day-print-btn::before { content: "⎙"; font-size: 1.1em; }
+.day-print-btn.week {
+  border-color: var(--terracotta);
+  color: var(--terracotta);
+}
+.day-print-btn.week:hover {
+  background: var(--terracotta);
+  color: #FFFDF7;
+  box-shadow: 0 3px 8px rgba(193, 68, 14, 0.25);
+}
+.day-print-btn.grocery {
+  border-color: #B8801A;
+  color: #B8801A;
+}
+.day-print-btn.grocery:hover {
+  background: #B8801A;
+  color: #FFFDF7;
+  box-shadow: 0 3px 8px rgba(184, 128, 26, 0.28);
+}
+.day-print-btn.grocery::before { content: none; }
+.day-print-header { display: none; }
+
+/* ---- Grocery list modal ---- */
+.grocery-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(62, 40, 23, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 16px;
+  animation: gmFade 0.15s ease;
+}
+@keyframes gmFade { from { opacity: 0; } to { opacity: 1; } }
+.grocery-modal {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  max-width: 720px;
+  width: 100%;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 60px rgba(62, 40, 23, 0.35);
+  overflow: hidden;
+}
+.grocery-modal-head {
+  padding: 14px 20px;
+  background: linear-gradient(90deg, #B8801A 0%, var(--turmeric) 100%);
+  color: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.grocery-modal-head h3 {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: bold;
+  color: var(--cream);
+}
+.grocery-modal-close {
+  background: rgba(255,255,255,0.2);
+  border: none;
+  color: var(--cream);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.grocery-modal-close:hover { background: rgba(255,255,255,0.35); }
+.grocery-modal-body {
+  padding: 18px 22px;
+  overflow-y: auto;
+  flex: 1;
+  color: var(--coffee);
+}
+.grocery-modal-body p { margin: 0 0 10px; }
+.gm-fieldset {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin: 10px 0 14px;
+  background: #FFFDF7;
+}
+.gm-fieldset legend {
+  padding: 0 6px;
+  font-weight: bold;
+  color: var(--terracotta);
+  font-size: 0.92rem;
+}
+.gm-radio-row { display: flex; flex-direction: column; gap: 6px; }
+.gm-radio-row label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 4px 2px;
+}
+.gm-radio-row input[type="radio"] { accent-color: var(--terracotta); width: 16px; height: 16px; }
+.gm-family-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+.gm-family-row label { font-size: 0.92rem; color: var(--coffee-light); }
+.gm-family-row input[type="number"] {
+  width: 64px;
+  padding: 6px 8px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  text-align: center;
+  background: white;
+}
+.grocery-modal-actions {
+  padding: 12px 20px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+  background: var(--parchment);
+}
+.gm-btn {
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.92rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: white;
+  color: var(--coffee);
+  transition: all 0.15s;
+}
+.gm-btn:hover { border-color: var(--terracotta); color: var(--terracotta); }
+.gm-btn.primary {
+  background: var(--terracotta);
+  color: var(--cream);
+  border-color: var(--terracotta);
+}
+.gm-btn.primary:hover { background: var(--terracotta-light); color: var(--cream); }
+.gm-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+.gm-loading {
+  text-align: center;
+  padding: 32px 12px;
+  color: var(--coffee-light);
+  font-style: italic;
+}
+.gm-loading::before {
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--border);
+  border-top-color: var(--terracotta);
+  border-radius: 50%;
+  animation: gmSpin 0.8s linear infinite;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+@keyframes gmSpin { to { transform: rotate(360deg); } }
+.gm-error {
+  padding: 12px 14px;
+  background: #fef2ec;
+  border: 1px solid var(--terracotta);
+  border-radius: 6px;
+  color: var(--terracotta);
+  margin: 10px 0;
+}
+.gm-summary {
+  padding: 10px 14px;
+  background: var(--parchment);
+  border-left: 3px solid var(--turmeric);
+  border-radius: 4px;
+  margin-bottom: 14px;
+  font-size: 0.9rem;
+  color: var(--coffee-light);
+}
+.gm-category {
+  margin: 14px 0;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.gm-category-head {
+  background: var(--parchment);
+  padding: 8px 14px;
+  font-weight: bold;
+  color: var(--coffee);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.gm-category-count {
+  font-size: 0.8rem;
+  color: var(--coffee-light);
+  background: white;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-weight: normal;
+}
+.gm-item-list { list-style: none; margin: 0; padding: 0; }
+.gm-item {
+  padding: 8px 14px;
+  border-bottom: 1px solid #f0e4cc;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: baseline;
+}
+.gm-item:last-child { border-bottom: none; }
+.gm-item-name { font-weight: 500; color: var(--coffee); }
+.gm-item-qty {
+  color: var(--sage);
+  font-weight: bold;
+  white-space: nowrap;
+  font-family: 'Courier New', monospace;
+  font-size: 0.92rem;
+}
+.gm-item-meta {
+  font-size: 0.82rem;
+  color: var(--coffee-light);
+  margin-top: 3px;
+  font-style: italic;
+}
+.gm-item-days {
+  display: inline-block;
+  font-size: 0.75rem;
+  background: #f0e4cc;
+  padding: 1px 6px;
+  border-radius: 8px;
+  margin-left: 6px;
+  color: var(--coffee);
+  font-style: normal;
+  font-family: inherit;
+}
+.gm-toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--sage);
+  color: white;
+  padding: 10px 18px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  z-index: 10000;
+  animation: gmToast 2.4s ease forwards;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+@keyframes gmToast {
+  0% { opacity: 0; transform: translate(-50%, 10px); }
+  10%, 85% { opacity: 1; transform: translate(-50%, 0); }
+  100% { opacity: 0; transform: translate(-50%, -6px); }
+}
+
+/* Grocery-only print mode */
+@media print {
+  body.print-grocery {
+    background: white !important;
+    font-size: 11pt !important;
+    line-height: 1.5 !important;
+  }
+  body.print-grocery > *:not(.grocery-modal-overlay) { display: none !important; }
+  body.print-grocery .grocery-modal-overlay {
+    position: static !important;
+    background: white !important;
+    padding: 0 !important;
+    animation: none !important;
+    display: block !important;
+  }
+  body.print-grocery .grocery-modal {
+    box-shadow: none !important;
+    border: none !important;
+    max-height: none !important;
+    max-width: none !important;
+    background: white !important;
+  }
+  body.print-grocery .grocery-modal-head {
+    background: white !important;
+    color: var(--coffee) !important;
+    border-bottom: 2px solid var(--terracotta);
+    padding: 0 0 8px !important;
+  }
+  body.print-grocery .grocery-modal-head h3 { color: var(--coffee) !important; }
+  body.print-grocery .grocery-modal-close,
+  body.print-grocery .grocery-modal-actions { display: none !important; }
+  body.print-grocery .grocery-modal-body {
+    overflow: visible !important;
+    padding: 12px 0 !important;
+  }
+  body.print-grocery .gm-category { page-break-inside: avoid; break-inside: avoid; }
+}
+
 .section-body { padding: 28px; }
 
 /* Section header color variants */
@@ -760,6 +1096,140 @@ footer::before { content: "❈ ❈ ❈"; display: block; color: var(--turmeric);
   body.print-selective .day-tabs { display: none !important; }
   /* Hide person-cards whose h4 drops all fall outside the selected set */
   body.print-selective .print-target .person-card:not(:has(.selected-for-print)):not(.selected-for-print) {
+    display: none !important;
+  }
+
+  /* ---- Large-font day-card print mode (elderly-friendly) ---- */
+  body.print-day-card {
+    font-size: 13pt !important;
+    line-height: 1.55 !important;
+    background: white !important;
+  }
+  body.print-day-card .section {
+    border: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  body.print-day-card .section-header,
+  body.print-day-card .section-body > p,
+  body.print-day-card .section-body > .te,
+  body.print-day-card .day-tabs,
+  body.print-day-card .day-print-actions,
+  body.print-day-card details.drop {
+    display: none !important;
+  }
+  body.print-day-card .section-body { padding: 0 !important; }
+  body.print-day-card .day-panel {
+    padding: 0 !important;
+    display: block !important;
+  }
+  body.print-day-card .day-panel:not(.selected-for-print) {
+    display: none !important;
+  }
+  body.print-day-card .day-print-header {
+    display: block !important;
+    margin: 0 0 12px;
+    padding: 0 0 8px;
+    border-bottom: 2px solid #C1440E;
+    overflow: hidden;
+  }
+  body.print-day-card .day-print-header .brand {
+    font-size: 0.85rem;
+    color: #6D5642;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-weight: bold;
+    float: left;
+  }
+  body.print-day-card .day-print-header .printed-on {
+    font-size: 0.8rem;
+    color: #6D5642;
+    font-style: italic;
+    float: right;
+  }
+  body.print-day-card .day-panel h4 {
+    font-size: 1.55rem !important;
+    color: #C1440E !important;
+    margin: 4px 0 12px !important;
+    padding-bottom: 6px;
+    border-bottom: 1px dashed #C1440E;
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+  body.print-day-card .meal {
+    padding: 10px 14px !important;
+    margin: 10px 0 !important;
+    border: 1px solid #d4c39a;
+    border-radius: 4px;
+    background: #FFFDF7 !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  body.print-day-card .meal-time {
+    font-size: 1.05rem !important;
+    font-weight: bold;
+    color: #C1440E !important;
+    margin-bottom: 4px;
+  }
+  body.print-day-card .meal-dish {
+    font-size: 1.2rem !important;
+    margin: 4px 0 6px !important;
+    line-height: 1.4;
+    color: #3E2817 !important;
+  }
+  body.print-day-card .meal-note {
+    font-size: 0.95rem !important;
+    margin-top: 8px;
+    padding: 6px 10px;
+    background: #FBF3E4 !important;
+    border-left: 3px solid #E8A02C;
+    font-style: italic;
+    color: #3E2817 !important;
+  }
+  body.print-day-card .meal-cal {
+    font-size: 0.9rem !important;
+    margin-top: 4px;
+    color: #4A6A3F !important;
+    font-weight: 500;
+  }
+  body.print-day-card .te,
+  body.print-day-card .te-inline {
+    font-size: 0.95em !important;
+    line-height: 1.55 !important;
+    color: #6B4423 !important;
+    opacity: 1 !important;
+    letter-spacing: 0.02em !important;
+  }
+  body.print-day-card .per-person {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+    font-size: 0.95rem !important;
+    margin-top: 8px !important;
+  }
+  body.print-day-card .pp {
+    padding: 6px 10px !important;
+    border-radius: 4px;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  body.print-day-card .pp b {
+    display: block;
+    font-size: 0.8rem !important;
+    margin-bottom: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  body.print-day-card.print-week .day-panel + .day-panel {
+    page-break-before: always;
+    break-before: page;
+  }
+  body.print-day-card nav.toc,
+  body.print-day-card .print-btn,
+  body.print-day-card .family-strip,
+  body.print-day-card .hero,
+  body.print-day-card footer,
+  body.print-day-card .section:not(#s3) {
     display: none !important;
   }
 }
@@ -1351,6 +1821,12 @@ footer::before { content: "❈ ❈ ❈"; display: block; color: var(--turmeric);
       <button class="day-tab" data-d="5" onclick="switchDay(5)">Fri</button>
       <button class="day-tab" data-d="6" onclick="switchDay(6)">Sat</button>
       <button class="day-tab" data-d="7" onclick="switchDay(7)">Sun · Festival</button>
+    </div>
+
+    <div class="day-print-actions no-print">
+      <button type="button" class="day-print-btn" onclick="printActiveDay()">Print today's plan <span class="te-inline">/ ఈ రోజు ప్రణాళిక ప్రింట్</span></button>
+      <button type="button" class="day-print-btn week" onclick="printFullWeek()">Print full week <span class="te-inline">/ మొత్తం వారం ప్రింట్</span></button>
+      <button type="button" class="day-print-btn grocery" onclick="openGroceryModal()">Shopping list <span class="te-inline">/ కూరగాయల జాబితా</span></button>
     </div>
 
     <!-- DAY 1 -->
@@ -3291,6 +3767,383 @@ function switchDay(dayNum) {
   document.querySelectorAll('.day-panel').forEach(p => p.classList.remove('active'));
   document.querySelector('.day-tab[data-d="' + dayNum + '"]').classList.add('active');
   document.getElementById('day-' + dayNum).classList.add('active');
+}
+
+/* ---- Day-card print (elderly-friendly large-font) ---- */
+function _formatPrintDate() {
+  try {
+    return new Date().toLocaleDateString('en-IN', {
+      day: 'numeric', month: 'long', year: 'numeric'
+    });
+  } catch (e) {
+    return new Date().toDateString();
+  }
+}
+
+function _buildDayPrintHeader(dayPanel) {
+  if (dayPanel.querySelector(':scope > .day-print-header')) return null;
+  const header = document.createElement('div');
+  header.className = 'day-print-header';
+  header.innerHTML =
+    '<span class="brand">Suresh Sharma Family Nutrition</span>' +
+    '<span class="printed-on">Printed: ' + _formatPrintDate() + '</span>';
+  dayPanel.insertBefore(header, dayPanel.firstChild);
+  return header;
+}
+
+function _cleanupDayPrint(dayPanels, addedHeaders) {
+  dayPanels.forEach(p => p.classList.remove('selected-for-print'));
+  addedHeaders.forEach(h => h && h.remove());
+  document.body.classList.remove(
+    'print-day-card', 'print-single', 'print-selective', 'print-week'
+  );
+  const section = document.getElementById('s3');
+  if (section) section.classList.remove('print-target');
+}
+
+function printActiveDay() {
+  const section = document.getElementById('s3');
+  const active = section && section.querySelector('.day-panel.active');
+  if (!active) {
+    alert('No active day selected. Pick a day tab first.');
+    return;
+  }
+  const addedHeaders = [];
+  const header = _buildDayPrintHeader(active);
+  if (header) addedHeaders.push(header);
+  active.classList.add('selected-for-print');
+  section.classList.add('print-target');
+  document.body.classList.add('print-day-card', 'print-single', 'print-selective');
+  setTimeout(() => {
+    window.print();
+    setTimeout(() => _cleanupDayPrint([active], addedHeaders), 600);
+  }, 120);
+}
+
+function printFullWeek() {
+  const section = document.getElementById('s3');
+  if (!section) return;
+  const dayPanels = Array.from(section.querySelectorAll('.day-panel'));
+  if (dayPanels.length === 0) return;
+  const addedHeaders = [];
+  dayPanels.forEach(p => {
+    const h = _buildDayPrintHeader(p);
+    if (h) addedHeaders.push(h);
+    p.classList.add('selected-for-print');
+  });
+  section.classList.add('print-target');
+  document.body.classList.add(
+    'print-day-card', 'print-single', 'print-selective', 'print-week'
+  );
+  setTimeout(() => {
+    window.print();
+    setTimeout(() => _cleanupDayPrint(dayPanels, addedHeaders), 600);
+  }, 120);
+}
+
+/* ---- Grocery list generator ---- */
+const GROCERY_API_BASE_KEY = 'dietAssistantApiBase';
+const GROCERY_API_DEFAULT = 'https://suresh-sharma-family-diet-plan.vercel.app';
+
+function _groceryApiBase() {
+  try {
+    const stored = localStorage.getItem(GROCERY_API_BASE_KEY);
+    return window.DIET_ASSISTANT_API_BASE || stored || GROCERY_API_DEFAULT;
+  } catch (e) {
+    return window.DIET_ASSISTANT_API_BASE || GROCERY_API_DEFAULT;
+  }
+}
+
+function _cleanText(node) {
+  if (!node) return '';
+  const clone = node.cloneNode(true);
+  clone.querySelectorAll('.te, .te-inline').forEach(el => el.remove());
+  return clone.textContent.replace(/\s+/g, ' ').trim();
+}
+
+function _shortDayLabel(fullText) {
+  const map = [
+    { rx: /monday|foundation/i, out: 'Mon' },
+    { rx: /tuesday/i, out: 'Tue' },
+    { rx: /wednesday/i, out: 'Wed' },
+    { rx: /thursday/i, out: 'Thu' },
+    { rx: /friday/i, out: 'Fri' },
+    { rx: /saturday/i, out: 'Sat' },
+    { rx: /sunday|festival/i, out: 'Sun' }
+  ];
+  for (const m of map) if (m.rx.test(fullText)) return m.out;
+  return fullText.split(/\s+/)[0] || 'Day';
+}
+
+function _collectDayMeals(dayPanel) {
+  const h4 = dayPanel.querySelector('h4');
+  const dayFull = _cleanText(h4) || 'Day';
+  const dayShort = _shortDayLabel(dayFull);
+  const meals = [];
+  dayPanel.querySelectorAll('.meal').forEach(mealEl => {
+    const dish = _cleanText(mealEl.querySelector('.meal-dish'));
+    if (!dish) return;
+    meals.push({
+      day: dayShort,
+      time: _cleanText(mealEl.querySelector('.meal-time')),
+      dish,
+      note: _cleanText(mealEl.querySelector('.meal-note'))
+    });
+  });
+  return { dayFull, meals };
+}
+
+function openGroceryModal() {
+  const active = document.querySelector('.day-panel.active');
+  const activeLabel = active ? _cleanText(active.querySelector('h4')) : 'Today';
+  closeGroceryModal();
+  const modal = document.createElement('div');
+  modal.className = 'grocery-modal-overlay';
+  modal.innerHTML =
+    '<div class="grocery-modal" role="dialog" aria-modal="true" aria-labelledby="gm-title">' +
+      '<div class="grocery-modal-head">' +
+        '<h3 id="gm-title">Shopping list <span class="te-inline" style="color:rgba(253,246,233,0.85);font-size:0.85em">/ కూరగాయల జాబితా</span></h3>' +
+        '<button class="grocery-modal-close" onclick="closeGroceryModal()" aria-label="Close">×</button>' +
+      '</div>' +
+      '<div class="grocery-modal-body" id="gm-body">' +
+        '<p>Choose the days and the number of people at home. Veni-ammagaru’s cooking, Andhra kitchen conventions.</p>' +
+        '<fieldset class="gm-fieldset">' +
+          '<legend>Scope</legend>' +
+          '<div class="gm-radio-row">' +
+            '<label><input type="radio" name="gm-scope" value="day" checked> Today’s plan (<span id="gm-active-label">' + _escapeHtml(activeLabel) + '</span>)</label>' +
+            '<label><input type="radio" name="gm-scope" value="week"> Full week (Mon–Sun)</label>' +
+          '</div>' +
+        '</fieldset>' +
+        '<fieldset class="gm-fieldset">' +
+          '<legend>Family</legend>' +
+          '<div class="gm-family-row">' +
+            '<label>People at home: <input type="number" id="gm-members" min="1" max="12" value="4"></label>' +
+            '<label>Adults: <input type="number" id="gm-adults" min="0" max="12" value="2"></label>' +
+            '<label>Kids: <input type="number" id="gm-kids" min="0" max="12" value="2"></label>' +
+          '</div>' +
+        '</fieldset>' +
+      '</div>' +
+      '<div class="grocery-modal-actions" id="gm-actions">' +
+        '<button class="gm-btn" onclick="closeGroceryModal()">Cancel</button>' +
+        '<button class="gm-btn primary" onclick="submitGroceryForm()" id="gm-go">Generate list</button>' +
+      '</div>' +
+    '</div>';
+  document.body.appendChild(modal);
+  modal.addEventListener('click', e => { if (e.target === modal) closeGroceryModal(); });
+  document.addEventListener('keydown', _groceryEscHandler);
+}
+
+function _groceryEscHandler(e) { if (e.key === 'Escape') closeGroceryModal(); }
+
+function closeGroceryModal() {
+  const modal = document.querySelector('.grocery-modal-overlay');
+  if (modal) modal.remove();
+  document.removeEventListener('keydown', _groceryEscHandler);
+  window._groceryLastResult = null;
+}
+
+function _escapeHtml(s) {
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+async function submitGroceryForm() {
+  const scope = (document.querySelector('input[name="gm-scope"]:checked') || {}).value || 'day';
+  const members = parseInt(document.getElementById('gm-members').value, 10) || 4;
+  const adults = parseInt(document.getElementById('gm-adults').value, 10) || 2;
+  const kids = parseInt(document.getElementById('gm-kids').value, 10) || 2;
+  const section = document.getElementById('s3');
+  if (!section) return;
+
+  let dayLabel = '';
+  const meals = [];
+  if (scope === 'day') {
+    const active = section.querySelector('.day-panel.active');
+    if (!active) { _showGroceryError('Pick a day tab first.'); return; }
+    const collected = _collectDayMeals(active);
+    dayLabel = collected.dayFull;
+    meals.push(...collected.meals);
+  } else {
+    section.querySelectorAll('.day-panel').forEach(p => {
+      meals.push(..._collectDayMeals(p).meals);
+    });
+  }
+  if (meals.length === 0) { _showGroceryError('No meals found in the selected scope.'); return; }
+
+  const body = document.getElementById('gm-body');
+  const actions = document.getElementById('gm-actions');
+  const goBtn = document.getElementById('gm-go');
+  if (goBtn) { goBtn.disabled = true; goBtn.textContent = 'Working…'; }
+  body.innerHTML = '<div class="gm-loading">Preparing the shopping list… this can take 10–20 seconds.</div>';
+
+  try {
+    const response = await fetch(_groceryApiBase() + '/api/grocery', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        scope, dayLabel,
+        family: { members, adults, kids },
+        meals
+      })
+    });
+    const data = await response.json();
+    if (!response.ok) {
+      const msg = (data && data.error && data.error.message) || ('Request failed (' + response.status + ').');
+      throw new Error(msg);
+    }
+    window._groceryLastResult = data;
+    _renderGroceryResult(data);
+  } catch (err) {
+    _showGroceryError(err.message || 'Could not build the list.');
+    if (goBtn) { goBtn.disabled = false; goBtn.textContent = 'Generate list'; }
+  }
+}
+
+function _showGroceryError(message) {
+  const body = document.getElementById('gm-body');
+  if (!body) { alert(message); return; }
+  const existing = body.querySelector('.gm-error');
+  if (existing) existing.remove();
+  const err = document.createElement('div');
+  err.className = 'gm-error';
+  err.textContent = message;
+  body.insertBefore(err, body.firstChild);
+}
+
+function _renderGroceryResult(data) {
+  const body = document.getElementById('gm-body');
+  const actions = document.getElementById('gm-actions');
+  const scopeLabel = data.scope === 'week' ? 'Full week (Mon–Sun)' : (data.dayLabel || "Today's plan");
+  const genDate = new Date(data.generatedAt || Date.now()).toLocaleDateString('en-IN', {
+    day: 'numeric', month: 'long', year: 'numeric'
+  });
+  const family = data.family || { members: 4 };
+
+  let html = '<div class="gm-summary">' +
+    '<b>' + _escapeHtml(scopeLabel) + '</b> · for ' + family.members + ' people · generated ' + _escapeHtml(genDate) +
+    ' · <b>' + data.totalItems + '</b> items across ' + data.categories.length + ' categories' +
+    '</div>';
+
+  data.categories.forEach(cat => {
+    html += '<div class="gm-category">' +
+      '<div class="gm-category-head">' +
+        '<span>' + _escapeHtml(cat.name) + '</span>' +
+        '<span class="gm-category-count">' + cat.items.length + ' items</span>' +
+      '</div>' +
+      '<ul class="gm-item-list">';
+    cat.items.forEach(item => {
+      const days = (item.days && item.days.length && data.scope === 'week')
+        ? '<span class="gm-item-days">' + _escapeHtml(item.days.join(' · ')) + '</span>'
+        : '';
+      const meta = item.notes
+        ? '<div class="gm-item-meta">' + _escapeHtml(item.notes) + days + '</div>'
+        : (days ? '<div class="gm-item-meta">' + days + '</div>' : '');
+      html += '<li class="gm-item">' +
+        '<div><span class="gm-item-name">' + _escapeHtml(item.name) + '</span>' + meta + '</div>' +
+        '<span class="gm-item-qty">' + _escapeHtml(item.quantity || '—') + '</span>' +
+      '</li>';
+    });
+    html += '</ul></div>';
+  });
+
+  body.innerHTML = html;
+  actions.innerHTML =
+    '<button class="gm-btn" onclick="openGroceryModal()">← Back</button>' +
+    '<button class="gm-btn" onclick="copyGroceryList()">Copy</button>' +
+    '<button class="gm-btn" id="gm-print-btn" onclick="printGroceryList()">🖨 Print</button>' +
+    '<button class="gm-btn" id="gm-pdf-btn" onclick="saveGroceryAsPDF()">📄 Save as PDF</button>' +
+    '<button class="gm-btn primary" onclick="shareGroceryWhatsApp()">Share on WhatsApp</button>';
+}
+
+function _groceryPlainText(data) {
+  const lines = [];
+  const scopeLabel = data.scope === 'week' ? 'Full week' : (data.dayLabel || "Today's plan");
+  lines.push('*Shopping list — ' + scopeLabel + '*');
+  const family = data.family || { members: 4 };
+  const gen = new Date(data.generatedAt || Date.now()).toLocaleDateString('en-IN', {
+    day: 'numeric', month: 'long', year: 'numeric'
+  });
+  lines.push('For ' + family.members + ' people · ' + gen);
+  lines.push('');
+  data.categories.forEach(cat => {
+    lines.push('*' + cat.name + '*');
+    cat.items.forEach(item => {
+      const parts = ['• ' + item.name];
+      if (item.quantity) parts.push(' — ' + item.quantity);
+      if (item.notes) parts.push(' (' + item.notes + ')');
+      if (data.scope === 'week' && item.days && item.days.length) {
+        parts.push(' [' + item.days.join(', ') + ']');
+      }
+      lines.push(parts.join(''));
+    });
+    lines.push('');
+  });
+  lines.push('— Suresh Sharma Family Nutrition');
+  return lines.join('\n');
+}
+
+function copyGroceryList() {
+  const data = window._groceryLastResult;
+  if (!data) return;
+  const text = _groceryPlainText(data);
+  const done = () => _showGroceryToast('Copied to clipboard');
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(done, () => _fallbackCopy(text, done));
+  } else {
+    _fallbackCopy(text, done);
+  }
+}
+
+function _fallbackCopy(text, cb) {
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand('copy'); cb(); } catch (e) { alert('Copy failed. Long-press to select instead.'); }
+  ta.remove();
+}
+
+function _showGroceryToast(message) {
+  const existing = document.querySelector('.gm-toast');
+  if (existing) existing.remove();
+  const toast = document.createElement('div');
+  toast.className = 'gm-toast';
+  toast.textContent = message;
+  document.body.appendChild(toast);
+  setTimeout(() => toast.remove(), 2400);
+}
+
+function _groceryPrintCore(showPdfHint) {
+  const data = window._groceryLastResult;
+  if (!data) return;
+  if (showPdfHint) {
+    _showGroceryToast('In the print dialog, choose "Save as PDF" as the destination.');
+  }
+  document.body.classList.add('print-grocery');
+  // Force reflow so browser applies the class before opening print dialog
+  void document.body.offsetHeight;
+  setTimeout(() => {
+    try { window.print(); }
+    catch (e) { alert('Print failed: ' + e.message); }
+    setTimeout(() => document.body.classList.remove('print-grocery'), 800);
+  }, showPdfHint ? 900 : 150);
+}
+
+function printGroceryList() { _groceryPrintCore(false); }
+function saveGroceryAsPDF() { _groceryPrintCore(true); }
+
+function shareGroceryWhatsApp() {
+  const data = window._groceryLastResult;
+  if (!data) return;
+  const text = _groceryPlainText(data);
+  const url = 'https://wa.me/?text=' + encodeURIComponent(text);
+  window.open(url, '_blank', 'noopener');
 }
 </script>
 </body>

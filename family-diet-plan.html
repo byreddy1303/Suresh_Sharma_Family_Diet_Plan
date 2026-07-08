@@ -242,32 +242,85 @@ details.drop.person-card.karthik summary { color: var(--sky); }
   padding: 12px 20px;
   display: flex;
   justify-content: flex-end;
-  gap: 10px;
+  gap: 8px;
   border-top: 1px solid var(--border);
   background: var(--parchment);
   flex-shrink: 0;
+  flex-wrap: wrap;
 }
 .print-modal-btn {
-  padding: 8px 18px;
+  padding: 8px 16px;
   border-radius: 6px;
   border: none;
   cursor: pointer;
   font-family: Georgia, serif;
-  font-size: 0.95rem;
-  transition: background 0.15s ease;
+  font-size: 0.92rem;
+  transition: background 0.15s ease, transform 0.1s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
+.print-modal-btn:disabled { opacity: 0.55; cursor: wait; }
 .print-modal-btn.cancel {
   background: transparent;
   color: var(--coffee-light);
   border: 1px solid var(--border);
 }
 .print-modal-btn.cancel:hover { background: white; color: var(--coffee); }
+.print-modal-btn.pdf {
+  background: var(--coffee);
+  color: var(--cream);
+  font-weight: bold;
+}
+.print-modal-btn.pdf:hover:not(:disabled) { background: #2a1a10; }
 .print-modal-btn.go {
   background: var(--terracotta);
   color: var(--cream);
   font-weight: bold;
 }
-.print-modal-btn.go:hover { background: #A03810; }
+.print-modal-btn.go:hover:not(:disabled) { background: #A03810; }
+.pm-hint {
+  font-size: 0.78rem;
+  color: var(--coffee-light);
+  margin: 8px 0 0;
+  padding: 6px 10px;
+  background: var(--parchment);
+  border-left: 3px solid var(--turmeric);
+  border-radius: 3px;
+  line-height: 1.4;
+}
+
+/* PDF-render mode: applies print-like styles on-screen so html2canvas captures them */
+body.pdf-rendering { background: #fff !important; padding: 0 !important; }
+body.pdf-rendering .no-print,
+body.pdf-rendering nav.toc,
+body.pdf-rendering .print-btn,
+body.pdf-rendering .family-strip,
+body.pdf-rendering footer,
+body.pdf-rendering .hero,
+body.pdf-rendering .print-modal-overlay,
+body.pdf-rendering .assistant-fab,
+body.pdf-rendering .assistant-panel { display: none !important; }
+body.pdf-rendering .section:not(.print-target) { display: none !important; }
+body.pdf-rendering .print-target { box-shadow: none; border: 1px solid #C1440E; margin: 0; }
+/* Hide non-selected top-level drops in target section */
+body.pdf-rendering .print-target details.drop:not(.selected-for-print) { display: none !important; }
+/* Show selected drop and every drop nested inside it */
+body.pdf-rendering .print-target details.drop.selected-for-print,
+body.pdf-rendering .print-target details.drop.selected-for-print details.drop { display: block !important; }
+/* Force drop bodies visible even if details isn't officially "open" */
+body.pdf-rendering .print-target details.drop.selected-for-print > .drop-body,
+body.pdf-rendering .print-target details.drop.selected-for-print details.drop > .drop-body {
+  display: block !important;
+}
+body.pdf-rendering details.drop summary::-webkit-details-marker { display: none !important; }
+body.pdf-rendering .hint { display: none !important; }
+body.pdf-rendering .day-tabs { display: none !important; }
+body.pdf-rendering .day-panel { display: block !important; }
+body.pdf-rendering table { border-collapse: collapse; }
+body.pdf-rendering th, body.pdf-rendering td { padding: 4px 6px; font-size: 10pt; }
+body.pdf-rendering th { background: #f0e4cc !important; }
+body.pdf-rendering .callout { break-inside: avoid; }
 h1, h2, h3, h4 { font-family: 'Palatino Linotype', Georgia, serif; }
 .wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
 
@@ -2521,8 +2574,8 @@ footer::before { content: "❈ ❈ ❈"; display: block; color: var(--turmeric);
       <li><b>Stone mortar (rolu-rokali)</b> — freshly-pounded spices for max potency.<span class="te"><b>రోలు-రోకలి</b> — తాజాగా దంచిన మసాలాలు గరిష్ట గుణం.</span></li>
       <li><b>Small kitchen scale</b> — for the first month, measure oil and rice per person. Trains portion instinct.<span class="te"><b>చిన్న త్రాసు</b> — మొదటి నెల ఒక్కొక్కరికి నూనె, అన్నం కొలవండి. పరిమాణం అర్థం అవుతుంది.</span></li>
     </ul>
-  </div>
     </div></details>
+  </div>
 </section>
 <!-- ==================== SECTION 5 ==================== -->
 <section id="s8" class="section s-sky">
@@ -3168,7 +3221,7 @@ function showPrintModal(section, components) {
         <button class="print-modal-close" onclick="closePrintModal()" aria-label="Close">×</button>
       </div>
       <div class="print-modal-body">
-        <p class="pm-intro">Tick the parts you want to print. Only those will be included.<br><span class="te-inline">ప్రింట్ చేయాలనుకున్న భాగాలను ఎంచుకోండి. ఎంచుకున్నవి మాత్రమే ప్రింట్ అవుతాయి.</span></p>
+        <p class="pm-intro">Tick the parts you want. Then choose Print or Save as PDF.<br><span class="te-inline">కావలసిన భాగాలను ఎంచుకోండి. ప్రింట్ లేదా PDF గా సేవ్ చేయండి.</span></p>
         <label class="print-check select-all">
           <input type="checkbox" id="pm-all" onchange="pmToggleAll(this)">
           <span><b>Select all</b> / <span class="te-inline">అన్నీ ఎంచుకోండి</span></span>
@@ -3181,10 +3234,12 @@ function showPrintModal(section, components) {
             </label>
           `).join('')}
         </div>
+        <p class="pm-hint" id="pm-hint" style="display:none;"></p>
       </div>
       <div class="print-modal-actions">
         <button class="print-modal-btn cancel" onclick="closePrintModal()">Cancel</button>
-        <button class="print-modal-btn go" onclick="pmPrintSelected()">⎙ Print Selected</button>
+        <button class="print-modal-btn pdf" id="pm-pdf-btn" onclick="pmSaveAsPDF()">📄 Save as PDF</button>
+        <button class="print-modal-btn go" id="pm-print-btn" onclick="pmPrintSelected()">🖨 Print</button>
       </div>
     </div>
   `;
@@ -3193,6 +3248,50 @@ function showPrintModal(section, components) {
   window._pmSection = section;
   window._pmComponents = components;
   document.addEventListener('keydown', pmEscHandler);
+}
+
+function pmShowHint(msg) {
+  const hint = document.getElementById('pm-hint');
+  if (!hint) return;
+  hint.textContent = msg;
+  hint.style.display = 'block';
+}
+
+function pmGetSelected() {
+  const components = window._pmComponents;
+  if (!components) return [];
+  const chosen = [];
+  document.querySelectorAll('.pm-check').forEach(cb => {
+    if (cb.checked) chosen.push(components[parseInt(cb.dataset.idx, 10)]);
+  });
+  return chosen;
+}
+
+function pmMarkSelected(chosen) {
+  const restoreList = [];
+  chosen.forEach(c => {
+    c.el.classList.add('selected-for-print');
+    if (c.el.tagName === 'DETAILS') {
+      const wasOpen = c.el.hasAttribute('open');
+      c.el.setAttribute('open', '');
+      c.el.querySelectorAll('details').forEach(d => {
+        const nOpen = d.hasAttribute('open');
+        d.setAttribute('open', '');
+        restoreList.push([d, nOpen, false]);
+      });
+      restoreList.push([c.el, wasOpen, true]);
+    } else {
+      restoreList.push([c.el, null, true]);
+    }
+  });
+  return restoreList;
+}
+
+function pmRestore(restoreList) {
+  restoreList.forEach(([el, wasOpen, hadSelClass]) => {
+    if (el.tagName === 'DETAILS' && wasOpen === false) el.removeAttribute('open');
+    if (hadSelClass) el.classList.remove('selected-for-print');
+  });
 }
 
 function pmEscHandler(e) { if (e.key === 'Escape') closePrintModal(); }
@@ -3222,36 +3321,14 @@ function closePrintModal() {
 
 function pmPrintSelected() {
   const section = window._pmSection;
-  const components = window._pmComponents;
-  if (!section || !components) return;
-  const chosen = [];
-  document.querySelectorAll('.pm-check').forEach(cb => {
-    if (cb.checked) chosen.push(components[parseInt(cb.dataset.idx, 10)]);
-  });
+  if (!section) return;
+  const chosen = pmGetSelected();
   if (chosen.length === 0) {
-    alert('Select at least one part to print, or press Cancel.');
+    pmShowHint('Tick at least one item above, then press Print.');
     return;
   }
 
-  // Mark selected components (open dropdowns, tag both for CSS)
-  const restoreList = [];
-  chosen.forEach(c => {
-    c.el.classList.add('selected-for-print');
-    if (c.el.tagName === 'DETAILS') {
-      const wasOpen = c.el.hasAttribute('open');
-      c.el.setAttribute('open', '');
-      // Also open any nested details inside so their content prints
-      c.el.querySelectorAll('details').forEach(d => {
-        const nOpen = d.hasAttribute('open');
-        d.setAttribute('open', '');
-        restoreList.push([d, nOpen, false]);
-      });
-      restoreList.push([c.el, wasOpen, true]);
-    } else {
-      restoreList.push([c.el, null, true]);
-    }
-  });
-
+  const restoreList = pmMarkSelected(chosen);
   section.classList.add('print-target');
   document.body.classList.add('print-single', 'print-selective');
   closePrintModal();
@@ -3261,12 +3338,96 @@ function pmPrintSelected() {
     setTimeout(() => {
       section.classList.remove('print-target');
       document.body.classList.remove('print-single', 'print-selective');
-      restoreList.forEach(([el, wasOpen, hadSelClass]) => {
-        if (el.tagName === 'DETAILS' && wasOpen === false) el.removeAttribute('open');
-        if (hadSelClass) el.classList.remove('selected-for-print');
-      });
+      pmRestore(restoreList);
     }, 600);
   }, 120);
+}
+
+// ---- Save as PDF ----
+const HTML2PDF_CDN = 'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js';
+let _html2pdfPromise = null;
+function loadHtml2Pdf() {
+  if (window.html2pdf) return Promise.resolve(window.html2pdf);
+  if (_html2pdfPromise) return _html2pdfPromise;
+  _html2pdfPromise = new Promise((resolve, reject) => {
+    const s = document.createElement('script');
+    s.src = HTML2PDF_CDN;
+    s.async = true;
+    s.onload = () => resolve(window.html2pdf);
+    s.onerror = () => { _html2pdfPromise = null; reject(new Error('Could not load PDF library.')); };
+    document.head.appendChild(s);
+  });
+  return _html2pdfPromise;
+}
+
+function pmBuildPdfFilename(section, chosen) {
+  const stripTe = s => s.replace(/[ఀ-౿]/g, '').replace(/\s+\/\s*$/, '').replace(/\s+/g, ' ').trim();
+  const sectionTitle = stripTe(section.querySelector('.section-header h2')?.textContent || 'section')
+    .replace(/^\s*\d+\s*[·\-—]?\s*/, '')
+    .trim();
+  const parts = [sectionTitle];
+  if (chosen.length === 1) {
+    const label = stripTe(chosen[0].label.split('/')[0]);
+    if (label) parts.push(label);
+  }
+  const slug = parts.join(' - ')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+    .slice(0, 80) || 'diet-plan-export';
+  return slug + '.pdf';
+}
+
+async function pmSaveAsPDF() {
+  const section = window._pmSection;
+  if (!section) return;
+  const chosen = pmGetSelected();
+  if (chosen.length === 0) {
+    pmShowHint('Tick at least one item above, then press Save as PDF.');
+    return;
+  }
+
+  const pdfBtn = document.getElementById('pm-pdf-btn');
+  const printBtn = document.getElementById('pm-print-btn');
+  if (pdfBtn) { pdfBtn.disabled = true; pdfBtn.textContent = '⏳ Building PDF...'; }
+  if (printBtn) printBtn.disabled = true;
+  pmShowHint('Generating PDF — please wait a moment.');
+
+  let html2pdf;
+  try {
+    html2pdf = await loadHtml2Pdf();
+  } catch (err) {
+    pmShowHint('Could not load PDF library. Please check your internet connection or use the Print button and choose "Save as PDF" in the print dialog.');
+    if (pdfBtn) { pdfBtn.disabled = false; pdfBtn.innerHTML = '📄 Save as PDF'; }
+    if (printBtn) printBtn.disabled = false;
+    return;
+  }
+
+  const restoreList = pmMarkSelected(chosen);
+  section.classList.add('print-target');
+  document.body.classList.add('pdf-rendering');
+
+  const filename = pmBuildPdfFilename(section, chosen);
+  const opts = {
+    margin: [10, 10, 12, 10],
+    filename,
+    image: { type: 'jpeg', quality: 0.95 },
+    html2canvas: { scale: 2, useCORS: true, backgroundColor: '#ffffff', windowWidth: Math.min(document.documentElement.clientWidth, 1100) },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait', compress: true },
+    pagebreak: { mode: ['css', 'legacy'], avoid: ['tr', '.recipe', '.meal', '.callout', '.macro-box'] }
+  };
+
+  try {
+    await html2pdf().set(opts).from(section).save();
+  } catch (err) {
+    console.error('PDF generation failed:', err);
+    alert('Sorry, PDF generation failed. Please try the Print button and choose "Save as PDF" in the print dialog.');
+  } finally {
+    section.classList.remove('print-target');
+    document.body.classList.remove('pdf-rendering');
+    pmRestore(restoreList);
+    closePrintModal();
+  }
 }
 
 // Auto-open all dropdowns for Ctrl/Cmd+P print too

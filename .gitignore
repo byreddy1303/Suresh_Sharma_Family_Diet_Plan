@@ -10,3 +10,7 @@ node_modules/
 .netlify/
 dist/
 build/
+
+# macOS
+.DS_Store
+**/.DS_Store
